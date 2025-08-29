@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Website interior formatting (seen by website not user) -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yugioh — Card Hub</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="assets/back.jpg"
+</head>
+
+<!-- Page header (seen by user) -->
+<body>
+  <header class="site-header container">
+    <div class="brand"><span class="logo">🃏</span><strong>Card&nbsp;Hub</strong></div>
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../yugioh/index.html" aria-current="page">Yu‑Gi‑Oh!</a>
+      <a href="../mtg/index.html">MTG</a>
+      <a href="../pokemon/index.html">Pokémon</a>
+    </nav>
+  </header>
+
+  <!-- initial body -->
+  <main class="container">
+
+    <!-- Intro Section -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Yugioh</h1>
+          <p class="muted">
+            This is the Yugioh section. Put your pages, data, and assets here.
+          </p>
+      </div>
+    </section>
+
+    <!-- Vampire deck Calling JS Script-->
+     <!-- <select> keyword for dropdown -->
+     <section>
+      <label class="muted" for="deckselect">Chose a Deck</label>
+      <select id="deckSelect">
+        <option value="./data/vampire.json">1. Vampire's Rise</option>
+        <option value="./data/dark-magician.json">2. Chaos Magician</option>
+      </select>
+      <div id="deck-root"></div>
+     </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer container">
+    <small>&copy; <span id="year"></span> Card Hub</small>
+  </footer>
+
+  <!-- Shared Feature (theme toggle, footer year etc.)-->
+  <script src="../main.js"></script>
+
+  <!-- Yugioh Vampire Deck loader-->
+   <script src="./js/vampire.js"></script>
+
+   <!-- Lightbox overlay -->
+  <div id="lightbox" class="lightbox">
+    <button class="nav prev" aria-label="Previous card">❮</button>
+    <img class="lightbox-img" src="" alt="Card preview">
+    <button class="nav next" aria-label="Next card">❯</button>
+    <button class="close" aria-label="Close">×</button>
+  </div>
+
+</body>
+</html>

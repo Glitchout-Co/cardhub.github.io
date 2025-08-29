@@ -1,0 +1,416 @@
+{
+  "name": "Vampire's Rise",
+  "author": "Vulas Park",
+  "sections": {
+    "main": [
+      {
+        "name": "Vampire Familiar",
+        "qty": 2,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 1,
+        "atk": 500,
+        "def": 0,
+        "id": 34250214,
+        "img": "https://images.ygoprodeck.com/images/cards/34250214.jpg"
+      },
+      {
+        "name": "Glow-Up Bloom",
+        "qty": 1,
+        "attribute": "DARK",
+        "type": "Tuner Monster",
+        "level": 1,
+        "atk": 0,
+        "def": 0,
+        "id": 92964816,
+        "img": "https://images.ygoprodeck.com/images/cards/92964816.jpg"
+      },
+      {
+        "name": "Vampire Retainer",
+        "qty": 3,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 2,
+        "atk": 1200,
+        "def": 0,
+        "id": 70645913,
+        "img": "https://images.ygoprodeck.com/images/cards/70645913.jpg"
+      },
+      {
+        "name": "Vampire Ghost",
+        "qty": 2,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 3,
+        "atk": 1500,
+        "def": 0,
+        "id": 90299015,
+        "img": "https://images.ygoprodeck.com/images/cards/90299015.jpg"
+      },
+      {
+        "name": "Uni-Zombie",
+        "qty": 3,
+        "attribute": "DARK",
+        "type": "Tuner Monster",
+        "level": 3,
+        "atk": 1300,
+        "def": 0,
+        "id": 49959355,
+        "img": "https://images.ygoprodeck.com/images/cards/49959355.jpg"
+      },
+      {
+        "name": "Ash Blossom & Joyous Spring",
+        "qty": 3,
+        "attribute": "FIRE",
+        "type": "Tuner Monster",
+        "level": 3,
+        "atk": 0,
+        "def": 1800,
+        "id": 14558127,
+        "img": "https://images.ygoprodeck.com/images/cards/14558127.jpg"
+      },
+      {
+        "name": "Vampire Sorcerer",
+        "qty": 2,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 4,
+        "atk": 1500,
+        "def": 1500,
+        "id": 88728507,
+        "img": "https://images.ygoprodeck.com/images/cards/88728507.jpg"
+      },
+      {
+        "name": "Necroworld Banshee",
+        "qty": 1,
+        "attribute": "DARK",
+        "type": "Tuner Monster",
+        "level": 4,
+        "atk": 1800,
+        "def": 200,
+        "id": 66570171,
+        "img": "https://images.ygoprodeck.com/images/cards/66570171.jpg"
+      },
+      {
+        "name": "Vampire Duke",
+        "qty": 2,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 5,
+        "atk": 2000,
+        "def": 0,
+        "id": 58947797,
+        "img": "https://images.ygoprodeck.com/images/cards/58947797.jpg"
+      },
+      {
+        "name": "Shadow Vampire",
+        "qty": 1,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 5,
+        "atk": 2000,
+        "def": 0,
+        "id": 14212201,
+        "img": "https://images.ygoprodeck.com/images/cards/14212201.jpg"
+      },
+      {
+        "name": "Vampire Fraulein",
+        "qty": 2,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 5,
+        "atk": 600,
+        "def": 2000,
+        "id": 6039967,
+        "img": "https://images.ygoprodeck.com/images/cards/6039967.jpg"
+      },
+      {
+        "name": "Vampire Scarlet Scourge",
+        "qty": 2,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 6,
+        "atk": 2200,
+        "def": 2200,
+        "id": 79523365,
+        "img": "https://images.ygoprodeck.com/images/cards/79523365.jpg"
+      },
+      {
+        "name": "Vampire Grace",
+        "qty": 1,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 6,
+        "atk": 2000,
+        "def": 1200,
+        "id": 40607210,
+        "img": "https://images.ygoprodeck.com/images/cards/40607210.jpg"
+      },
+      {
+        "name": "Vampire Vamp",
+        "qty": 1,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 7,
+        "atk": 2000,
+        "def": 2000,
+        "id": 82962242,
+        "img": "https://images.ygoprodeck.com/images/cards/82962242.jpg"
+      },
+      {
+        "name": "Vampire Voivode",
+        "qty": 1,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 8,
+        "atk": 2800,
+        "def": 2100,
+        "id": 4918855,
+        "img": "https://images.ygoprodeck.com/images/cards/4918855.jpg"
+      },
+      {
+        "name": "Vampire's Domain",
+        "qty": 3,
+        "type": "Spell",
+        "subtype": "Continuous",
+        "id": 5795882,
+        "img": "https://images.ygoprodeck.com/images/cards/5795882.jpg"
+      },
+      {
+        "name": "Vampire's Desire",
+        "qty": 2,
+        "type": "Spell",
+        "subtype": "Normal",
+        "id": 69700783,
+        "img": "https://images.ygoprodeck.com/images/cards/69700783.jpg"
+      },
+      {
+        "name": "Vampire Kingdom",
+        "qty": 2,
+        "type": "Spell",
+        "subtype": "Field",
+        "id": 62188962,
+        "img": "https://images.ygoprodeck.com/images/cards/62188962.jpg"
+      },
+      {
+        "name": "Foolish Burial",
+        "qty": 1,
+        "type": "Spell",
+        "subtype": "Normal",
+        "id": 81439173,
+        "img": "https://images.ygoprodeck.com/images/cards/81439173.jpg"
+      },
+      {
+        "name": "Zombie World",
+        "qty": 1,
+        "type": "Spell",
+        "subtype": "Field",
+        "id": 4064256,
+        "img": "https://images.ygoprodeck.com/images/cards/4064256.jpg"
+      },
+      {
+        "name": "Recurring Nightmare",
+        "qty": 1,
+        "type": "Spell",
+        "subtype": "Normal",
+        "id": 81191584,
+        "img": "https://images.ygoprodeck.com/images/cards/81191584.jpg"
+      },
+      {
+        "name": "One for One",
+        "qty": 1,
+        "type": "Spell",
+        "subtype": "Normal",
+        "id": 2295440,
+        "img": "https://images.ygoprodeck.com/images/cards/2295440.jpg"
+      },
+      {
+        "name": "Vampire Awakening",
+        "qty": 1,
+        "type": "Trap",
+        "subtype": "Normal",
+        "id": 31189536,
+        "img": "https://images.ygoprodeck.com/images/cards/31189536.jpg"
+      },
+      {
+        "name": "Vampire Domination",
+        "qty": 3,
+        "type": "Trap",
+        "subtype": "Counter",
+        "id": 68688135,
+        "img": "https://images.ygoprodeck.com/images/cards/68688135.jpg"
+      },
+      {
+        "name": "Infinite Impermanence",
+        "qty": 1,
+        "type": "Trap",
+        "subtype": "Normal",
+        "id": 10045474,
+        "img": "https://images.ygoprodeck.com/images/cards/10045474.jpg"
+      },
+      {
+        "name": "Vampire Takeover",
+        "qty": 1,
+        "type": "Trap",
+        "subtype": "Normal",
+        "id": 22900598,
+        "img": "https://images.ygoprodeck.com/images/cards/22900598.jpg"
+      }
+    ],
+    "extra": [
+		{
+			"name": "Crimson Knight Vampire Bram",
+			"qty": 1,
+			"attribute": "DARK",
+			"type": "Monster",
+			"subtype": "XYZ",
+			"rank": 5,
+			"requirements": "2 level 5 zombie monsters",
+      "atk": 2500,
+      "def": 0,
+			"id": 38250531,
+			"img": "https://images.ygoprodeck.com/images/cards/38250531.jpg"
+		},
+		{
+			"name": "Dhampir Vampire Sheridan",
+			"qty": 2,
+			"attribute": "DARK",
+			"type": "Monster",
+			"subtype": "XYZ",
+      "atk": 2600,
+      "def": 1000,
+			"rank": 6,
+			"requirements": "2+ level 6 monsters",
+			"id": 32302078,
+			"img": "https://images.ygoprodeck.com/images/cards/32302078.jpg"
+		},
+		{
+			"name": "The Zombie Vampire",
+			"qty": 2,
+			"attribute": "DARK",
+			"type": "Monster",
+			"subtype": "XYZ",
+			"rank": 8,
+			"requirements": "2+ Level 8 Monsters",
+      "atk": 3000,
+      "def": 2800,
+			"id": 73082255,
+			"img": "https://images.ygoprodeck.com/images/cards/73082255.jpg"
+		},
+		{
+			"name": "Immortal Dragon",
+			"qty": 1,
+			"attribute": "DARK",
+			"type": "Monster",
+			"subtype": "Synchro",
+			"level": 6,
+			"requirements": "1 tuner & 1+ non-tuner monsters",
+      "atk": 500,
+      "def": 2400,
+			"id": 91575236,
+			"img": "https://images.ygoprodeck.com/images/cards/91575236.jpg"
+		},
+		{
+			"name": "Red-Eyes Zombie Necro Dragon",
+			"qty": 1,
+			"attribute": "DARK",
+			"type": "Monster",
+			"subtype": "Synchro",
+			"level": 7,
+			"requirements": "1 tuner & 1+ non-tuner monsters",
+      "atk": 2400,
+      "def": 2000,
+			"id": 28240337,
+			"img": "https://images.ygoprodeck.com/images/cards/28240337.jpg"
+		},
+		{
+			"name": "Skeletal Dragon Felgrand",
+			"qty": 1,
+			"attribute": "DARK",
+			"type": "Monster",
+			"Subtype": "Synchro",
+			"level": 8,
+			"requirements": "1 tuner & 1+ non-tuner monsters",
+      "atk": 2800,
+      "def": 2800,
+			"id": 65187687,
+			"img": "https://images.ygoprodeck.com/images/cards/65187687.jpg"
+		},
+		{
+			"name": "Red-Eyes Zombie Dragon Lord",
+			"qty": 1,
+			"attribute": "DARK",
+			"type": "Monster",
+			"subtype": "Synchro",
+			"level": 10,
+      "requirements": "1 Zombie Tuner & 1+ non-tuner",
+      "atk": 2800,
+      "def": 2400,
+      "id": 38192988,
+      "img": "https://images.ygoprodeck.com/images/cards/38192988.jpg"
+		},
+    {
+      "name": "Psychic End Punisher",
+      "qty": 1,
+      "attribute": "Light",
+      "type": "Monster",
+      "subtype": "Synchro",
+      "level": 11,
+      "requirements":"1 tuner & 1+ non-tuner monsters",
+      "atk": 3500,
+      "def": 3500,
+      "id": 60465049,
+      "img": "https://images.ygoprodeck.com/images/cards/60465049.jpg"
+    },
+    {
+      "name": "Salamangreat Almiraj",
+      "qty": 1,
+      "attribute": "FIRE",
+      "type": "Monster",
+      "subtype": "Link",
+      "link": -1,
+      "requirements": "1 normal summoned monster with 1000 or less atk",
+      "atk": 0,
+      "id": 60303245,
+      "img": "https://images.ygoprodeck.com/images/cards/60303245.jpg"
+    },
+    {
+      "name": "Vampire Sucker",
+      "qty": 2,
+      "attribute": "DARK",
+      "type": "Monster",
+      "subtype": "Link",
+      "link": -2,
+      "requirements": "2 Zombie Monsters",
+      "atk": 1600,
+      "id": 37129797,
+      "img": "https://images.ygoprodeck.com/images/cards/37129797.jpg"
+    },
+    {
+      "name": "Vampire Fascinator",
+      "qty": 2,
+      "attribute": "DARK",
+      "type": "Monster",
+      "subtype": "Link",
+      "link": -3,
+      "requirements": "2+ Monsters, including a Zombie Monster",
+      "atk": 2400,
+      "id": 72860663,
+      "img": "https://images.ygoprodeck.com/images/cards/72860663.jpg"
+    },
+    {
+      "name": "Knightmare Unicorn",
+      "qty": 1,
+      "attribute": "DARK",
+      "type": "Monster",
+      "subtype": "Link",
+      "link": -3,
+      "requirements": "2+ Monsters with different names",
+      "atk": 2200,
+      "id": 38342335,
+      "img": "https://images.ygoprodeck.com/images/cards/38342335.jpg"
+    }
+],
+    "side": []
+  }
+}

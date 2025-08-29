@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "game": "mtg",
+    "example": true
+  },
+  "decks": [
+    {
+      "name": "Sample Mtg Deck 1",
+      "notes": "Replace with your own."
+    },
+    {
+      "name": "Sample Mtg Deck 2",
+      "notes": "Replace with your own."
+    }
+  ]
+}

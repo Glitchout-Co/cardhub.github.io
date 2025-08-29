@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "game": "pokemon",
+    "example": true
+  },
+  "decks": [
+    {
+      "name": "Sample Pokemon Deck 1",
+      "notes": "Replace with your own."
+    },
+    {
+      "name": "Sample Pokemon Deck 2",
+      "notes": "Replace with your own."
+    }
+  ]
+}
