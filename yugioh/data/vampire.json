@@ -388,7 +388,7 @@
     },
     {
       "name": "Vampire Fascinator",
-      "qty": 2,
+      "qty": 1,
       "attribute": "DARK",
       "type": "Monster",
       "subtype": "Link",

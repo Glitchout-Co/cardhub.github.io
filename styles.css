@@ -134,6 +134,11 @@
   .hero-text {
     text-align: center; /* center your H1 + paragraph + buttons */
   }
+
+  h2 {
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+  }
   
   .lead {
     color: var(--muted);

@@ -14,24 +14,29 @@ function sumQty(list) {
 function smallInfo(card) {
   const bits = [];
 
-  /* check property level/rank/link */
+  // Level/Rank/Link (first one that exists)
   if (card.level != null) {
     bits.push(`⭐ ${card.level}`);
-  } else if (Card.rank != null) {
+  } else if (card.rank != null) {
     bits.push(`⤴️ ${card.rank}`);
   } else if (card.link != null) {
-    bits.push(`♾️ ${card.link}`)
+    bits.push(`🔗 ${card.link}`);
   }
 
-  /* Show Subtype */
-  if (card.subtype) bits.push(card.subtype.toUpperCase());
+  // Subtype (handle both Subtype/subtype just in case)
+  const subtype = card.subtype || card.Subtype;
+  if (subtype) bits.push(String(subtype).toUpperCase());
 
-  /* Show Attribute */
+  // Attribute
   if (card.attribute) bits.push(card.attribute.toUpperCase());
 
-  /* Show atk/def value */
-  if (card.atk != null && card.def != null) bits.push(`⚔️ ${card.atk} / 🛡️ ${card.def}`);
-  
+  // ATK/DEF (show ATK even if DEF missing e.g. LINK)
+  if (card.atk != null && card.def != null) {
+    bits.push(`⚔️ ${card.atk} / 🛡️ ${card.def}`);
+  } else if (card.atk != null) {
+    bits.push(`⚔️ ${card.atk}`);
+  }
+
   return bits.length ? `<small>${bits.join("  •  ")}</small>` : "";
 }
 
@@ -40,7 +45,7 @@ function cardItem(card) {
   const qty = Number(card.qty) || 1;
   const full = card.img || "../assets/back.jpg";
 
-  // Derive small thumbnail if it's a YGOPRODECK URL; otherwise fall back to full
+  // use small thumb in grid if it’s a ygoprodeck URL
   const thumb = (typeof full === "string" && full.includes("/images/cards/"))
     ? full.replace("/images/cards/", "/images/cards_small/")
     : full;
@@ -68,7 +73,6 @@ function cardItem(card) {
     </li>
   `;
 }
-
 
 /* Render a section */
 function sectionBlock(label, cards) {
@@ -121,19 +125,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Lightbox wiring
-const lightbox = document.getElementById("lightbox");
-const imgEl    = lightbox?.querySelector(".lightbox-img");
+  const lightbox = document.getElementById("lightbox");
+  const imgEl    = lightbox?.querySelector(".lightbox-img");
+  const btnPrev  = lightbox?.querySelector(".prev");
+  const btnNext  = lightbox?.querySelector(".next");
+  const btnClose = lightbox?.querySelector(".close");
 
-if (imgEl) {
-  imgEl.addEventListener("load", () => {
-    imgEl.classList.add("loaded");   // add class when big image finishes loading
-  });
-}
-
-const btnPrev  = lightbox?.querySelector(".prev");
-const btnNext  = lightbox?.querySelector(".next");
-const btnClose = lightbox?.querySelector(".close");
-
+  if (imgEl) {
+    imgEl.addEventListener("load", () => {
+      imgEl.classList.add("loaded");   // blur-off when loaded
+    });
+  }
 
   let gallery = [];
   let current = -1;
@@ -146,8 +148,13 @@ const btnClose = lightbox?.querySelector(".close");
     if (!gallery.length) collectGallery();
     if (index < 0 || index >= gallery.length || !lightbox || !imgEl) return;
     current = index;
-    imgEl.src = gallery[current].src;
-    imgEl.alt = gallery[current].alt || "Card preview";
+
+    const el = gallery[current];
+    const fullSrc = el.getAttribute("data-fullsrc") || el.src;
+
+    imgEl.classList.remove("loaded");  // reset blur
+    imgEl.src = fullSrc;
+    imgEl.alt = el.alt || "Card preview";
     lightbox.style.display = "flex";
   }
 
@@ -160,39 +167,38 @@ const btnClose = lightbox?.querySelector(".close");
   function showNext(delta) {
     if (!gallery.length || current < 0 || !imgEl) return;
     current = (current + delta + gallery.length) % gallery.length;
-    imgEl.src = gallery[current].src;
-    imgEl.alt = gallery[current].alt || "Card preview";
+
+    const el = gallery[current];
+    const fullSrc = el.getAttribute("data-fullsrc") || el.src;
+
+    imgEl.classList.remove("loaded");  // reset blur
+    imgEl.src = fullSrc;
+    imgEl.alt = el.alt || "Card preview";
   }
 
-// Open on image click (event delegation)
-document.body.addEventListener("click", (e) => {
-  const t = e.target;
-  if (t instanceof Element && t.classList.contains("card-img")) {
-    collectGallery();
-    const idx = gallery.indexOf(t);
-    openAt(idx);
-  }
-});
+  // Open on image click (event delegation)
+  document.body.addEventListener("click", (e) => {
+    const t = e.target;
+    if (t instanceof Element && t.classList.contains("card-img")) {
+      collectGallery();
+      const idx = gallery.indexOf(t);
+      openAt(idx);
+    }
+  });
 
-function openAt(index) {
-  if (!gallery.length) collectGallery();
-  if (index < 0 || index >= gallery.length || !lightbox || !imgEl) return;
-  current = index;
+  // Buttons
+  btnPrev?.addEventListener("click", () => showNext(-1));
+  btnNext?.addEventListener("click", () => showNext(1));
+  btnClose?.addEventListener("click", closeLightbox);
 
-  const el = gallery[current];
-  const fullSrc = el.getAttribute("data-fullsrc") || el.src; // prefer full
-  imgEl.src = fullSrc;
-  imgEl.alt = el.alt || "Card preview";
-  lightbox.style.display = "flex";
-}
+  // Click outside image closes
+  lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
 
-function showNext(delta) {
-  if (!gallery.length || current < 0 || !imgEl) return;
-  current = (current + delta + gallery.length) % gallery.length;
-
-  const el = gallery[current];
-  const fullSrc = el.getAttribute("data-fullsrc") || el.src;
-  imgEl.src = fullSrc;
-  imgEl.alt = el.alt || "Card preview";
-}
+  // Keyboard controls
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox || lightbox.style.display !== "flex") return;
+    if (e.key === "ArrowLeft")  { e.preventDefault(); showNext(-1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); showNext(1); }
+    if (e.key === "Escape")     { e.preventDefault(); closeLightbox(); }
+  });
 });
