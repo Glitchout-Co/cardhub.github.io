@@ -411,6 +411,66 @@
       "img": "https://images.ygoprodeck.com/images/cards/38342335.jpg"
     }
 ],
-    "side": []
+    "side": [
+      {
+        "name": "Doomking Balerdroch",
+        "qty": 1,
+        "attribute": "DARK",
+        "type": "Monster",
+        "level": 8,
+        "atk": 2800,
+        "def": 2000,
+        "id": 39185163,
+        "img": "https://images.ygoprodeck.com/images/cards/39185163.jpg"
+      },
+      {
+        "name": "cosmic cyclone",
+        "qty": 1,
+        "type": "Spell",
+        "subtype": "Quick-Play",
+        "id": 8267140,
+        "img": "https://images.ygoprodeck.com/images/cards/8267140.jpg"
+      },
+      {
+        "name": "Vampire Awakening",
+        "qty": 1,
+        "type": "Trap",
+        "subtype": "Normal",
+        "id": 31189536,
+        "img": "https://images.ygoprodeck.com/images/cards/31189536.jpg"
+      },
+      {
+        "name": "Non-Fusion Area",
+        "qty": 1,
+        "type": "Spell",
+        "subtype": "Continuous",
+        "id": 17581098,
+        "img": "https://images.ygoprodeck.com/images/cards/27581098.jpg"
+      },
+      {
+        "name": "Time-space Trap Hole",
+        "qty": 1,
+        "type": "Trap",
+        "subtype": "Normal",
+        "id": 2055403,
+        "img": "https://images.ygoprodeck.com/images/cards/2055403.jpg"
+      },
+      {
+        "name": "Deck Devastation Virus",
+        "qty": 1,
+        "type": "Trap",
+        "subtype": "Normal",
+        "id": 35027493,
+        "img": "https://images.ygoprodeck.com/images/cards/35027493.jpg"
+      },
+      {
+        "name": "eradicator epidemic virus",
+        "qty": 1,
+        "type": "Trap",
+        "subtype": "Normal",
+        "id": 54974237,
+        "img": "https://images.ygoprodeck.com/images/cards/54974237.jpg"
+      }
+    ]
   }
 }

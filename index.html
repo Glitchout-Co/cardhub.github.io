@@ -5,35 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Card Hub — Home</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/Bat.png" type="image/png" />
 </head>
 
-<!-- Header Block -->
+<!-- Sticky site header -->
 <body>
-  <header class="site-header container">
-    <div class="brand"><span class="logo" aria-hidden="true">🃏</span><strong>Card&nbsp;Hub</strong></div>
-    <nav class="site-nav">
-      <a href="https://naequarwe.github.io/index.html" aria-current="page">Glitchout Co.</a>
-      <a href="yugioh/index.html">Yu‑Gi‑Oh!</a>
-      <a href="mtg/index.html">MTG</a>
-      <a href="pokemon/index.html">Pokémon</a>
-    </nav>
-    <button id="themeToggle" class="btn icon" aria-label="Toggle theme">🌓</button>
-  </header>
+<header class="site-header container sticky">
+  <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+    <strong>Card&nbsp;Hub</strong>
+  </div>
+  <nav class="site-nav">
+    <a href="https://naequarwe.github.io/index.html" aria-current="page">Masterpage</a>
+    <a href="yugioh/index.html">Yu-Gi-Oh!</a>
+    <a href="mtg/index.html">MTG</a>
+    <a href="pokemon/index.html">Pokémon</a>
+  </nav>
+  <button id="themeToggle" class="btn icon" aria-label="Toggle theme">🌓</button>
+</header>
 
-  <!-- Hero Style layout -->
-  <main class="container">
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Your Trading Card Hub</h1>
-        <p class="lead">A neat, scalable folder layout with quick links to each game.</p>
-        <div class="actions">
-          <a class="btn primary" href="yugioh/index.html">Open Yu‑Gi‑Oh!</a>
-          <a class="btn" href="mtg/index.html">Open MTG</a>
-          <a class="btn" href="pokemon/index.html">Open Pokémon</a>
-        </div>
-      </div>
-    </section>
+<!-- Big hero banner -->
+<section class="hero hero--banner" role="banner" aria-label="Welcome">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+  <div class="hero__inner container">
+    <h1 class="hero__title">Your Trading Card Hub</h1>
+    <p class="hero__subtitle">Deck showcases, rules & quick links — all in one place.</p>
+    <div class="hero__actions">
+      <a class="btn primary" href="yugioh/index.html">Open Yu-Gi-Oh!</a>
+      <a class="btn" href="mtg/index.html">Open MTG</a>
+      <a class="btn" href="pokemon/index.html">Open Pokémon</a>
+    </div>
+  </div>
+</section>
+
 
     <!-- Grid like buttons-->
     <section class="grid-3">
@@ -64,7 +69,7 @@
   </main>
 
   <footer class="site-footer container">
-    <small>&copy; <span id="year"></span> Card Hub</small>
+    <small>&copy; <span id="year"></span>Card Hub</small>
   </footer>
 
   <script src="main.js"></script>

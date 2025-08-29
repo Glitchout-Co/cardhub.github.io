@@ -1,239 +1,179 @@
 /* =========================================
    THEME TOKENS
-   ========================================= */
-   :root {
-    /* Colors (dark as default) */
-    --bg: #0b0d10;
-    --panel: #111418;
-    --surface: #14181d;
-    --text: #e6eaf0;
-    --muted: #9aa3ad;
-    --border: #26303a;
-    --accent: #6aa2ff;
-    --accent-contrast: #06121f;
-  
-    /* Effects */
-    --shadow: 0 10px 30px rgba(0, 0, 0, .25);
-  
-    color-scheme: dark;
-  }
-  
-  /* Light theme toggle (via data-theme="light" on <html>) */
-  [data-theme="light"] {
-    --bg: #ffffff;
-    --panel: #f7f9fb;
-    --surface: #fbfdff;
-    --text: #0c1220;
-    --muted: #475566;
-    --border: #dbe3ec;
-    --accent: #2f6bff;
-    --accent-contrast: #ffffff;
-  
-    color-scheme: light;
-  }
-  
-  /* =========================================
-     BASE / RESET
-     ========================================= */
-  * {
-    box-sizing: border-box;
-  }
-  
-  html,
-  body {
-    height: 100%;
-  }
-  
-  body {
-    margin: 0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    line-height: 1.6;
-    background: var(--bg);
-    color: var(--text);
-  }
-  
-  /* Useful container for page width & padding */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  /* =========================================
-     HEADER & FOOTER
-     ========================================= */
-  .site-header,
-  .site-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-  
-  .site-footer {
-    border-top: 1px solid var(--border);
-    border-bottom: 0;
-    margin-top: 2rem;
-  }
-  
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-    font-weight: 700;
-  }
-  
-  .site-nav a {
-    color: var(--text);
-    text-decoration: none;
-    margin: 0 .5rem;
-  }
-  
-  .site-nav a[aria-current="page"] {
-    color: var(--accent);
-  }
-  
-  /* =========================================
-     BUTTONS
-     ========================================= */
-  .btn {
-    border: 1px solid var(--border);
-    background: var(--panel);
-    color: var(--text);
-    padding: .55rem .9rem;
-    border-radius: .6rem;
-    cursor: pointer;
-    box-shadow: var(--shadow);
-  }
-  
-  .btn.primary {
-    background: var(--accent);
-    border-color: transparent;
-    color: var(--accent-contrast);
-  }
-  
-  .btn.icon {
-    padding: .4rem .55rem;
-  }
-  
-  /* Optional: nicer focus ring for keyboard users */
-  .btn:focus-visible,
-  .site-nav a:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-  
-  /* =========================================
-     HERO
-     ========================================= */
-  .hero {
-    padding: 1.6rem 0;
-  }
-  
-  .hero-text {
-    text-align: center; /* center your H1 + paragraph + buttons */
-  }
-
-  h2 {
-    text-align: center;
-    font-family:'Times New Roman', Times, serif;
-  }
-  
-  .lead {
-    color: var(--muted);
-  }
-  
-  /* =========================================
-     GRID CARDS
-     ========================================= */
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-  }
-  
-  /* Card layouts */
-  .card {
-    position: relative;
-    border: 1px solid var(--border);
-    border-radius: .9rem;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    min-height: 200px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  /* yugioh bg image override */
-  .yugioh-card {
-    background: url("yugioh/assets/back.jpg") center/cover no-repeat;
-    color: white;
-  }
-
-  /* MTG bg image override */
-  .mtg-card {
-    background: url("mtg/assets/back.jpg") center/cover no-repeat;
-    color: white; 
-  }
-
-  /* Pokemon bg image override */
-  .pokemon-card {
-    background: url("pokemon/assets/back.jpg") center/cover no-repeat;
-    color: white;
-  }
-  
-  .card-link {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* vertically center text */
-    align-items: center;      /* horizontally center text */
-  
-    position: absolute;       /* stretch over entire card */
-    inset: 0;                 /* shorthand for top/right/bottom/left: 0 */
-    
-    color: inherit;
-    text-decoration: none;
-    padding: 1rem;
-  }
-  
-  .card-link:hover,
-  .card-link:focus {
-    background-color: rgba(0,0,0,0.25);    /* highlight text when hovering */
-  }
-
- .card-img {
-  width: 100%;
-  max-width: 150px;  /* never wider than 150px */
-  height: auto;
-  margin: 0 auto;    /* center if column is bigger */
+========================================= */
+:root{
+  --bg:#0b0d10; --panel:#111418; --surface:#14181d;
+  --text:#e6eaf0; --muted:#9aa3ad; --border:#26303a;
+  --accent:#6aa2ff; --accent-contrast:#06121f;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+[data-theme="light"]{
+  --bg:#ffffff; --panel:#f7f9fb; --surface:#fbfdff;
+  --text:#0c1220; --muted:#475566; --border:#dbe3ec;
+  --accent:#2f6bff; --accent-contrast:#ffffff;
+  color-scheme: light;
 }
 
-.thumb {
-  overflow: hidden;             /* keep zoomed image clipped */
-  border-radius: 8px;
-  position: relative;           /* optional: match your card corners */
+/* =========================================
+   BASE / RESET
+========================================= */
+*{ box-sizing: border-box }
+html, body{ height:100% }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  line-height:1.6; color:var(--text);
+
+  /* subtle page texture */
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.06), transparent 60%),
+    radial-gradient(1000px 700px at -20% 110%, rgba(255,255,255,.04), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+.container{ max-width:1100px; margin:0 auto; padding:1rem }
+.muted{ color:var(--muted) }
+h2{ text-align:center; font-family:'Times New Roman', Times, serif }
+
+/* =========================================
+   HEADER & NAV
+========================================= */
+.site-header,
+.site-footer{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  border-bottom:1px solid var(--border);
+}
+.site-header.sticky{
+  position: sticky; top:0; z-index:50;
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  padding-block:.6rem;
+}
+.site-footer{ border-top:1px solid var(--border); border-bottom:0; margin-top:2rem }
+
+.brand{ display:flex; align-items:center; gap:.6rem; font-weight:700 }
+.brand-mark { display:inline-block; width:32px; height:32px; background: url("assets/logo.png") center/contain no-repeat;
 }
 
-.thumb:hover {
-  overflow: visible;     /* allow zoomed image to overflow */
-  z-index: 10;           /* make hovered card appear above others */
+.site-nav a{
+  color:var(--text); text-decoration:none; margin:0 .25rem;
+  display:inline-block; padding:.45rem .7rem; border-radius:.5rem; opacity:.9;
+}
+.site-nav a[aria-current="page"], .site-nav a:hover{
+  background:var(--panel); border:1px solid var(--border); opacity:1;
 }
 
-.thumb img {
-  transition: transform 0.3s ease, 
-              box-shadow 0.3s ease;   /* smooth zoom + shadow */
-  display: block;
+/* =========================================
+   BUTTONS
+========================================= */
+.btn{
+  border:1px solid var(--border); background:var(--panel); color:var(--text);
+  padding:.6rem .95rem; border-radius:.7rem; cursor:pointer; box-shadow:var(--shadow);
+}
+.btn.primary{ background:var(--accent); color:var(--accent-contrast); border-color:transparent }
+.btn.icon{ padding:.4rem .55rem }
+.btn:focus-visible, .site-nav a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px }
+.btn:hover{ transform: translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.18) }
+
+/* =========================================
+   HERO (banner version for homepage)
+========================================= */
+.hero{ padding:1.6rem 0 } /* generic hero (inside pages) */
+
+.hero--banner{ position:relative; overflow:hidden }
+.hero--banner .hero__bg{
+  position:absolute; inset:0;
+  background:url("assets/hero.jpg") center/cover no-repeat;
+  transform: scale(1.05);
+}
+.hero--banner .hero__overlay{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.55)),
+    radial-gradient(1000px 600px at 70% 10%, rgba(255,255,255,.08), transparent 60%);
+}
+.hero--banner .hero__inner{
+  position:relative; z-index:1; text-align:center;
+  padding: clamp(3rem, 7vw, 6rem) 1rem;
+}
+.hero__title{ font-size:clamp(2rem, 4.5vw, 3rem); margin:0 0 .4rem }
+.hero__subtitle{ color:var(--muted); margin:0 0 1rem }
+.hero__actions{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap }
+
+/* =========================================
+   HOMEPAGE CARDS (game links)
+========================================= */
+.grid-3{
+  display:grid; gap:1rem;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+@media (max-width:900px){ .grid-3{ grid-template-columns:1fr 1fr } }
+@media (max-width:560px){ .grid-3{ grid-template-columns:1fr } }
+
+.card{
+  position:relative; border:1px solid var(--border); border-radius:.9rem;
+  box-shadow:var(--shadow); overflow:hidden; min-height:200px;
+  background-size:cover; background-position:center;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{ transform: translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,.28), 0 0 0 1px var(--border) inset }
+
+/* background images per game */
+.yugioh-card{  background:url("yugioh/assets/back.jpg") center/cover no-repeat; color:#fff }
+.mtg-card{     background:url("mtg/assets/back.jpg") center/cover no-repeat;    color:#fff }
+.pokemon-card{ background:url("pokemon/assets/back.jpg") center/cover no-repeat;color:#fff }
+
+/* make entire card clickable */
+.card-link{
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; color:inherit; text-decoration:none; padding:1rem;
+}
+.card-link:hover, .card-link:focus{ background-color: rgba(0,0,0,.25) }
+
+/* =========================================
+   DECK GRID (inner pages)
+========================================= */
+.card-grid{
+  list-style:none; padding:0; margin:1rem 0 0;
+  display:grid; gap:1rem;
+  grid-template-columns: repeat(2, 1fr);          /* phones */
+}
+@media (min-width:600px){ .card-grid{ grid-template-columns: repeat(3, 1fr) } }
+@media (min-width:900px){ .card-grid{ grid-template-columns: repeat(4, 1fr) } }
+@media (min-width:1150px){ .card-grid{ grid-template-columns: repeat(5, 1fr) } }
+
+.thumb{
+  overflow:hidden; border-radius:8px; position:relative;
+}
+.card-img{
+  width:100%; max-width:150px; height:auto; display:block; margin:0 auto;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.thumb:hover{ overflow:visible; z-index:10 }
+.card-img:hover{
+  transform: scale(1.25);
+  box-shadow: 0 8px 20px rgba(0,0,0,.6);
+  position:relative; z-index:5; cursor:pointer;
+}
+.qty{
+  position:absolute; right:.4rem; bottom:.4rem;
+  background:rgba(0,0,0,.6); color:#fff; padding:.1rem .35rem;
+  border-radius:.4rem; font-size:.85rem;
 }
 
-.thumb img:hover {
-  transform: scale(1.25);        /* zoom to 120% */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.6);  /* shadow glow */
-  position: relative;           /* make shadow stack above neighbors */
-  z-index: 5;
-  cursor: pointer;              /* change cursor */
-}
+/* card meta text */
+.meta{ text-align:center; margin-top:.5rem }
+.meta strong{ display:block; margin-bottom:.25rem }
 
+/* deck header */
+.deck-header{ text-align:center; margin-bottom:1.5rem }
+.deck-header h1{ font-size:1.8rem; margin:.25rem 0 }
+.deck-header p{ margin:0; color:var(--muted) }
+
+/* =========================================
+   LIGHTBOX
+========================================= */
 .lightbox{
   display:none; position:fixed; inset:0; z-index:9999;
   background:rgba(0,0,0,.85);
@@ -243,7 +183,10 @@
   max-width:90%; max-height:90%;
   box-shadow:0 12px 25px rgba(0,0,0,.9);
   border-radius:8px;
+  filter: blur(2px); transition: filter .25s ease;
 }
+.lightbox-img.loaded{ filter: blur(0) }
+
 .lightbox .close{
   position:absolute; top:20px; right:30px; font-size:2rem; color:#fff;
   background:transparent; border:0; cursor:pointer;
@@ -254,68 +197,69 @@
   width:44px; height:44px; border-radius:9999px; font-size:1.25rem;
   display:flex; align-items:center; justify-content:center;
 }
-.lightbox .prev{ left:30px; }
-.lightbox .next{ right:30px; }
-.lightbox .nav:hover, .lightbox .close:hover{ background:rgba(255,255,255,.2); }
+.lightbox .prev{ left:30px }
+.lightbox .next{ right:30px }
+.lightbox .nav:hover, .lightbox .close:hover{ background:rgba(255,255,255,.2) }
 
-.card-grid {
-  list-style:none; padding:0; margin:1rem 0 0;
-  display:grid; gap:1rem;
-  grid-template-columns: repeat(2, 1fr);          /* phones */
-}
-@media (min-width:600px){ .card-grid{ grid-template-columns: repeat(3, 1fr); } }
-@media (min-width:900px){ .card-grid{ grid-template-columns: repeat(4, 1fr); } }
-@media (min-width:1150px){ .card-grid{ grid-template-columns: repeat(5, 1fr); } }  /* desktop 5 across */
+/* =========================================
+   FONTS
+========================================= */
 
-.lightbox-img {
-  filter: blur(2px);
-  transition: filter .25s ease;
-}
-.lightbox-img.loaded {
-  filter: blur(0);
-}
+.AVP { font-family: AVP; }
+@font-face { font-family: AVP; src: url(assets/fonts/AVP.ttf) }
 
+.covert-ops { font-family: Covert Ops;}
+@font-face { font-family: Covert Ops; src: url(assets/fonts/covertops.ttf)}
 
-.deck-header {
-  text-align: center;
-  margin-bottom: 1.5rem; /* optional spacing below */
-}
+/* =========================================
+   LOADER
+========================================= */
 
-.deck-header h1 {
-  font-size: 1.8rem;  /* make it stand out */
-  margin: 0.25rem 0;
-}
-
-.deck-header p {
-  margin: 0;
-  color: var(--muted);
-}
-
-  .muted {
-    color: var(--muted);
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    border-bottom: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
   }
   
-  /* =========================================
-     RESPONSIVE
-     ========================================= */
-  @media (max-width: 900px) {
-    .grid-3 {
-      grid-template-columns: 1fr 1fr;
-    }
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
   }
   
-  @media (max-width: 560px) {
-    .grid-3 {
-      grid-template-columns: 1fr;
-    }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
-
-  .meta {
-  text-align: center;
-  margin-top: 0.5rem;
-}
-
-.meta strong {
-  display: block;   /* puts name on its own line */
-  margin-bottom: 0.25rem;
-}
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  #myDiv {
+    display: none;
+  }
