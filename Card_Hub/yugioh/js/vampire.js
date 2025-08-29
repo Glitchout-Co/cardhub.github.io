@@ -38,14 +38,26 @@ function smallInfo(card) {
 /* Render single card */
 function cardItem(card) {
   const qty = Number(card.qty) || 1;
-  const img = card.img || "../assets/back.jpg";
+  const full = card.img || "../assets/back.jpg";
+
+  // Derive small thumbnail if it's a YGOPRODECK URL; otherwise fall back to full
+  const thumb = (typeof full === "string" && full.includes("/images/cards/"))
+    ? full.replace("/images/cards/", "/images/cards_small/")
+    : full;
+
   const type = card.type || "";
   const title = `${card.name} ×${qty}`;
 
   return `
     <li class="card-tile" title="${title}">
       <div class="thumb">
-        <img class="card-img" src="${img}" alt="${card.name}">
+        <img
+          class="card-img"
+          src="${thumb}"
+          data-fullsrc="${full}"
+          alt="${card.name}"
+          loading="lazy"
+        >
         <span class="qty">×${qty}</span>
       </div>
       <div class="meta">
@@ -56,6 +68,7 @@ function cardItem(card) {
     </li>
   `;
 }
+
 
 /* Render a section */
 function sectionBlock(label, cards) {
@@ -108,11 +121,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Lightbox wiring
-  const lightbox = document.getElementById("lightbox");
-  const imgEl    = lightbox?.querySelector(".lightbox-img");
-  const btnPrev  = lightbox?.querySelector(".prev");
-  const btnNext  = lightbox?.querySelector(".next");
-  const btnClose = lightbox?.querySelector(".close");
+const lightbox = document.getElementById("lightbox");
+const imgEl    = lightbox?.querySelector(".lightbox-img");
+
+if (imgEl) {
+  imgEl.addEventListener("load", () => {
+    imgEl.classList.add("loaded");   // add class when big image finishes loading
+  });
+}
+
+const btnPrev  = lightbox?.querySelector(".prev");
+const btnNext  = lightbox?.querySelector(".next");
+const btnClose = lightbox?.querySelector(".close");
+
 
   let gallery = [];
   let current = -1;
@@ -143,29 +164,35 @@ document.addEventListener("DOMContentLoaded", () => {
     imgEl.alt = gallery[current].alt || "Card preview";
   }
 
-  // Open on image click (event delegation)
-  document.body.addEventListener("click", (e) => {
-    const t = e.target;
-    if (t instanceof Element && t.classList.contains("card-img")) {
-      collectGallery();
-      const idx = gallery.indexOf(t);
-      openAt(idx);
-    }
-  });
+// Open on image click (event delegation)
+document.body.addEventListener("click", (e) => {
+  const t = e.target;
+  if (t instanceof Element && t.classList.contains("card-img")) {
+    collectGallery();
+    const idx = gallery.indexOf(t);
+    openAt(idx);
+  }
+});
 
-  // Buttons (only if they exist in your HTML)
-  btnPrev?.addEventListener("click", () => showNext(-1));
-  btnNext?.addEventListener("click", () => showNext(1));
-  btnClose?.addEventListener("click", closeLightbox);
+function openAt(index) {
+  if (!gallery.length) collectGallery();
+  if (index < 0 || index >= gallery.length || !lightbox || !imgEl) return;
+  current = index;
 
-  // Click outside image closes
-  lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+  const el = gallery[current];
+  const fullSrc = el.getAttribute("data-fullsrc") || el.src; // prefer full
+  imgEl.src = fullSrc;
+  imgEl.alt = el.alt || "Card preview";
+  lightbox.style.display = "flex";
+}
 
-  // Keyboard controls
-  document.addEventListener("keydown", (e) => {
-    if (!lightbox || lightbox.style.display !== "flex") return;
-    if (e.key === "ArrowLeft")  { e.preventDefault(); showNext(-1); }
-    if (e.key === "ArrowRight") { e.preventDefault(); showNext(1); }
-    if (e.key === "Escape")     { e.preventDefault(); closeLightbox(); }
-  });
+function showNext(delta) {
+  if (!gallery.length || current < 0 || !imgEl) return;
+  current = (current + delta + gallery.length) % gallery.length;
+
+  const el = gallery[current];
+  const fullSrc = el.getAttribute("data-fullsrc") || el.src;
+  imgEl.src = fullSrc;
+  imgEl.alt = el.alt || "Card preview";
+}
 });

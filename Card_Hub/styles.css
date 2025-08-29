@@ -262,6 +262,14 @@
 @media (min-width:900px){ .card-grid{ grid-template-columns: repeat(4, 1fr); } }
 @media (min-width:1150px){ .card-grid{ grid-template-columns: repeat(5, 1fr); } }  /* desktop 5 across */
 
+.lightbox-img {
+  filter: blur(2px);
+  transition: filter .25s ease;
+}
+.lightbox-img.loaded {
+  filter: blur(0);
+}
+
 
 .deck-header {
   text-align: center;
