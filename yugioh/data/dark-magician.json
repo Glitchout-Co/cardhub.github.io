@@ -3,7 +3,9 @@
     "author": "Vulas Park",
     "sections": {
         "main": [
-            "name": ""
+            {
+                "name": "Magikuriboh"
+            }
         ]
     }
 }

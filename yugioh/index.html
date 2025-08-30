@@ -1,73 +1,73 @@
 <!doctype html>
 <html lang="en">
-
-<!-- Website interior formatting (seen by website not user) -->
 <head>
+  <!-- Meta -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yugioh — Card Hub</title>
+  <title>Yu-Gi-Oh! — Card Hub</title>
+
+  <!-- Styles & Favicon -->
   <link rel="stylesheet" href="../styles.css" />
   <link rel="icon" href="assets/back.jpg" type="image/jpeg">
 </head>
+<body class="yugioh">
 
-<!-- Page header (seen by user) -->
-<body>
+  <!-- ========== Header ========== -->
   <header class="site-header container">
     <div class="brand">
-      <span class="brand-mark" aria-hidden="true" ></span>
-    <strong>Card&nbsp;Hub</strong>
-  </div>
+      <span class="brand-mark" aria-hidden="true"></span>
+      <strong>Card&nbsp;Hub</strong>
+    </div>
     <nav class="site-nav">
       <a href="../index.html">Home</a>
-      <a href="../yugioh/index.html" aria-current="page">Yu‑Gi‑Oh!</a>
+      <a href="../yugioh/index.html" aria-current="page">Yu-Gi-Oh!</a>
       <a href="../mtg/index.html">MTG</a>
       <a href="../pokemon/index.html">Pokémon</a>
     </nav>
   </header>
 
-  <!-- initial body -->
+  <!-- ========== Main Content ========== -->
   <main class="container">
 
-    <!-- Intro Section -->
+    <!-- Hero / Intro -->
     <section class="hero">
       <div class="hero-text">
         <h1>Yu-Gi-Oh!</h1>
-          <p class="muted">
-            This is the Yugioh section. Put your pages, data, and assets here.
-          </p>
+        <p class="muted">
+          This is the Yu-Gi-Oh! section. Put your pages, data, and assets here.
+        </p>
       </div>
     </section>
 
-    <!-- Vampire deck Calling JS Script-->
-     <!-- <select> keyword for dropdown -->
-     <section>
+    <!-- Deck Selector + Output -->
+    <section>
       <label class="muted" for="deckSelect">Choose a Deck</label>
       <select id="deckSelect">
         <option value="./data/vampire.json">1. Vampire's Rise</option>
         <option value="./data/dark-magician.json">2. Chaos Magician</option>
       </select>
+
+      <!-- Where JS renders the deck -->
       <div id="deck-root"></div>
-     </section>
+    </section>
   </main>
 
-  <!-- Footer -->
+  <!-- ========== Footer ========== -->
   <footer class="site-footer container">
     <small>&copy; <span id="year"></span> Card Hub</small>
   </footer>
 
-  <!-- Shared Feature (theme toggle, footer year etc.)-->
-  <script src="../main.js"></script>
-
-  <!-- Yugioh Vampire Deck loader-->
-   <script src="./js/vampire.js"></script>
-
-   <!-- Lightbox overlay -->
-  <div id="lightbox" class="lightbox">
+  <!-- ========== Lightbox Overlay ========== -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
     <button class="nav prev" aria-label="Previous card">❮</button>
     <img class="lightbox-img" src="" alt="Card preview">
     <button class="nav next" aria-label="Next card">❯</button>
     <button class="close" aria-label="Close">×</button>
   </div>
+
+  <!-- ========== Scripts ========== -->
+  <script src="../main.js"></script>
+  <script src="./js/vampire.js"></script>
 
 </body>
 </html>

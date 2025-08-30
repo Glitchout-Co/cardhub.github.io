@@ -79,27 +79,177 @@ h2{ text-align:center; font-family:'Times New Roman', Times, serif }
 /* =========================================
    HERO (banner version for homepage)
 ========================================= */
-.hero{ padding:1.6rem 0 } /* generic hero (inside pages) */
+.hero { 
+  padding: 1.6rem 0; /* generic hero (inside pages) */
+}
 
-.hero--banner{ position:relative; overflow:hidden }
-.hero--banner .hero__bg{
-  position:absolute; inset:0;
-  background:url("assets/hero.jpg") center/cover no-repeat;
+.hero--banner { 
+  position: relative; 
+  overflow: hidden; 
+}
+
+/* Background image (full bleed) */
+.hero--banner .hero__bg {
+  position: absolute; 
+  inset: 0;
+  background: url("assets/hero.jpg") center/cover no-repeat;
   transform: scale(1.05);
+  z-index: 0;
 }
-.hero--banner .hero__overlay{
-  position:absolute; inset:0;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.55)),
-    radial-gradient(1000px 600px at 70% 10%, rgba(255,255,255,.08), transparent 60%);
+
+/* Overlay (darkens background slightly for text contrast) */
+.hero--banner .hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.55));
+  z-index: 1;
 }
-.hero--banner .hero__inner{
-  position:relative; z-index:1; text-align:center;
+
+/* Text + panel wrapper */
+.hero--banner .hero__inner {
+  position: relative; 
+  z-index: 3;  /* above bg + overlay + panel */
+  text-align: center;
   padding: clamp(3rem, 7vw, 6rem) 1rem;
 }
-.hero__title{ font-size:clamp(2rem, 4.5vw, 3rem); margin:0 0 .4rem }
-.hero__subtitle{ color:var(--muted); margin:0 0 1rem }
-.hero__actions{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap }
+
+/* Panel image behind text */
+.hero--banner .hero__inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: 0 auto;
+  max-width: 820px;
+  border-radius: 20px;
+
+  /* Use your uploaded panel image */
+  background: url("assets/hero-panel.png") center/contain no-repeat;
+  background-color: rgba(0,0,0,0.4); /* optional overlay tint */
+  
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  z-index: 1; /* stays above the overlay, behind the text */
+}
+
+
+/* Ensure hero text sits above everything */
+.hero--banner .hero__inner > * {
+  position: relative;
+  z-index: 3;
+}
+
+.hero__title { 
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-family: AVP;
+  margin: 0 0 .4rem; 
+  /* Glow effect */
+  text-shadow: 
+    0 0 4px rgba(255, 255, 255, 0.9),   /* tight inner glow */
+    0 0 8px rgba(192, 192, 192, 0.8),   /* silver halo */
+    0 0 16px rgba(192, 192, 192, 0.6),  /* softer outer glow */
+    0 0 32px rgba(192, 192, 192, 0.4);  /* faint wide aura */
+  color: #6d0101;
+  font-weight: 600;
+}
+
+.hero__subtitle { 
+  font-family: Covert Ops;
+  color: var(--muted); 
+  margin: 0 0 1rem; 
+}
+
+.hero__actions { 
+  display: flex; 
+  gap: .6rem; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+}
+
+/* =========================================
+   GAME PAGE HERO (Yu-Gi-Oh!)
+========================================= */
+body.yugioh .hero {
+  padding: 4rem 1rem;
+  text-align: center;
+  position: relative;
+  border-radius: 12px;
+  background: url("../yugioh/assets/yugioh-hero.jpg") center/cover no-repeat;
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+}
+
+body.yugioh .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(0,0,0,0.55); /* dark overlay */
+}
+
+body.yugioh .hero-text {
+  position: relative;
+  z-index: 1; /* sit above overlay */
+}
+
+body.yugioh .hero h1 {
+  font-size: 2.6rem;
+  margin: 0 0 .5rem;
+  text-shadow: 
+    0 3px 6px rgba(0,0,0,.7),  /* dark outline */
+    0 0 8px silver;           /* silver aura glow */
+}
+
+body.yugioh .hero p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+/* =========================================
+   DECK SELECTOR
+========================================= */
+body.yugioh #deckSelect {
+  margin-top: 1rem;
+  padding: .6rem 1rem;
+  border-radius: .6rem;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: border-color .2s ease, transform .15s ease;
+}
+
+body.yugioh #deckSelect:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   DECK GRID
+========================================= */
+body.yugioh .card-grid .card-tile {
+  background: var(--surface); /* base dark panel */
+  background-image: url("yugioh/assets/texture.png"); /* add your texture */
+  background-repeat: no-repeat;
+  background-size: cover;   /* or contain */
+  background-position: center;
+  background-blend-mode: overlay; /* merge image + dark panel */
+  
+  border: 1px solid var(--border);
+  border-radius: .8rem;
+  padding: .8rem;
+  text-align: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+body.yugioh .card-grid .card-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+
+
+
 
 /* =========================================
    HOMEPAGE CARDS (game links)

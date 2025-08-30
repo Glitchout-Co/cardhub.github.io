@@ -1,68 +1,58 @@
-/* Loading JSON Deck File */ 
+/* ------------------------- data + helpers ------------------------- */
 async function loadDeck(path) {
   const res = await fetch(path, { cache: "no-store" });
   if (!res.ok) throw new Error(`failed to load: ${path} (${res.status})`);
   return await res.json();
 }
 
-/* Getting deck quantities */
 function sumQty(list) {
   return list.reduce((n, c) => n + (Number(c.qty) || 1), 0);
 }
 
-/* Getting card info for display */
 function smallInfo(card) {
-  const bits = [];
+  const inline = []; // top row (level, attribute, subtype)
+  const below = [];  // bottom row (atk/def)
 
-  // Level/Rank/Link (first one that exists)
-  if (card.level != null) {
-    bits.push(`⭐ ${card.level}`);
-  } else if (card.rank != null) {
-    bits.push(`⤴️ ${card.rank}`);
-  } else if (card.link != null) {
-    bits.push(`🔗 ${card.link}`);
-  }
+  // Level / Rank / Link (first one present)
+  if (card.level != null)      inline.push(`⭐ ${card.level}`);
+  else if (card.rank != null)  inline.push(`⤴️ ${card.rank}`);
+  else if (card.link != null)  inline.push(`🔗 ${card.link}`);
 
-  // Subtype (handle both Subtype/subtype just in case)
+  // Subtype
   const subtype = card.subtype || card.Subtype;
-  if (subtype) bits.push(String(subtype).toUpperCase());
+  if (subtype) inline.push(String(subtype).toUpperCase());
 
   // Attribute
-  if (card.attribute) bits.push(card.attribute.toUpperCase());
+  if (card.attribute) inline.push(card.attribute.toUpperCase());
 
-  // ATK/DEF (show ATK even if DEF missing e.g. LINK)
-  if (card.atk != null && card.def != null) {
-    bits.push(`⚔️ ${card.atk} / 🛡️ ${card.def}`);
-  } else if (card.atk != null) {
-    bits.push(`⚔️ ${card.atk}`);
-  }
+  // ATK / DEF
+  if (card.atk != null && card.def != null) below.push(`⚔️ ${card.atk} / 🛡️ ${card.def}`);
+  else if (card.atk != null)                below.push(`⚔️ ${card.atk}`);
 
-  return bits.length ? `<small>${bits.join("  •  ")}</small>` : "";
+  // Build return
+  let html = "";
+  if (inline.length) html += inline.join(" • ");
+  if (below.length)  html += `<br>${below.join(" • ")}`;
+
+  return html ? `<small>${html}</small>` : "";
 }
 
-/* Render single card */
 function cardItem(card) {
-  const qty = Number(card.qty) || 1;
+  const qty  = Number(card.qty) || 1;
   const full = card.img || "../assets/back.jpg";
 
-  // use small thumb in grid if it’s a ygoprodeck URL
+  // grid thumb if from ygoprodeck
   const thumb = (typeof full === "string" && full.includes("/images/cards/"))
     ? full.replace("/images/cards/", "/images/cards_small/")
     : full;
 
-  const type = card.type || "";
+  const type  = card.type || "";
   const title = `${card.name} ×${qty}`;
 
   return `
     <li class="card-tile" title="${title}">
       <div class="thumb">
-        <img
-          class="card-img"
-          src="${thumb}"
-          data-fullsrc="${full}"
-          alt="${card.name}"
-          loading="lazy"
-        >
+        <img class="card-img" src="${thumb}" data-fullsrc="${full}" alt="${card.name}" loading="lazy">
         <span class="qty">×${qty}</span>
       </div>
       <div class="meta">
@@ -74,7 +64,6 @@ function cardItem(card) {
   `;
 }
 
-/* Render a section */
 function sectionBlock(label, cards) {
   if (!cards || !cards.length) return "";
   return `
@@ -87,12 +76,11 @@ function sectionBlock(label, cards) {
   `;
 }
 
-/* Render whole deck */
 function render(deck) {
   const el = document.getElementById("deck-root");
   if (!el) return;
 
-  const main = deck.sections?.main ?? [];
+  const main  = deck.sections?.main  ?? [];
   const extra = deck.sections?.extra ?? [];
   const side  = deck.sections?.side  ?? [];
 
@@ -107,94 +95,90 @@ function render(deck) {
   `;
 }
 
-/* Loader helper */
+/* optional global loader helpers (if you added the overlay) */
+function showLoader(){ document.getElementById("loading")?.removeAttribute("hidden"); }
+function hideLoader(){ document.getElementById("loading")?.setAttribute("hidden",""); }
+
 async function loadAndRender(path) {
+  showLoader?.();                              // safe if not defined
   const mount = document.getElementById("deck-root");
   if (mount) mount.innerHTML = `<p class="muted">Loading deck…</p>`;
-  const deck = await loadDeck(path);
-  render(deck);
+  try {
+    const deck = await loadDeck(path);
+    render(deck);
+  } catch (e) {
+    console.error(e);
+    if (mount) mount.innerHTML = `<p style="color:tomato">Couldn't load the deck (${e.message}).</p>`;
+  } finally {
+    hideLoader?.();
+  }
 }
 
-/* ONE DOMContentLoaded to wire everything */
+/* ------------------------------ boot ------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
-  // Deck switcher
-  const sel = document.getElementById("deckSelect");
-  if (sel) {
-    loadAndRender(sel.value);
-    sel.addEventListener("change", () => loadAndRender(sel.value));
-  }
+  /* deck switcher */
+  const sel   = document.getElementById("deckSelect");
+  const mount = document.getElementById("deck-root");
+  if (!sel || !mount) { console.error("Missing deckSelect or deck-root"); return; }
 
-  // Lightbox wiring
+  loadAndRender(sel.value);                    // initial load
+  sel.addEventListener("change", () => loadAndRender(sel.value));
+
+  /* lightbox */
   const lightbox = document.getElementById("lightbox");
   const imgEl    = lightbox?.querySelector(".lightbox-img");
   const btnPrev  = lightbox?.querySelector(".prev");
   const btnNext  = lightbox?.querySelector(".next");
   const btnClose = lightbox?.querySelector(".close");
 
-  if (imgEl) {
-    imgEl.addEventListener("load", () => {
-      imgEl.classList.add("loaded");   // blur-off when loaded
-    });
-  }
+  if (imgEl) imgEl.addEventListener("load", () => imgEl.classList.add("loaded"));
 
   let gallery = [];
   let current = -1;
 
-  function collectGallery() {
+  function collectGallery(){
     gallery = Array.from(document.querySelectorAll(".card-grid .card-img"));
   }
-
-  function openAt(index) {
+  function openAt(index){
     if (!gallery.length) collectGallery();
     if (index < 0 || index >= gallery.length || !lightbox || !imgEl) return;
     current = index;
-
     const el = gallery[current];
     const fullSrc = el.getAttribute("data-fullsrc") || el.src;
-
-    imgEl.classList.remove("loaded");  // reset blur
+    imgEl.classList.remove("loaded");
     imgEl.src = fullSrc;
     imgEl.alt = el.alt || "Card preview";
     lightbox.style.display = "flex";
   }
-
-  function closeLightbox() {
+  function showNext(delta){
+    if (!gallery.length || current < 0 || !imgEl) return;
+    current = (current + delta + gallery.length) % gallery.length;
+    const el = gallery[current];
+    const fullSrc = el.getAttribute("data-fullsrc") || el.src;
+    imgEl.classList.remove("loaded");
+    imgEl.src = fullSrc;
+    imgEl.alt = el.alt || "Card preview";
+  }
+  function closeLightbox(){
     if (!lightbox) return;
     lightbox.style.display = "none";
     current = -1;
   }
 
-  function showNext(delta) {
-    if (!gallery.length || current < 0 || !imgEl) return;
-    current = (current + delta + gallery.length) % gallery.length;
-
-    const el = gallery[current];
-    const fullSrc = el.getAttribute("data-fullsrc") || el.src;
-
-    imgEl.classList.remove("loaded");  // reset blur
-    imgEl.src = fullSrc;
-    imgEl.alt = el.alt || "Card preview";
-  }
-
-  // Open on image click (event delegation)
+  // open from grid (event delegation)
   document.body.addEventListener("click", (e) => {
     const t = e.target;
     if (t instanceof Element && t.classList.contains("card-img")) {
       collectGallery();
-      const idx = gallery.indexOf(t);
-      openAt(idx);
+      openAt(gallery.indexOf(t));
     }
   });
 
-  // Buttons
+  // controls
   btnPrev?.addEventListener("click", () => showNext(-1));
   btnNext?.addEventListener("click", () => showNext(1));
   btnClose?.addEventListener("click", closeLightbox);
-
-  // Click outside image closes
   lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
-
-  // Keyboard controls
   document.addEventListener("keydown", (e) => {
     if (!lightbox || lightbox.style.display !== "flex") return;
     if (e.key === "ArrowLeft")  { e.preventDefault(); showNext(-1); }
