@@ -64,6 +64,25 @@
     <button class="nav next" aria-label="Next card">❯</button>
     <button class="close" aria-label="Close">×</button>
   </div>
+  <script>
+    // Lightbox accessibility toggling
+    const lightbox = document.getElementById('lightbox');
+    function showLightbox() {
+      lightbox.setAttribute('aria-hidden', 'false');
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.style.display = 'block';
+    }
+    function hideLightbox() {
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.removeAttribute('role');
+      lightbox.removeAttribute('aria-modal');
+      lightbox.style.display = 'none';
+    }
+    // Example: wire up close button (adjust as needed for your code)
+    lightbox.querySelector('.close').addEventListener('click', hideLightbox);
+    // You should call showLightbox() when opening the lightbox elsewhere in your JS
+  </script>
 
   <!-- ========== Scripts ========== -->
   <script src="../main.js"></script>

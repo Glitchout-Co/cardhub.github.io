@@ -230,7 +230,7 @@ body.yugioh #deckSelect:hover {
 ========================================= */
 body.yugioh .card-grid .card-tile {
   background: var(--surface); /* base dark panel */
-  background-image: url("yugioh/assets/texture.png"); /* add your texture */
+  background-image: url("../yugioh/assets/texture.png"); /* add your texture */
   background-repeat: no-repeat;
   background-size: cover;   /* or contain */
   background-position: center;

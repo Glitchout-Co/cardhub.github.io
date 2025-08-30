@@ -100,7 +100,7 @@ function showLoader(){ document.getElementById("loading")?.removeAttribute("hidd
 function hideLoader(){ document.getElementById("loading")?.setAttribute("hidden",""); }
 
 async function loadAndRender(path) {
-  showLoader?.();                              // safe if not defined
+  showLoader && showLoader();                  // safe if not defined
   const mount = document.getElementById("deck-root");
   if (mount) mount.innerHTML = `<p class="muted">Loading deck…</p>`;
   try {
@@ -110,7 +110,7 @@ async function loadAndRender(path) {
     console.error(e);
     if (mount) mount.innerHTML = `<p style="color:tomato">Couldn't load the deck (${e.message}).</p>`;
   } finally {
-    hideLoader?.();
+    hideLoader && hideLoader();
   }
 }
 
