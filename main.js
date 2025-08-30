@@ -7,3 +7,10 @@
     r.setAttribute('data-theme',n); localStorage.setItem('theme',n);
   });
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const yr = document.getElementById('year'); if (yr) yr.textContent = new Date().getFullYear();
+  // Hide loader if present
+  const loading = document.getElementById('loading');
+  if (loading) loading.setAttribute('hidden', '');
+});

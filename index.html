@@ -8,49 +8,49 @@
   <link rel="icon" href="assets/Bat.png" type="image/png" />
 </head>
 
-<!-- Sticky site header -->
 <body>
-<header class="site-header container sticky">
-  <div class="brand">
+  <!-- Sticky site header -->
+  <header class="site-header container sticky">
+    <div class="brand">
       <span class="brand-mark" aria-hidden="true"></span>
-    <strong>Card&nbsp;Hub</strong>
-  </div>
-  <nav class="site-nav">
-    <a href="https://naequarwe.github.io/index.html" aria-current="page">Masterpage</a>
-    <a href="yugioh/index.html">Yu-Gi-Oh!</a>
-    <a href="mtg/index.html">MTG</a>
-    <a href="pokemon/index.html">Pokémon</a>
-  </nav>
-  <button id="themeToggle" class="btn icon" aria-label="Toggle theme">🌓</button>
-</header>
-
-<!-- Big hero banner -->
-<section class="hero hero--banner" role="banner" aria-label="Welcome">
-  <div class="hero__bg" aria-hidden="true"></div>
-  <div class="hero__overlay" aria-hidden="true"></div>
-  <div class="hero__inner container">
-    <h1 class="hero__title">Your Trading Card Hub</h1>
-    <p class="hero__subtitle">Deck showcases, rules & quick links — all in one place.</p>
-    <div class="hero__actions">
-      <a class="btn primary" href="yugioh/index.html">Open Yu-Gi-Oh!</a>
-      <a class="btn" href="mtg/index.html">Open MTG</a>
-      <a class="btn" href="pokemon/index.html">Open Pokémon</a>
+      <strong>Card&nbsp;Hub</strong>
     </div>
-  </div>
-</section>
+    <nav class="site-nav">
+      <a href="https://naequarwe.github.io/index.html" aria-current="page">Masterpage</a>
+      <a href="yugioh/index.html">Yu-Gi-Oh!</a>
+      <a href="mtg/index.html">MTG</a>
+      <a href="pokemon/index.html">Pokémon</a>
+    </nav>
+    <button id="themeToggle" class="btn icon" aria-label="Toggle theme">🌓</button>
+  </header>
 
+  <main>
+    <!-- Big hero banner -->
+    <section class="hero hero--banner" role="banner" aria-label="Welcome">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__inner container">
+        <h1 class="hero__title">Your Trading Card Hub</h1>
+        <p class="hero__subtitle">Deck showcases, rules & quick links — all in one place.</p>
+        <div class="hero__actions">
+          <a class="btn primary" href="yugioh/index.html">Open Yu-Gi-Oh!</a>
+          <a class="btn" href="mtg/index.html">Open MTG</a>
+          <a class="btn" href="pokemon/index.html">Open Pokémon</a>
+        </div>
+      </div>
+    </section>
 
     <!-- Grid like buttons-->
-    <section class="grid-3">
-      <!-- Yugioh Card format -->
+    <section class="grid-3 container">
+      <!-- Yu-Gi-Oh -->
       <article class="card yugioh-card">
         <a href="yugioh/index.html" class="card-link">
-          <h2>Yu‑Gi‑Oh!</h2>
+          <h2>Yu-Gi-Oh!</h2>
           <p class="muted">Deck showcase, test hands, and cheat sheets.</p>
         </a>
       </article>
 
-      <!-- MTG Card Format -->
+      <!-- MTG -->
       <article class="card mtg-card">
         <a href="mtg/index.html" class="card-link">
           <h2>MTG</h2>
@@ -58,7 +58,7 @@
         </a>
       </article>
 
-      <!-- Pokémon Card Format -->
+      <!-- Pokémon -->
       <article class="card pokemon-card">
         <a href="pokemon/index.html" class="card-link">
           <h2>Pokémon</h2>
@@ -69,9 +69,15 @@
   </main>
 
   <footer class="site-footer container">
-    <small>&copy; <span id="year"></span>Card Hub</small>
+    <small>&copy; <span id="year"></span> Card Hub</small>
   </footer>
 
   <script src="main.js"></script>
+
+  <!-- Loading overlay -->
+  <div id="loading" class="loading" hidden aria-hidden="true">
+    <img src="assets/bat_flap.gif" alt="Loading…" class="loading-bat">
+    <p class="loading__text">Loading…</p>
+  </div>
 </body>
 </html>
