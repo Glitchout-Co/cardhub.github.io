@@ -1,4 +1,51 @@
+let currentDeckPath = null;   // which deck is currently shown (or null)
+
+// Start with loader visible
+document.addEventListener("DOMContentLoaded", () => showLoader?.());
+
+// Safety: hide after page assets finish loading (user might not choose a deck)
+window.addEventListener("load", () => {
+  // If a deck is NOT currently being loaded, hide it.
+  // (Your deck load functions below will show/hide during fetch.)
+  hideLoader?.();
+});
+
 /* ------------------------- data + helpers ------------------------- */
+
+// tiny wait helper
+const wait = (ms) => new Promise(r => setTimeout(r, ms));
+
+async function crossfadeLoad(path) {
+  const mount = document.getElementById("deck-root");
+  if (!mount) return;
+
+  // show loader and start fade-out
+  showLoader?.();
+  mount.classList.add("is-switching");
+  await wait(180);
+
+  try {
+    const deck = await loadDeck(path);
+    render(deck);
+  } catch (e) {
+    console.error(e);
+    mount.innerHTML = `<p style="color:tomato">Couldn't load the deck (${e.message}).</p>`;
+  } finally {
+    requestAnimationFrame(() => {
+      mount.classList.remove("is-switching");
+      hideLoader?.(); // hide once new deck is rendered
+    });
+  }
+}
+
+function setActiveDeckbox(buttons, activeBtn) {
+  buttons.forEach(btn => {
+    const isActive = (btn === activeBtn);
+    btn.classList.toggle("is-active", isActive);
+    btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
 async function loadDeck(path) {
   const res = await fetch(path, { cache: "no-store" });
   if (!res.ok) throw new Error(`failed to load: ${path} (${res.status})`);
@@ -10,26 +57,21 @@ function sumQty(list) {
 }
 
 function smallInfo(card) {
-  const inline = []; // top row (level, attribute, subtype)
-  const below = [];  // bottom row (atk/def)
+  const inline = [];
+  const below  = [];
 
-  // Level / Rank / Link (first one present)
   if (card.level != null)      inline.push(`⭐ ${card.level}`);
   else if (card.rank != null)  inline.push(`⤴️ ${card.rank}`);
   else if (card.link != null)  inline.push(`🔗 ${card.link}`);
 
-  // Subtype
   const subtype = card.subtype || card.Subtype;
   if (subtype) inline.push(String(subtype).toUpperCase());
 
-  // Attribute
   if (card.attribute) inline.push(card.attribute.toUpperCase());
 
-  // ATK / DEF
   if (card.atk != null && card.def != null) below.push(`⚔️ ${card.atk} / 🛡️ ${card.def}`);
   else if (card.atk != null)                below.push(`⚔️ ${card.atk}`);
 
-  // Build return
   let html = "";
   if (inline.length) html += inline.join(" • ");
   if (below.length)  html += `<br>${below.join(" • ")}`;
@@ -41,7 +83,6 @@ function cardItem(card) {
   const qty  = Number(card.qty) || 1;
   const full = card.img || "../assets/back.jpg";
 
-  // grid thumb if from ygoprodeck
   const thumb = (typeof full === "string" && full.includes("/images/cards/"))
     ? full.replace("/images/cards/", "/images/cards_small/")
     : full;
@@ -64,14 +105,17 @@ function cardItem(card) {
   `;
 }
 
+/* ------------ SECTION BLOCK (CHANGED for collapsible) ------------ */
 function sectionBlock(label, cards) {
   if (!cards || !cards.length) return "";
   return `
-    <section class="deck-section">
-      <h2>${label} <span class="count">(${sumQty(cards)})</span></h2>
-      <ul class="card-grid">
-        ${cards.map(cardItem).join("")}
-      </ul>
+    <section class="deck-section is-collapsed">
+      <button class="deck-toggle">${label} <span class="count">(${sumQty(cards)})</span></button>
+      <div class="deck-content">
+        <ul class="card-grid">
+          ${cards.map(cardItem).join("")}
+        </ul>
+      </div>
     </section>
   `;
 }
@@ -93,19 +137,30 @@ function render(deck) {
     ${sectionBlock("Extra Deck", extra)}
     ${sectionBlock("Side Deck", side)}
   `;
+
+  enableCollapsibles(); // wire up collapsibles after deck renders
+}
+/* ----------------- Collapsible sections logic ----------------- */
+function enableCollapsibles() {
+  document.querySelectorAll(".deck-section .deck-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.parentElement.classList.toggle("is-collapsed");
+    });
+  });
 }
 
-/* optional global loader helpers (if you added the overlay) */
+/* optional global loader helpers (if you added overlay) */
 function showLoader(){ document.getElementById("loading")?.removeAttribute("hidden"); }
 function hideLoader(){ document.getElementById("loading")?.setAttribute("hidden",""); }
 
 async function loadAndRender(path) {
-  showLoader && showLoader();                  // safe if not defined
+  showLoader && showLoader();
   const mount = document.getElementById("deck-root");
   if (mount) mount.innerHTML = `<p class="muted">Loading deck…</p>`;
   try {
     const deck = await loadDeck(path);
     render(deck);
+    mount?.scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (e) {
     console.error(e);
     if (mount) mount.innerHTML = `<p style="color:tomato">Couldn't load the deck (${e.message}).</p>`;
@@ -116,15 +171,34 @@ async function loadAndRender(path) {
 
 /* ------------------------------ boot ------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
-  /* deck switcher */
-  const sel   = document.getElementById("deckSelect");
-  const mount = document.getElementById("deck-root");
-  if (!sel || !mount) { console.error("Missing deckSelect or deck-root"); return; }
+  const mount   = document.getElementById("deck-root");
+  const buttons = Array.from(document.querySelectorAll(".deckbox, .deck-btn"));
+  if (!mount || buttons.length === 0) return
 
-  loadAndRender(sel.value);                    // initial load
-  sel.addEventListener("change", () => loadAndRender(sel.value));
+  // set initial state
+  mount.innerHTML = `<p class="muted"></p>`;
 
-  /* lightbox */
+    buttons.forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const path = btn.getAttribute("data-deck");
+      if (!path) return;
+
+    // toggle active state
+      if (btn.classList.contains("is-active")) {
+        btn.classList.remove("is-active");
+        document.getElementById("deck-root").innerHTML =
+        `<p class="muted"></p>`;
+      return;
+    }
+    buttons.forEach(b => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+
+    // smooth swap
+    await crossfadeLoad(path);
+  });
+});
+
+  /* --------------------------- lightbox --------------------------- */
   const lightbox = document.getElementById("lightbox");
   const imgEl    = lightbox?.querySelector(".lightbox-img");
   const btnPrev  = lightbox?.querySelector(".prev");
@@ -165,7 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
     current = -1;
   }
 
-  // open from grid (event delegation)
   document.body.addEventListener("click", (e) => {
     const t = e.target;
     if (t instanceof Element && t.classList.contains("card-img")) {
@@ -174,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // controls
   btnPrev?.addEventListener("click", () => showNext(-1));
   btnNext?.addEventListener("click", () => showNext(1));
   btnClose?.addEventListener("click", closeLightbox);

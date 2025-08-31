@@ -12,6 +12,14 @@
 </head>
 <body class="yugioh">
 
+  <!-- Loading overlay -->
+    <div id="loading" class="loading" aria-live="polite" aria-busy="true">
+      <img src="../assets/bat_flap.gif" alt="Loading…" class="loading-bat">
+      <p class="loading__text">Loading…</p>
+    </div>
+  <!-- End Loading Overlay-->
+  
+
   <!-- ========== Header ========== -->
   <header class="site-header container">
     <div class="brand">
@@ -33,23 +41,30 @@
     <section class="hero">
       <div class="hero-text">
         <h1>Yu-Gi-Oh!</h1>
-        <p class="muted">
-          This is the Yu-Gi-Oh! section. Put your pages, data, and assets here.
-        </p>
+        <p class="muted">This is the Yu-Gi-Oh! section. Put your pages, data, and assets here.</p>
       </div>
     </section>
 
     <!-- Deck Selector + Output -->
-    <section>
-      <label class="muted" for="deckSelect">Choose a Deck</label>
-      <select id="deckSelect">
-        <option value="./data/vampire.json">1. Vampire's Rise</option>
-        <option value="./data/dark-magician.json">2. Chaos Magician</option>
-      </select>
+    <section class="deck-chooser">
+      <h2>Choose Your Deck</h2>
 
-      <!-- Where JS renders the deck -->
-      <div id="deck-root"></div>
-    </section>
+      <div class="deckboxes">
+        <button type="button" class="deckbox vampire" data-deck="./data/vampire.json">
+          <span class="deck-label">Vampire’s Rise</span>
+        </button>
+
+        <button type="button" class="deckbox magician" data-deck="./data/dark-magician.json">
+          <span class="deck-label">Chaos Magician</span>
+        </button>
+      </div>
+
+      <p id="deck-placeholder" class="muted">Please choose a deck.</p>
+    </section> 
+
+    <!-- Deck render mount -->
+    <div id="deck-root"></div>
+
   </main>
 
   <!-- ========== Footer ========== -->
@@ -64,29 +79,18 @@
     <button class="nav next" aria-label="Next card">❯</button>
     <button class="close" aria-label="Close">×</button>
   </div>
-  <script>
-    // Lightbox accessibility toggling
-    const lightbox = document.getElementById('lightbox');
-    function showLightbox() {
-      lightbox.setAttribute('aria-hidden', 'false');
-      lightbox.setAttribute('role', 'dialog');
-      lightbox.setAttribute('aria-modal', 'true');
-      lightbox.style.display = 'block';
-    }
-    function hideLightbox() {
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightbox.removeAttribute('role');
-      lightbox.removeAttribute('aria-modal');
-      lightbox.style.display = 'none';
-    }
-    // Example: wire up close button (adjust as needed for your code)
-    lightbox.querySelector('.close').addEventListener('click', hideLightbox);
-    // You should call showLightbox() when opening the lightbox elsewhere in your JS
-  </script>
 
-  <!-- ========== Scripts ========== -->
+  <!-- Scripts -->
   <script src="../main.js"></script>
   <script src="./js/vampire.js"></script>
+  <script>
+  // show as early as possible
+  document.addEventListener("DOMContentLoaded", () => showLoaderDelayed());
+
+  // hide when page fully loaded
+  window.addEventListener("load", () => hideLoaderClear());
+</script>
+
 
 </body>
 </html>

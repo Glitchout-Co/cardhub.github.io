@@ -4,8 +4,527 @@
     "sections": {
         "main": [
             {
-                "name": "Magikuriboh"
+                "name": "Magikuriboh",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Fiend",
+                "level": 1,
+                "atk": 300,
+                "def": 200,
+                "id": 31699677,
+                "img": "https://images.ygoprodeck.com/images/cards/31699677.jpg"
+            },
+            {
+                "name": "Magicians' Souls",
+                "qty": 3,
+                "attribute": "DARK",
+                "type": "Monster/Spellcaster",
+                "level": 1,
+                "atk": 0,
+                "def": 0,
+                "id": 97631303,
+                "img": "https://images.ygoprodeck.com/images/cards/97631303.jpg"
+            },
+            {
+                "name": "spellbook magician of prophecy",
+                "qty": 1,
+                "attribute": "WATER",
+                "type": "Monster/Spellcaster",
+                "level": 2,
+                "atk": 500,
+                "def": 400,
+                "id": 14824013,
+                "img": "https://images.ygoprodeck.com/images/cards/14824019.jpg"
+            },
+            {
+                "name": "Magician's Rod",
+                "qty": 3,
+                "attribute": "DARK",
+                "type": "Monster/Spellcaster",
+                "level": 3,
+                "atk": 1600,
+                "def": 100,
+                "id": 7084129,
+                "img": "https://images.ygoprodeck.com/images/cards/7084129.jpg"
+            },
+            {
+                "name": "Apprentice Illusion Magician",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Spellcaster",
+                "level": 6,
+                "atk": 2000,
+                "def": 1700,
+                "id":30603688,
+                "img": "https://images.ygoprodeck.com/images/cards/30603688.jpg"
+            },
+            {
+                "name": "Dark Magician Girl",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Spellcaster",
+                "level": 6,
+                "atk": 2000,
+                "def": 1700,
+                "id": 38033121,
+                "img": "https://images.ygoprodeck.com/images/cards/38033121.jpg"
+            },
+            {
+                "name": "Dark Magician",
+                "qty": 3,
+                "attribute": "DARK",
+                "type": "Monster/Spellcaster",
+                "level": 7,
+                "atk": 2500,
+                "def": 2100,
+                "id": 46986414,
+                "img": "https://images.ygoprodeck.com/images/cards/46986414.jpg"
+            },
+            {
+                "name": "Illusion of Chaos",
+                "qty": 3,
+                "attribute": "DARK",
+                "type": "Monster/Spellcaster/ritual",
+                "level": 7,
+                "atk": 2100,
+                "def": 2500,
+                "id": 12266229,
+                "img": "https://images.ygoprodeck.com/images/cards/12266229.jpg"
+            },
+            {
+                "name": "paladium Oracle Mahad",
+                "qty": 1,
+                "attribute": "light",
+                "type": "Monster/Spellcaster",
+                "level": 7,
+                "atk": 2500,
+                "def": 2100,
+                "id": 71703785,
+                "img": "https://images.ygoprodeck.com/images/cards/71703785.jpg"
+            },
+            {
+                "name": "Chronicle Magician",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Spellcaster",
+                "level": 7,
+                "atk": 2500,
+                "def": 2500,
+                "id": 60948488,
+                "img": "https://images.ygoprodeck.com/images/cards/60948488.jpg"
+            },
+            {
+                "name": "Timaeus The United Dragon",
+                "qty": 2,
+                "attribute": "light",
+                "type": "Monster/Dragon",
+                "level": 8,
+                "atk": 2800,
+                "def": 1800,
+                "id": 3078380,
+                "img": "https://images.ygoprodeck.com/images/cards/3078380.jpg"
+            },
+            {
+                "name": "Dark Magical Circle",
+                "qty": 3,
+                "type": "spell",
+                "subtype": "Continuous",
+                "id": 47222536,
+                "img": "https://images.ygoprodeck.com/images/cards/47222536.jpg"
+            },
+            {
+                "name": "Soul Servant",
+                "qty": 3,
+                "type": "spell",
+                "subtype": "Quick-Play",
+                "id": 23020408,
+                "img": "https://images.ygoprodeck.com/images/cards/23020408.jpg"
+            },
+            {
+                "name": "Dark Burning Magic",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Quick-Play",
+                "id": 75190122,
+                "img": "https://images.ygoprodeck.com/images/cards/75190122.jpg"
+            },
+            {
+                "name": "Spellbook of secrets",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Normal",
+                "id": 89739383,
+                "img": "https://images.ygoprodeck.com/images/cards/89739383.jpg"
+            },
+            {
+                "name": "Piercing The Darkness",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Continuous",
+                "id": 21862633,
+                "img": "https://images.ygoprodeck.com/images/cards/21862633.jpg"
+            },
+            {
+                "name": "Sinful Spoils Of The White Forest",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Quick-Play",
+                "id": 3496543,
+                "img": "https://images.ygoprodeck.com/images/cards/3496543.jpg"
+            },
+            {
+                "name": "Secrets of Dark Magic",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Quick-Play",
+                "id": 59514116,
+                "img": "https://images.ygoprodeck.com/images/cards/59514116.jpg"
+            },
+            {
+                "name": "Spellbook of knowledge",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Normal",
+                "id": 23314220,
+                "img": "https://images.ygoprodeck.com/images/cards/23314220.jpg"
+            },
+            {
+                "name": "Bond Between Teacher and Student",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Normal",
+                "id": 60709218,
+                "img": "https://images.ygoprodeck.com/images/cards/60709218.jpg"
+            },
+            {
+                "name": "Magician's Salvation",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Field",
+                "id": 95477924,
+                "img": "https://images.ygoprodeck.com/images/cards/95477924.jpg"
+            },
+            {
+                "name": "Dark World Dealings",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Normal",
+                "id": 74117290,
+                "img": "https://images.ygoprodeck.com/images/cards/74117290.jpg"
+            },
+            {
+                "name": "Secret Village of the Spellcasters",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Field",
+                "id": 68462976,
+                "img": "https://images.ygoprodeck.com/images/cards/68462976.jpg"
+            },
+            {
+                "name": "The Eye of Timaeus",
+                "qty": 1,
+                "type": "spell",
+                "subtype": "Normal",
+                "id": 1784686,
+                "img": "https://images.ygoprodeck.com/images/cards/1784686.jpg"
+            },
+            {
+                "name": "Eternal Soul",
+                "qty": 2,
+                "type": "trap",
+                "subtype": "Continuous",
+                "id": 48680970,
+                "img": "https://images.ygoprodeck.com/images/cards/48680970.jpg"
+            },
+            {
+                "name": "Magician Navigation",
+                "qty": 2,
+                "type": "trap",
+                "subtype": "Normal",
+                "id": 7922915,
+                "img": "https://images.ygoprodeck.com/images/cards/7922915.jpg"
+            },
+            {
+                "name": "Dark Renewal",
+                "qty": 1,
+                "type": "trap",
+                "subtype": "Normal",
+                "id": 92870707,
+                "img": "https://images.ygoprodeck.com/images/cards/9287078.jpg"
+            },
+            {
+                "name": "Solemn Judgment",
+                "qty": 1,
+                "type": "trap",
+                "subtype": "Counter",
+                "id": 41420027,
+                "img": "https://images.ygoprodeck.com/images/cards/41420027.jpg"
+            },
+            {
+                "name": "infinite impermanence",
+                "qty": 1,
+                "type": "trap",
+                "subtype": "Normal",
+                "id": 10045474,
+                "img": "https://images.ygoprodeck.com/images/cards/10045474.jpg"
             }
-        ]
+        ],
+        "extra": [
+            {
+                "name": "The Dark Magicians",
+                "qty": 2,
+                "attribute": "DARK",
+                "type": "Monster/Fusion/Spellcaster",
+                "level": 8,
+                "atk": 2800,
+                "def": 2300,
+                "requirements": "Dark Magician or Dark Magician Girl + 1 Spellcaster monster",
+                "id": 50237654,
+                "img": "https://images.ygoprodeck.com/images/cards/50237654.jpg"
+            },
+            {
+                "name": "Dark Magician The Dragon Knight",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Fusion/Dragon",
+                "level": 8,
+                "atk": 3000,
+                "def": 2500,
+                "requirements": "Dark Magician + 1 Dragon monster",
+                "id": 41721210,
+                "img": "https://images.ygoprodeck.com/images/cards/41721210.jpg"
+            },
+				{
+					"name": "Dark Paladin",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Fusion/Spellcaster",
+					"level": 8,
+					"atk": 2900,
+					"def": 2400,
+					"requirements": "Dark Magician + Buster Blader",
+					"id": 98502113,
+					"img": "https://images.ygoprodeck.com/images/cards/98502113.jpg"
+				},
+				{
+				"name": "Dark Cavalry",
+				"qty": 1,
+				"attribute": "DARK",
+				"type": "Monster/Fusion/Spellcaster",
+				"level": 8,
+				"atk": 2800,
+				"def": 2300,
+				"requirements": "Dark Magician + Dark Cavalry",
+				"id": 73452089,
+				"img": "https://images.ygoprodeck.com/images/cards/73452089.jpg"
+				},
+				{
+					"name": "Amulet Dragon",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Fusion/Dragon",
+					"level": 8,
+					"atk": 2900,
+					"def": 2500,
+					"requirements": "Dark Magician + 1 Dragon Monster",
+					"id": 75380687,
+					"img": "https://images.ygoprodeck.com/images/cards/75380687.jpg"
+				},
+				{
+					"name": "Red-eyes Dark Dragoon",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Fusion/Dragon",
+					"level": 8,
+					"atk": 3000,
+					"def": 2500,
+					"requirements": "Dark Magician + Red-Eyes Black Dragon or 1 dragon effect monster",
+					"id": 37818794,
+					"img": "https://images.ygoprodeck.com/images/cards/37818794.jpg"
+				},
+				{
+					"name": "Master Of Chaos",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Fusion/Spellcaster",
+					"level": 8,
+					"atk": 3000,
+					"def": 2500,
+					"requirements": "Dark Magician + 1 Chaos or Black Luster Soldier ritual Monster",
+					"id": 85059922,
+					"img": "https://images.ygoprodeck.com/images/cards/85059922.jpg"
+				},
+				{
+					"name": "Quintet Magician",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Spellcaster/Fusion",
+					"level": 12,
+					"atk": 4500,
+					"def": 4500,
+					"requirements": "5 Spellcaster Monster",
+					"id": 84433295,
+					"img": "https://images.ygoprodeck.com/images/cards/84433295.jpg"
+				},
+				{
+					"name": "Ebon Illusion Magician",
+					"qty": 2,
+					"attribute": "DARK",
+					"Type": "Monster/XYZ/Spellcaster",
+					"rank": 7,
+					"atk": 2500,
+					"def": 2100,
+					"requirements": "2 Level 7 Monsters",
+					"id": 96471335,
+					"img": "https://images.ygoprodeck.com/images/cards/96471335.jpg"
+				},
+				{
+					"name": "Ebon High Magician",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/XYZ/Spellcaster",
+					"rank": 7,
+					"atk": 2300,
+					"def": 2800,
+					"requirements": "2 Level 7 spellcaster Monsters",
+					"id": 85551711,
+					"img": "https://images.ygoprodeck.com/images/cards/85551711.jpg"
+				},
+				{
+					"name": "Chaos Angel",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Syncro/Fiend",
+					"level": 10,
+					"atk": 3500,
+					"def": 2800,
+					"requirements": "1 Tuner + 1+ Non-tuner LIGHT or DARK monster",
+					"id": 22850702,
+					"img": "https://images.ygoprodeck.com/images/cards/22850702.jpg"
+				},
+				{
+					"name": "Knightmare Phoenix",
+					"qty": 1,
+					"attribute": "FIRE",
+					"type": "Monster/Link/Fiend",
+					"link": -2,
+					"atk": "1900",
+					"requirements": "2 Monsters with different names",
+					"id": 2857636,
+					"img": "https://images.ygoprodeck.com/images/cards/2857636.jpg"
+				},
+				{
+					"name": "Kightmare Uicorn",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Link/Fiend",
+					"link": -3,
+					"atk": 2200,
+					"requirements": "2+ Monsters with different names",
+					"id": 38342335,
+					"img": "https://images.ygoprodeck.com/images/cards/38342335.jpg"
+				}
+        ],
+			"side": [
+				{
+					"name": "Magician's Robe",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Spellcaster",
+					"level": 2,
+					"atk": 700,
+					"def": 2000,
+					"id": 71696014,
+					"img": "https://images.ygoprodeck.com/images/cards/71696014.jpg"
+				},
+				{
+					"name": "Magician of Chaos",
+					"qty": 1,
+					"attribute": "DARK",
+					"type": "Monster/Ritual/Spellcaster",
+					"level": 7,
+					"atk": 2500,
+					"def": 2100,
+					"id": 47963370,
+					"img": "https://images.ygoprodeck.com/images/cards/47963370.jpg"
+				},
+				{
+					"name": "Dark Magic Expanded",
+					"type": "Spell",
+					"subtype": "Quick-Play",
+					"id": 111280,
+					"img": "https://images.ygoprodeck.com/images/cards/111280.jpg"
+				},
+				{
+					"name": "Harpie's Feather Duster",
+					"type": "Spell",
+					"subtype": "Normal",
+					"id": 18144506,
+					"img": "https://images.ygoprodeck.com/images/cards/18144506.jpg"
+				},
+				{
+					"name": "Dark Magic Inheritance",
+					"type": "Spell",
+					"subtype": "Quick-Play",
+					"id": 41735184,
+					"img": "https://images.ygoprodeck.com/images/cards/41735184.jpg"
+				},
+				{
+					"name": "Illusion Magic",
+					"type": "Spell",
+					"subtype": "Quick-Play",
+					"id": 73616671,
+					"img": "https://images.ygoprodeck.com/images/cards/73616671.jpg"
+				},
+				{
+					"name": "Magicalized Fusion",
+					"type": "Spell",
+					"subtype": "Normal",
+					"id": 11827244,
+					"img": "https://images.ygoprodeck.com/images/cards/11827244.jpg"
+				},
+				{
+					"name": "Chaos Form",
+					"type": "Spell",
+					"subtype": "Ritual",
+					"id": 21082832,
+					"img": "https://images.ygoprodeck.com/images/cards/21082832.jpg"
+				},
+				{
+					"name": "Thousand Knives",
+					"type": "Spell",
+					"subtype": "Normal",
+					"id": 63391643,
+					"img": "https://images.ygoprodeck.com/images/cards/63391643.jpg"
+				},
+				{
+					"name": "Dark Magic Attack",
+					"type": "Spell",
+					"subtype": "Normal",
+					"id": 2314238,
+					"img": "https://images.ygoprodeck.com/images/cards/2314238.jpg"
+				},
+				{
+					"name": "Pot of Avarice",
+					"type": "Spell",
+					"subtype": "Normal",
+					"id": 67169062,
+					"img": "https://images.ygoprodeck.com/images/cards/67169062.jpg"
+				},
+				{
+					"name": "Black Illusion",
+					"type": "Trap",
+					"subtype": "Normal",
+					"id": 32754886,
+					"img": "https://images.ygoprodeck.com/images/cards/32754886.jpg"
+				},
+				{
+					"name": "Magician Navigation",
+					"type": "Trap",
+					"subtype": "Normal",
+					"id": 7922915,
+					"img": "https://images.ygoprodeck.com/images/cards/7922915.jpg"
+				}
+			]
     }
 }

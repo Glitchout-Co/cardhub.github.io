@@ -1,3 +1,4 @@
+
 (function(){
   const y=document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
   const b=document.getElementById('themeToggle'); const r=document.documentElement;
@@ -7,6 +8,31 @@
     r.setAttribute('data-theme',n); localStorage.setItem('theme',n);
   });
 })();
+
+let loaderTimer;
+function showLoaderDelayed(delay = 120) {
+  clearTimeout(loaderTimer);
+  loaderTimer = setTimeout(() => showLoader?.(), delay);
+}
+function hideLoaderClear() {
+  clearTimeout(loaderTimer);
+  hideLoader?.();
+}
+
+function showLoader() {
+  const el = document.getElementById("loading");
+  if (el) {
+    el.removeAttribute("hidden");
+    el.setAttribute("aria-busy", "true");
+  }
+}
+function hideLoader() {
+  const el = document.getElementById("loading");
+  if (el) {
+    el.setAttribute("hidden", "");
+    el.setAttribute("aria-busy", "false");
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const yr = document.getElementById('year'); if (yr) yr.textContent = new Date().getFullYear();

@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
+
+    <!-- Start Loading overlay -->
+    <div id="loading" class="loading" aria-live="polite" aria-busy="true">
+      <img src="../assets/bat_flap.gif" alt="Loading…" class="loading-bat">
+      <p class="loading__text">Loading…</p>
+    </div>
+  <!-- End Loading Overlay-->
+   
   <header class="site-header container">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true"></span>
@@ -29,5 +37,13 @@
     <small>&copy; <span id="year"></span> Card Hub</small>
   </footer>
   <script src="../main.js"></script>
+    <script>
+  // show as early as possible
+  document.addEventListener("DOMContentLoaded", () => showLoaderDelayed());
+
+  // hide when page fully loaded
+  window.addEventListener("load", () => hideLoaderClear());
+</script>
+
 </body>
 </html>
