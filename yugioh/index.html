@@ -49,16 +49,18 @@
     <section class="deck-chooser">
       <h2>Choose Your Deck</h2>
 
+      <!-- Deck selection buttons -->
       <div class="deckboxes">
-        <button type="button" class="deckbox vampire" data-deck="./data/vampire.json">
+        <button type="button" class="deckbox vampire" data-deck="./data/vampire.json" data-deck-key="vampire">
           <span class="deck-label">Vampire’s Rise</span>
         </button>
 
-        <button type="button" class="deckbox magician" data-deck="./data/dark-magician.json">
+        <button type="button" class="deckbox magician" data-deck="./data/dark-magician.json" data-deck-key="magician">
           <span class="deck-label">Chaos Magician</span>
         </button>
       </div>
 
+      <!-- Placeholder text when no deck is selected -->
       <p id="deck-placeholder" class="muted">Please choose a deck.</p>
     </section> 
 
@@ -80,7 +82,7 @@
     <button class="close" aria-label="Close">×</button>
   </div>
 
-  <!-- Scripts -->
+  <!-- ========== Scripts ========== -->
   <script src="../main.js"></script>
   <script src="./js/vampire.js"></script>
   <script>

@@ -38,6 +38,7 @@ async function crossfadeLoad(path) {
   }
 }
 
+// Set active state on deckbox buttons
 function setActiveDeckbox(buttons, activeBtn) {
   buttons.forEach(btn => {
     const isActive = (btn === activeBtn);
@@ -46,29 +47,85 @@ function setActiveDeckbox(buttons, activeBtn) {
   });
 }
 
+// Preload deck counts for buttons with data-deck-count attribute
+function sectionCounts(deck) {
+  const main  = deck.sections?.main  ?? [];
+  const extra = deck.sections?.extra ?? [];
+  const side  = deck.sections?.side  ?? [];
+  return {
+    main: sumQty(main),
+    extra: sumQty(extra),
+    side: sumQty(side)
+  };
+}
+
+// Get counts of cards in each section
+async function preloadDeckCounts() {
+  const boxes = document.querySelectorAll(".deckbox");
+  for (const box of boxes) {
+    const path = box.getAttribute("data-deck");
+    if (!path) continue;
+
+    try {
+      const deck = await loadDeck(path);
+      const counts = sectionCounts(deck);
+
+      const label = box.querySelector(".deck-label");
+
+      if (label) {
+        const deckKey = box.dataset.deckKey || ""; // you can add a data-deck-key attr in HTML
+
+        // Update label with counts
+
+        label.innerHTML = `
+          <span class="deck-name ${deckKey}">${label.textContent}</span>
+          <span class="deck-counts">
+            <span class="main-count">${counts.main}</span>
+            <span class="extra-count">${counts.extra}</span>
+            <span class="side-count">${counts.side}</span>
+          </span>
+        `;
+      }
+
+      // catch and warn
+    } catch (e) {
+      console.warn(`Couldn’t preload ${path}`, e);
+    }
+  }
+}
+
+// fetch and parse deck JSON
+
 async function loadDeck(path) {
   const res = await fetch(path, { cache: "no-store" });
   if (!res.ok) throw new Error(`failed to load: ${path} (${res.status})`);
   return await res.json();
 }
 
+// sum up quantities in a list of cards
+
 function sumQty(list) {
   return list.reduce((n, c) => n + (Number(c.qty) || 1), 0);
 }
 
+// generate small info line (level, type, attribute, atk/def)
 function smallInfo(card) {
   const inline = [];
   const below  = [];
 
+  // level/rank/link (only one will be present)
   if (card.level != null)      inline.push(`⭐ ${card.level}`);
   else if (card.rank != null)  inline.push(`⤴️ ${card.rank}`);
   else if (card.link != null)  inline.push(`🔗 ${card.link}`);
 
+  // type and subtype
   const subtype = card.subtype || card.Subtype;
   if (subtype) inline.push(String(subtype).toUpperCase());
 
+  // attribute
   if (card.attribute) inline.push(card.attribute.toUpperCase());
 
+  // atk/def (only for monsters)
   if (card.atk != null && card.def != null) below.push(`⚔️ ${card.atk} / 🛡️ ${card.def}`);
   else if (card.atk != null)                below.push(`⚔️ ${card.atk}`);
 
@@ -78,6 +135,8 @@ function smallInfo(card) {
 
   return html ? `<small>${html}</small>` : "";
 }
+
+// generate HTML for a single card item
 
 function cardItem(card) {
   const qty  = Number(card.qty) || 1;
@@ -120,6 +179,7 @@ function sectionBlock(label, cards) {
   `;
 }
 
+/* ----------------------- RENDERING LOGIC ----------------------- */
 function render(deck) {
   const el = document.getElementById("deck-root");
   if (!el) return;
@@ -140,6 +200,7 @@ function render(deck) {
 
   enableCollapsibles(); // wire up collapsibles after deck renders
 }
+
 /* ----------------- Collapsible sections logic ----------------- */
 function enableCollapsibles() {
   document.querySelectorAll(".deck-section .deck-toggle").forEach(btn => {
@@ -154,13 +215,23 @@ function showLoader(){ document.getElementById("loading")?.removeAttribute("hidd
 function hideLoader(){ document.getElementById("loading")?.setAttribute("hidden",""); }
 
 async function loadAndRender(path) {
-  showLoader && showLoader();
   const mount = document.getElementById("deck-root");
+
+  // Show loader at start
+  showLoader && showLoader();
   if (mount) mount.innerHTML = `<p class="muted">Loading deck…</p>`;
+
+  const start = Date.now(); // record start time
   try {
     const deck = await loadDeck(path);
     render(deck);
-    mount?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Ensure loader shows for at least 1 second
+    const elapsed = Date.now() - start;
+    const minDelay = 1000; // ms
+    if (elapsed < minDelay) {
+      await new Promise(r => setTimeout(r, minDelay - elapsed));
+    }
   } catch (e) {
     console.error(e);
     if (mount) mount.innerHTML = `<p style="color:tomato">Couldn't load the deck (${e.message}).</p>`;
@@ -171,9 +242,11 @@ async function loadAndRender(path) {
 
 /* ------------------------------ boot ------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
+  preloadDeckCounts();
+
   const mount   = document.getElementById("deck-root");
   const buttons = Array.from(document.querySelectorAll(".deckbox, .deck-btn"));
-  if (!mount || buttons.length === 0) return
+  if (!mount || buttons.length === 0) return; 
 
   // set initial state
   mount.innerHTML = `<p class="muted"></p>`;
@@ -184,10 +257,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!path) return;
 
     // toggle active state
-      if (btn.classList.contains("is-active")) {
-        btn.classList.remove("is-active");
-        document.getElementById("deck-root").innerHTML =
-        `<p class="muted"></p>`;
+    if (btn.classList.contains("is-active")) {
+      btn.classList.remove("is-active");
+      document.getElementById("deck-root").innerHTML =
+      `<p class="muted"></p>`;
       return;
     }
     buttons.forEach(b => b.classList.remove("is-active"));
@@ -210,9 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let gallery = [];
   let current = -1;
 
+  // collect all card images in the current gallery
   function collectGallery(){
     gallery = Array.from(document.querySelectorAll(".card-grid .card-img"));
   }
+
+  // open lightbox at specific index
   function openAt(index){
     if (!gallery.length) collectGallery();
     if (index < 0 || index >= gallery.length || !lightbox || !imgEl) return;
@@ -224,6 +300,8 @@ document.addEventListener("DOMContentLoaded", () => {
     imgEl.alt = el.alt || "Card preview";
     lightbox.style.display = "flex";
   }
+
+  // show next/prev image in gallery
   function showNext(delta){
     if (!gallery.length || current < 0 || !imgEl) return;
     current = (current + delta + gallery.length) % gallery.length;
@@ -233,12 +311,15 @@ document.addEventListener("DOMContentLoaded", () => {
     imgEl.src = fullSrc;
     imgEl.alt = el.alt || "Card preview";
   }
+
+  // close the lightbox
   function closeLightbox(){
     if (!lightbox) return;
     lightbox.style.display = "none";
     current = -1;
   }
 
+  // open lightbox when clicking a card image
   document.body.addEventListener("click", (e) => {
     const t = e.target;
     if (t instanceof Element && t.classList.contains("card-img")) {
@@ -247,6 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // wire up buttons and keyboard
   btnPrev?.addEventListener("click", () => showNext(-1));
   btnNext?.addEventListener("click", () => showNext(1));
   btnClose?.addEventListener("click", closeLightbox);

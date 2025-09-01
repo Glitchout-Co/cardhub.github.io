@@ -1,29 +1,44 @@
 /* =========================================
    THEME TOKENS
 ========================================= */
-:root{
-  --bg:#0b0d10; --panel:#111418; --surface:#14181d;
-  --text:#e6eaf0; --muted:#9aa3ad; --border:#26303a;
-  --accent:#6aa2ff; --accent-contrast:#06121f;
+:root {
+  --bg: #0b0d10;
+  --panel: #111418;
+  --surface: #14181d;
+  --text: #e6eaf0;
+  --muted: #9aa3ad;
+  --border: #26303a;
+  --accent: #6aa2ff;
+  --accent-contrast: #06121f;
   --shadow: 0 10px 30px rgba(0,0,0,.25);
   color-scheme: dark;
 }
-[data-theme="light"]{
-  --bg:#ffffff; --panel:#f7f9fb; --surface:#fbfdff;
-  --text:#0c1220; --muted:#475566; --border:#dbe3ec;
-  --accent:#2f6bff; --accent-contrast:#ffffff;
+[data-theme="light"] {
+  --bg: #ffffff;
+  --panel: #f7f9fb;
+  --surface: #fbfdff;
+  --text: #0c1220;
+  --muted: #475566;
+  --border: #dbe3ec;
+  --accent: #2f6bff;
+  --accent-contrast: #ffffff;
   color-scheme: light;
 }
 
 /* =========================================
    BASE / RESET
 ========================================= */
-*{ box-sizing: border-box }
-html, body{ height:100% }
-body{
-  margin:0;
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  line-height:1.6; color:var(--text);
+  line-height: 1.6;
+  color: var(--text);
 
   /* subtle page texture */
   background:
@@ -32,85 +47,129 @@ body{
     var(--bg);
   background-attachment: fixed;
 }
-.container{ max-width:1100px; margin:0 auto; padding:1rem }
-.muted{ color:var(--muted) }
-h2{ text-align:center; font-family:'Times New Roman', Times, serif }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
 
 /* =========================================
    HEADER & NAV
 ========================================= */
 .site-header,
 .site-footer {
-  display:flex; align-items:center; justify-content:space-between; gap:1rem;
-  border-bottom:1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
 }
-.site-header.sticky{
-  position: sticky; top:0; z-index:50;
+
+.site-header.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   backdrop-filter: blur(8px);
   background: color-mix(in oklab, var(--bg) 70%, transparent);
-  padding-block:.6rem;
-}
-.site-footer { 
-  border-top:1px solid var(--border); 
-  border-bottom:0; 
-  margin-top:2rem 
+  padding-block: .6rem;
 }
 
-.brand { 
-  display:flex; 
-  align-items:center; 
-  gap:.6rem; 
-  font-weight:700 
+.site-footer {
+  border-top: 1px solid var(--border);
+  border-bottom: 0;
+  margin-top: 2rem;
 }
 
-.brand-mark { 
-  display:inline-block; 
-  width:32px; 
-  height:32px; 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 700;
+}
+
+.brand-mark {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
   background: url("assets/logo.png") center/contain no-repeat;
 }
 
-.site-nav a{
-  color:var(--text); text-decoration:none; 
-  margin:0 .25rem;
-  display:inline-block; 
-  padding:.45rem .7rem; 
-  border-radius:.5rem; 
-  opacity:.9;
+.site-nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin: 0 .25rem;
+  display: inline-block;
+  padding: .45rem .7rem;
+  border-radius: .5rem;
+  opacity: .9;
 }
-.site-nav a [aria-current="page"], .site-nav a:hover {
-  background:var(--panel); 
-  border:1px solid var(--border); 
-  opacity:1;
+
+.site-nav a[aria-current="page"],
+.site-nav a:hover {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  opacity: 1;
 }
 
 /* =========================================
    BUTTONS
 ========================================= */
-.btn{
-  border:1px solid var(--border); background:var(--panel); color:var(--text);
-  padding:.6rem .95rem; border-radius:.7rem; cursor:pointer; box-shadow:var(--shadow);
+.btn {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: .6rem .95rem;
+  border-radius: .7rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
 }
-.btn.primary{ background:var(--accent); color:var(--accent-contrast); border-color:transparent }
-.btn.icon{ padding:.4rem .55rem }
-.btn:focus-visible, .site-nav a:focus-visible{ outline:2px solid var(--accent); outline-offset:2px }
-.btn:hover{ transform: translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.18) }
+
+.btn.primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: transparent;
+}
+
+.btn.icon {
+  padding: .4rem .55rem;
+}
+
+.btn:focus-visible,
+.site-nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
 
 /* =========================================
    HERO (banner version for homepage)
 ========================================= */
-.hero { 
+.hero {
   padding: 1.6rem 0; /* generic hero (inside pages) */
 }
 
-.hero--banner { 
-  position: relative; 
-  overflow: hidden; 
+.hero--banner {
+  position: relative;
+  overflow: hidden;
 }
 
 /* Background image (full bleed) */
 .hero--banner .hero__bg {
-  position: absolute; 
+  position: absolute;
   inset: 0;
   background: url("assets/hero.jpg") center/cover no-repeat;
   transform: scale(1.05);
@@ -127,7 +186,7 @@ h2{ text-align:center; font-family:'Times New Roman', Times, serif }
 
 /* Text + panel wrapper */
 .hero--banner .hero__inner {
-  position: relative; 
+  position: relative;
   z-index: 3;  /* above bg + overlay + panel */
   text-align: center;
   padding: clamp(3rem, 7vw, 6rem) 1rem;
@@ -141,15 +200,12 @@ h2{ text-align:center; font-family:'Times New Roman', Times, serif }
   margin: 0 auto;
   max-width: 820px;
   border-radius: 20px;
-
   /* Use your uploaded panel image */
   background: url("assets/hero-panel.png") center/contain no-repeat;
   background-color: rgba(0,0,0,0.4); /* optional overlay tint */
-  
   box-shadow: 0 20px 60px rgba(0,0,0,.35);
   z-index: 1; /* stays above the overlay, behind the text */
 }
-
 
 /* Ensure hero text sits above everything */
 .hero--banner .hero__inner > * {
@@ -157,31 +213,31 @@ h2{ text-align:center; font-family:'Times New Roman', Times, serif }
   z-index: 3;
 }
 
-.hero__title { 
+.hero__title {
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-family: AVP;
-  margin: 0 0 .4rem; 
+  margin: 0 0 .4rem;
   /* Glow effect */
-  text-shadow: 
-    0 0 4px rgba(255, 255, 255, 0.9),   /* tight inner glow */
-    0 0 8px rgba(192, 192, 192, 0.8),   /* silver halo */
-    0 0 16px rgba(192, 192, 192, 0.6),  /* softer outer glow */
-    0 0 32px rgba(192, 192, 192, 0.4);  /* faint wide aura */
+  text-shadow:
+    0 0 4px rgba(255,255,255,0.9),   /* tight inner glow */
+    0 0 8px rgba(192,192,192,0.8),   /* silver halo */
+    0 0 16px rgba(192,192,192,0.6),  /* softer outer glow */
+    0 0 32px rgba(192,192,192,0.4);  /* faint wide aura */
   color: #6d0101;
   font-weight: 600;
 }
 
-.hero__subtitle { 
+.hero__subtitle {
   font-family: Covert Ops;
-  color: var(--muted); 
-  margin: 0 0 1rem; 
+  color: var(--muted);
+  margin: 0 0 1rem;
 }
 
-.hero__actions { 
-  display: flex; 
-  gap: .6rem; 
-  justify-content: center; 
-  flex-wrap: wrap; 
+.hero__actions {
+  display: flex;
+  gap: .6rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* =========================================
@@ -213,7 +269,7 @@ body.yugioh .hero-text {
 body.yugioh .hero h1 {
   font-size: 2.6rem;
   margin: 0 0 .5rem;
-  text-shadow: 
+  text-shadow:
     0 3px 6px rgba(0,0,0,.7),  /* dark outline */
     0 0 8px silver;           /* silver aura glow */
 }
@@ -227,46 +283,49 @@ body.yugioh .hero p {
 /* =========================================
    DECKBOX SELECTOR (Yu-Gi-Oh!)
 ========================================= */
-.deck-chooser{
-  display:flex; 
-  flex-direction:column; 
-  align-items:center; 
-  gap:1rem;
-  margin-top:2rem; 
-  text-align:center;
+.deck-chooser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: center;
 }
 
-.deckboxes { 
-  display:flex;
-  gap:1.5rem; 
-  flex-wrap:wrap; 
-  justify-content:center; 
+.deckboxes {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.deck-chooser h2 { 
-  font-size:1.6rem; 
-  margin:0; 
+.deck-chooser h2 {
+  font-size: 1.6rem;
+  margin: 0;
 }
 
 /* deckbox look (reset button defaults + size + bg) */
 .deckbox {
-  -webkit-appearance:none; 
-  appearance:none;  /* reset native button style */
-  border:none; 
-  padding:0; 
-  outline:0;
-  width:150px; 
-  height:210px; 
-  border-radius:10px;
+  -webkit-appearance: none;
+  appearance: none;  /* reset native button style */
+  border: none;
+  padding: 0;
+  outline: 0;
+  width: 150px;
+  height: 210px;
+  border-radius: 10px;
   background: url("yugioh/assets/back.jpg") center/cover no-repeat; /* default: card back */
   box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 0 0 2px var(--border) inset;
-  cursor:pointer; position:relative; overflow:hidden;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
   transition: transform .25s ease, box-shadow .25s ease, background-image .4s ease;
-  display:flex; 
-  align-items:flex-end; 
-  justify-content:center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
-.deckbox:hover{
+
+.deckbox:hover {
   transform: translateY(-6px) scale(1.05);
   box-shadow: 0 14px 32px rgba(0,0,0,.45), 0 0 0 2px var(--accent) inset;
 }
@@ -279,27 +338,56 @@ body.yugioh .hero p {
   transform: translateY(-6px) scale(1.05);
 }
 
-/* label overlay that slides in on hover */
-.deck-label{
-  position:absolute; 
-    left:0; 
-    right:0; 
-    bottom:0;
-  padding:.45rem .6rem; 
-  text-align:center;
-  background: rgba(0,0,0,.65); 
-  color:#fff; 
-  font-weight:700; 
-  font-size:.95rem;
-  transform: translateY(100%); 
-  opacity:0;
+/* =========================================
+   DECKBOX LABEL (name + counts)
+========================================= */
+.deck-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: .45rem .6rem;
+  text-align: center;
+  background: rgba(0,0,0,.65);
+  transform: translateY(100%);
+  opacity: 0;
   transition: transform .25s ease, opacity .25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .9rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+  text-shadow:
+    0 3px 6px rgba(0,0,0,.7),  /* dark outline */
+    0 0 8px silver;           /* silver aura glow */
+}
+
+.deck-label .deck-counts {
+  display: flex;            /* keep counts inline */
+  gap: 0.6rem;              /* space between numbers */
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.deck-label .main-count {
+  color: #ffd900;           /* orange */
+}
+
+.deck-label .extra-count {
+  color: #00e1ff;           /* black */
+}
+
+.deck-label .side-count {
+  color: #4ade80;           /* green */
 }
 
 .deckbox:hover .deck-label,
-.deckbox.is-active .deck-label { 
-  transform: translateY(0); 
-  opacity:1; 
+.deckbox.is-active .deck-label {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* On hover OR if active, show the real art */
@@ -313,7 +401,28 @@ body.yugioh .hero p {
   background-image: url("yugioh/assets/magician-box.jpg");
 }
 
-/* Smooth deck swap */
+.deck-label .deck-name {
+  margin-bottom: 0.3rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-shadow:
+    0 3px 6px rgba(0,0,0,.7),  /* dark outline */
+    0 0 8px silver;           /* silver aura glow */
+}
+
+/* Per-deck overrides */
+.deck-name.vampire {
+  color: #dc143c;
+}
+
+.deck-name.magician {
+  color: #aa00aa;
+}
+
+/* =========================================
+   DECK PAGE TRANSITION
+========================================= */
 #deck-root {
   transition: opacity .30s ease, transform .30s ease;
 }
@@ -322,6 +431,13 @@ body.yugioh .hero p {
   opacity: 0;
   transform: translateY(6px);
   pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deckbox,
+  #deck-root {
+    transition: none !important;
+  }
 }
 
 /* =========================================
@@ -334,7 +450,6 @@ body.yugioh .card-grid .card-tile {
   background-size: cover;   /* or contain */
   background-position: center;
   background-blend-mode: overlay; /* merge image + dark panel */
-  
   border: 1px solid var(--border);
   border-radius: .8rem;
   padding: .8rem;
@@ -350,7 +465,6 @@ body.yugioh .card-grid .card-tile:hover {
 /* =========================================
    DECK SECTIONS (collapsible)
 ========================================= */
-
 /* wrapper */
 .deck-section {
   margin: 1rem 0 1.25rem;
@@ -362,18 +476,15 @@ body.yugioh .card-grid .card-tile:hover {
   align-items: center;
   justify-content: center;
   gap: .5rem;
-
   width: 100%;
   cursor: pointer;
   user-select: none;
-
   /* type */
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text);
   text-align: center;
-
   /* panel look */
   background: linear-gradient(
     to right,
@@ -383,7 +494,6 @@ body.yugioh .card-grid .card-tile:hover {
   border: 1px solid var(--border);
   border-radius: .6rem;
   padding: .7rem 1rem;
-
   /* effects */
   text-shadow: 0 0 6px rgba(192,192,192,0.35);
   box-shadow: 0 3px 8px rgba(0,0,0,0.25);
@@ -429,119 +539,225 @@ body.yugioh .card-grid .card-tile:hover {
   display: none;
 }
 
-
 /* =========================================
    HOMEPAGE CARDS (game links)
 ========================================= */
-.grid-3{
-  display:grid; gap:1rem;
+.grid-3 {
+  display: grid;
+  gap: 1rem;
   grid-template-columns: repeat(3, minmax(0,1fr));
 }
-@media (max-width:900px){ .grid-3{ grid-template-columns:1fr 1fr } }
-@media (max-width:560px){ .grid-3{ grid-template-columns:1fr } }
+@media (max-width:900px) {
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:560px) {
+  .grid-3 { grid-template-columns: 1fr; }
+}
 
-.card{
-  position:relative; border:1px solid var(--border); border-radius:.9rem;
-  box-shadow:var(--shadow); overflow:hidden; min-height:200px;
-  background-size:cover; background-position:center;
+.card {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: .9rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
   transition: transform .18s ease, box-shadow .18s ease;
 }
-.card:hover{ transform: translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,.28), 0 0 0 1px var(--border) inset }
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.28), 0 0 0 1px var(--border) inset;
+}
 
 /* background images per game */
-.yugioh-card{  background:url("yugioh/assets/back.jpg") center/cover no-repeat; color:#fff }
-.mtg-card{     background:url("mtg/assets/back.jpg") center/cover no-repeat;    color:#fff }
-.pokemon-card{ background:url("pokemon/assets/back.jpg") center/cover no-repeat;color:#fff }
+.yugioh-card {
+  background: url("yugioh/assets/back.jpg") center/cover no-repeat;
+  color: #fff;
+}
+
+.mtg-card {
+  background: url("mtg/assets/back.jpg") center/cover no-repeat;
+  color: #fff;
+}
+
+.pokemon-card {
+  background: url("pokemon/assets/back.jpg") center/cover no-repeat;
+  color: #fff;
+}
 
 /* make entire card clickable */
-.card-link{
-  position:absolute; inset:0; display:flex; flex-direction:column;
-  justify-content:center; align-items:center; color:inherit; text-decoration:none; padding:1rem;
+.card-link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  padding: 1rem;
 }
-.card-link:hover, .card-link:focus{ background-color: rgba(0,0,0,.25) }
+
+.card-link:hover,
+.card-link:focus {
+  background-color: rgba(0,0,0,.25);
+}
 
 /* =========================================
    DECK GRID (inner pages)
 ========================================= */
 .card-grid {
-  list-style:none; padding:0; margin:1rem 0 0;
-  display:grid; gap:1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 1rem;
   grid-template-columns: repeat(2, 1fr);          /* phones */
 }
-@media (min-width:600px){ .card-grid{ grid-template-columns: repeat(3, 1fr) } }
-@media (min-width:900px){ .card-grid{ grid-template-columns: repeat(4, 1fr) } }
-@media (min-width:1150px){ .card-grid{ grid-template-columns: repeat(5, 1fr) } }
-
-.thumb{
-  overflow:hidden; border-radius:8px; position:relative;
+@media (min-width:600px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
 }
-.card-img{
-  width:100%; max-width:150px; height:auto; display:block; margin:0 auto;
+@media (min-width:900px) {
+  .card-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width:1150px) {
+  .card-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+.thumb {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.card-img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
   transition: transform .3s ease, box-shadow .3s ease;
 }
-.thumb:hover{ overflow:visible; z-index:10 }
-.card-img:hover{
+
+.thumb:hover {
+  overflow: visible;
+  z-index: 10;
+}
+
+.card-img:hover {
   transform: scale(1.25);
   box-shadow: 0 8px 20px rgba(0,0,0,.6);
-  position:relative; z-index:5; cursor:pointer;
+  position: relative;
+  z-index: 5;
+  cursor: pointer;
 }
-.qty{
-  position:absolute; right:.4rem; bottom:.4rem;
-  background:rgba(0,0,0,.6); color:#fff; padding:.1rem .35rem;
-  border-radius:.4rem; font-size:.85rem;
+
+.qty {
+  position: absolute;
+  right: .4rem;
+  bottom: .4rem;
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  padding: .1rem .35rem;
+  border-radius: .4rem;
+  font-size: .85rem;
 }
 
 /* card meta text */
-.meta{ text-align:center; margin-top:.5rem }
-.meta strong{ display:block; margin-bottom:.25rem }
+.meta {
+  text-align: center;
+  margin-top: .5rem;
+}
+.meta strong {
+  display: block;
+  margin-bottom: .25rem;
+}
 
 /* deck header */
-.deck-header{ text-align:center; margin-bottom:1.5rem }
-.deck-header h1{ font-size:1.8rem; margin:.25rem 0 }
-.deck-header p{ margin:0; color:var(--muted) }
+.deck-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.deck-header h1 {
+  font-size: 1.8rem;
+  margin: .25rem 0;
+}
+.deck-header p {
+  margin: 0;
+  color: var(--muted);
+}
 
 /* =========================================
    LIGHTBOX
 ========================================= */
-.lightbox{
-  display:none; position:fixed; inset:0; z-index:9999;
-  background:rgba(0,0,0,.85);
-  align-items:center; justify-content:center;
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.85);
+  align-items: center;
+  justify-content: center;
 }
-.lightbox-img{
-  max-width:90%; max-height:90%;
-  box-shadow:0 12px 25px rgba(0,0,0,.9);
-  border-radius:8px;
-  filter: blur(2px); transition: filter .25s ease;
-}
-.lightbox-img.loaded{ filter: blur(0) }
 
-.lightbox .close{
-  position:absolute; top:20px; right:30px; font-size:2rem; color:#fff;
-  background:transparent; border:0; cursor:pointer;
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 12px 25px rgba(0,0,0,.9);
+  border-radius: 8px;
+  filter: blur(2px);
+  transition: filter .25s ease;
 }
-.lightbox .nav{
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:rgba(255,255,255,.12); color:#fff; border:0; cursor:pointer;
-  width:44px; height:44px; border-radius:9999px; font-size:1.25rem;
-  display:flex; align-items:center; justify-content:center;
+.lightbox-img.loaded {
+  filter: blur(0);
 }
-.lightbox .prev{ left:30px }
-.lightbox .next{ right:30px }
-.lightbox .nav:hover, .lightbox .close:hover{ background:rgba(255,255,255,.2) }
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.lightbox .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox .prev { left: 30px; }
+.lightbox .next { right: 30px; }
+.lightbox .nav:hover,
+.lightbox .close:hover {
+  background: rgba(255,255,255,.2);
+}
 
 /* =========================================
    FONTS
 ========================================= */
-
 .AVP { font-family: AVP; }
-@font-face { font-family: AVP; src: url(assets/fonts/AVP.ttf) }
+@font-face { font-family: AVP; src: url(assets/fonts/AVP.ttf); }
 
-.covert-ops { font-family: Covert Ops;}
-@font-face { font-family: Covert Ops; src: url(assets/fonts/covertops.ttf)}
+.covert-ops { font-family: Covert Ops; }
+@font-face { font-family: Covert Ops; src: url(assets/fonts/covertops.ttf); }
 
 /* ========================================
-Loading Overlay 
+   Loading Overlay 
 ======================================== */
 .loading {
   position: fixed;

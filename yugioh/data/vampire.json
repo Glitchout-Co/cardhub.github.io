@@ -326,7 +326,7 @@
 		{
 			"name": "Skeletal Dragon Felgrand",
 			"qty": 1,
-			"attribute": "Light",
+      "attribute": "LIGHT",
 			"type": "Monster/Zombie",
 			"Subtype": "Synchro",
 			"level": 8,
