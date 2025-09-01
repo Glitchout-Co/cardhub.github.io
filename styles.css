@@ -248,7 +248,7 @@ body.yugioh .hero {
   text-align: center;
   position: relative;
   border-radius: 12px;
-  background: url("../yugioh/assets/yugioh-hero.jpg") center/cover no-repeat;
+  background: url("./yugioh/assets/yugioh-hero.jpg") center/cover no-repeat;
   color: #fff;
   box-shadow: 0 12px 30px rgba(0,0,0,.45);
 }
