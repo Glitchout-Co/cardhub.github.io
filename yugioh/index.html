@@ -24,11 +24,11 @@
   <header class="site-header container">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true"></span>
-      <strong>Card&nbsp;Hub</strong>
+      <a href="https://naequarwe.github.io/index.html" class="hide-link"><strong>Card&nbsp;Hub</strong></a>
     </div>
     <nav class="site-nav">
       <a href="../index.html">Home</a>
-      <a href="../yugioh/index.html" aria-current="page">Yu-Gi-Oh!</a>
+      <a class="disable" aria-current="page">Yu-Gi-Oh!</a>
       <a href="../mtg/index.html">MTG</a>
       <a href="../pokemon/index.html">Pokémon</a>
     </nav>
@@ -51,12 +51,16 @@
 
       <!-- Deck selection buttons -->
       <div class="deckboxes">
-        <button type="button" class="deckbox vampire" data-deck="./data/vampire.json" data-deck-key="vampire">
+        <button class="deckbox vampire" data-deck="./data/vampire.json" data-deck-key="vampire">
           <span class="deck-label">Vampire’s Rise</span>
         </button>
 
-        <button type="button" class="deckbox magician" data-deck="./data/dark-magician.json" data-deck-key="magician">
+        <button class="deckbox magician" data-deck="./data/dark-magician.json" data-deck-key="magician">
           <span class="deck-label">Chaos Magician</span>
+        </button>
+
+        <button class="deckbox darkstorm" data-deck="./data/darkstorm.json" data-deck-key="darkstorm">
+          <span class="deck-label">Darkstorm Rising</span>
         </button>
       </div>
 

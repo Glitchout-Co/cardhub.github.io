@@ -63,6 +63,23 @@ h2 {
   font-family: 'Times New Roman', Times, serif;
 }
 
+.hide-link {
+  color: inherit;           /* Use the surrounding text color */
+  text-decoration: none;    /* Remove underline */
+  cursor: pointer;          /* Optional: show pointer on hover */
+  font-weight: inherit;     /* Inherit font weight */
+}
+
+.disable {
+    opacity: 0.6;
+	  cursor: not-allowed;
+  }
+  
+.disable:hover {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* =========================================
    HEADER & NAV
 ========================================= */
@@ -401,6 +418,10 @@ body.yugioh .hero p {
   background-image: url("yugioh/assets/magician-box.jpg");
 }
 
+.deckbox.darkstorm:hover, 
+.deckbox.darkstorm.is-active {
+  background-image: url("yugioh/assets/darkstorm-box.jpg");
+}
 .deck-label .deck-name {
   margin-bottom: 0.3rem;
   font-family: 'Cinzel', serif;
@@ -418,6 +439,10 @@ body.yugioh .hero p {
 
 .deck-name.magician {
   color: #aa00aa;
+}
+
+.deck-name.darkstorm {
+  color: #363636;
 }
 
 /* =========================================
@@ -638,7 +663,7 @@ body.yugioh .card-grid .card-tile:hover {
   height: auto;
   display: block;
   margin: 0 auto;
-  transition: transform .3s ease, box-shadow .3s ease;
+  transition: transform .3s ease, box-shadow .4s ease;
 }
 
 .thumb:hover {
@@ -647,11 +672,34 @@ body.yugioh .card-grid .card-tile:hover {
 }
 
 .card-img:hover {
-  transform: scale(1.25);
-  box-shadow: 0 8px 20px rgba(0,0,0,.6);
+  transform: scale(1.08);
+  box-shadow: 
+    0 8px 20px rgba(0,0,0,.6),
+    0 0 16px 4px #6aa2ff; /* blue glow */
   position: relative;
   z-index: 5;
   cursor: pointer;
+}
+
+/* Vampire deck = crimson glow */
+.vampire-deck .card-img:hover {
+  box-shadow: 0 0 15px 4px rgb(245, 1, 1),
+              0 0 25px 8px rgba(220, 20, 60, 0.6),
+              0 0 35px 12px rgba(220, 20, 60, 0.4);
+}
+
+/* Magician deck = purple glow */
+.magician-deck .card-img:hover {
+  box-shadow: 0 0 15px 10px rgb(102, 0, 102),
+              0 0 25px 14px rgba(179, 0, 179, 0.6),
+              0 0 35px 18px rgba(252, 0, 252, 0.4);
+}
+
+/* Dark Storm deck = gray glow */
+.darkstorm-deck .card-img:hover {
+  box-shadow: 0 0 15px 10px rgb(54, 54, 54),
+              0 0 25px 14px rgba(102, 102, 102, 0.6),
+              0 0 35px 18px rgba(150, 150, 150, 0.4);
 }
 
 .qty {
