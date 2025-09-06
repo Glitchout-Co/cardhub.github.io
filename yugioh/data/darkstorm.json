@@ -303,6 +303,285 @@
             }
         ],
         "extra": [
+            {
+                "name": "Alligator's Sword Dragon",
+                "qty": 1,
+                "attribute": "WIND",
+                "type": "Monster/Dragon/Fusion",
+                "level": 5,
+                "requirements": "Baby Dragon + Alligator's Sword",
+                "atk": 1700,
+                "def": 1500,
+                "id": 3366982,
+                "img": "https://images.ygoprodeck.com/images/cards/3366982.jpg"
+            },
+            {
+                "name": "Archfiend Black Skull Dragon",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Dragon/Fusion",
+                "level": 9,
+                "requirements": "1 Level 6 Archfiend Normal Monster + 1 Red-Eyes Normal Monster",
+                "atk": 3200,
+                "def": 2500,
+                "id": 45349196,
+                "img": "https://images.ygoprodeck.com/images/cards/45349196.jpg"
+            },
+            {
+                "name": "Blue-Eyes Ultimate Dragon",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type": "Monster/Dragon/Fusion",
+                "level": 12,
+                "requirements": "3x Blue-Eyes White Dragon",
+                "atk": 4500,
+                "def": 3800,
+                "id": 23995346,
+                "img": "https://images.ygoprodeck.com/images/cards/23995346.jpg"
+            },
+            {
+                "name": "First Of The Dragons",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Dragon/Fusion",
+                "level": 9,
+                "requirements": "2 Normal Monsters",
+                "atk": 2700,
+                "def": 2000,
+                "id": 10817524,
+                "img": "https://images.ygoprodeck.com/images/cards/10817524.jpg"
+            },
+            {
+                "name": "Wollow, Founder Of The Drudge Dragons",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Zombie/XYZ",
+                "rank": 6,
+                "requirements": "2+ Level 6 Monsters",
+                "atk": 2400,
+                "def": 1300,
+                "id": 45935145,
+                "img": "https://images.ygoprodeck.com/images/cards/45935145.jpg"
+            },
+            {
+                "name": "Red-Eyes Flare Metal Dragon",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Dragon/XYZ",
+                "rank": 7,
+                "requirements": "2 Level 7 Monsters",
+                "atk": 2800,
+                "def": 2400,
+                "id": 44405066,
+                "img": "https://images.ygoprodeck.com/images/cards/44405066.jpg"
+            },
+            {
+                "name": "number 39: Utopia",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type": "Monster/Warrior/XYZ",
+                "rank": 4,
+                "requirements": "2 Level 4 Monsters",
+                "atk": 2500,
+                "def": 2000,
+                "id": 84013237,
+                "img": "https://images.ygoprodeck.com/images/cards/84013237.jpg"
+            },
+            {
+                "name": "Number C39: Utopia Ray",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type": "Monster/Warrior/XYZ",
+                "rank": 4,
+                "requirements": "3 Level 4 LIGHT Monsters (or Number 39: Utopia",
+                "atk": 2500,
+                "def": 2000,
+                "id": 56840427,
+                "img": "https://images.ygoprodeck.com/images/cards/56840427.jpg"
+            },
+            {
+                "name": "Time Thief Redoer",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Psychic/XYZ",
+                "rank": 4,
+                "requirements": "2 Level 4 Monsters",
+                "atk": 2400,
+                "def": 2000,
+                "id": 55285840,
+                "img": "https://images.ygoprodeck.com/images/cards/55285840.jpg"
+            },
+            {
+                "name": "Number 107: Galaxy-Eyes Tachyon Dragon",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type": "Monster/Dragon/XYZ",
+                "rank": 4,
+                "requirements": "2 Level 8 Monsters",
+                "atk": 3000,
+                "def": 2500,
+                "id": 88177324,
+                "img": "https://images.ygoprodeck.com/images/cards/88177324.jpg"
+            },
+            {
+                "name": "Number 46: Dragluon",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type":"Monster/Dragon/XYZ",
+                "rank": 8,
+                "requirements": "2 Level 8 Dragon-Type Monsters",
+                "atk": 3000,
+                "def": 3000,
+                "id": 2978414,
+                "img": "https://images.ygoprodeck.com/images/cards/2978414.jpg"
+            },
+            {
+                "name": "Number 97: Draglubion",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Dragon/XYZ",
+                "rank": 8,
+                "requirements": "2 Level 8 Monsters",
+                "atk": 3000,
+                "def": 3000,
+                "id": 28400508,
+                "img": "https://images.ygoprodeck.com/images/cards/28400508.jpg"
+            },
+            {
+                "name": "Number 100: Numeron Dragon",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type": "Monster/Dragon/XYZ",
+                "rank": 1,
+                "requirements": "2 Number XYZ Monsters with the same name and rank",
+                "atk": 0,
+                "def": 0,
+                "id": 57314798,
+                "img": "https://images.ygoprodeck.com/images/cards/57314798.jpg"
+            },
+            {
+                "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type": "Monster/Dragon/XYZ",
+                "rank": 8,
+                "requirements": "2 Level 8 Monsters",
+                "atk": 3000,
+                "def": 2500,
+                "id": 63767246,
+                "img": "https://images.ygoprodeck.com/images/cards/63767246.jpg"
+            },
+            {
+                "name": "Vola-Chemicritter Methydraco",
+                "qty": 1,
+                "attribute": "FIRE",
+                "type": "Monster/Dragon/XYZ",
+                "rank": 8,
+                "requirements": "2 Level 8 Gemini Monsters",
+                "atk": 3000,
+                "def": 3000,
+                "id": 38026562,
+                "img": "https://images.ygoprodeck.com/images/cards/38026562.jpg"
+            }
+        ],
+        "side": [
+            {
+                "name": "Gemini Summoner",
+                "qty": 1,
+                "attribute": "WATER",
+                "type": "Monster/Spellcaster",
+                "level": 4,
+                "atk": 1500,
+                "def": 0,
+                "id": 19041767,
+                "img": "https://images.ygoprodeck.com/images/cards/19041767.jpg"
+            },
+            {
+                "name": "Mystical Elf White Lightning",
+                "qty": 1,
+                "attribute": "LIGHT",
+                "type": "Monster/Spellcaster",
+                "level": 4,
+                "atk": 800,
+                "def": 2000,
+                "id": 15613529,
+                "img": "https://images.ygoprodeck.com/images/cards/15613529.jpg"
+            },
+            {
+                "name": "Red-Eyes Darkness Metal Dragon",
+                "qty": 1,
+                "attribute": "DARK",
+                "type": "Monster/Dragon",
+                "level": 10,
+                "atk": 2800,
+                "def": 2400,
+                "id": 88264978,
+                "img": "https://images.ygoprodeck.com/images/cards/88264978.jpg"
+            },
+            {
+                "name": "Dark Hole",
+                "qty": 1,
+                "type": "Spell",
+                "subtype": "Normal",
+                "id": 53129443,
+                "img": "https://images.ygoprodeck.com/images/cards/53129443.jpg"
+            },
+            {
+                "name": "Final Destiny",
+                "qty": 1,
+                "type": "Spell",
+                "subtype": "Normal",
+                "id": 18591904,
+                "img": "https://images.ygoprodeck.com/images/cards/18591904.jpg"
+            },
+            {
+                "name": "Supervise",
+                "qty": 1,
+                "type": "Spell",
+                "subtype": "Equip",
+                "id": 95750695,
+                "img": "https://images.ygoprodeck.com/images/cards/95750695.jpg"
+            },
+            {
+                "name": "Draining Shield",
+                "qty": 1,
+                "type": "Trap",
+                "subtype": "Normal",
+                "id": 43250041,
+                "img": "https://images.ygoprodeck.com/images/cards/43250041.jpg"
+            },
+            {
+                "name": "Destruction Jammer",
+                "qty": 1,
+                "type": "Trap",
+                "subtype": "Counter",
+                "id": 98956134,
+                "img": "https://images.ygoprodeck.com/images/cards/98956134.jpg"
+            },
+            {
+                "name": "Gemini Counter",
+                "qty": 2,
+                "type": "Trap",
+                "subtype": "Counter",
+                "id": 81601517,
+                "img": "https://images.ygoprodeck.com/images/cards/81601517.jpg"
+            },
+            {
+                "name": "Mirror Force",
+                "qty": 1,
+                "type": "Trap",
+                "subtype": "Normal",
+                "id": 44095762,
+                "img": "https://images.ygoprodeck.com/images/cards/44095762.jpg"
+            },
+            {
+                "name": "Cursed Seal Of The Forbidden Spell",
+                "qty": 1,
+                "type": "Trap",
+                "subtype": "Counter",
+                "id": 58851034,
+                "img": "https://images.ygoprodeck.com/images/cards/58851034.jpg"
+            }
         ]
     }
 }

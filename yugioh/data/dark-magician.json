@@ -5,9 +5,11 @@
         "main": [
             {
                 "name": "Magikuriboh",
+                "archetype": "Kuriboh",
+                "function": [],
                 "qty": 1,
                 "attribute": "DARK",
-                "type": "Monster/Fiend",
+                "type": ["Monster", "Fiend"],
                 "level": 1,
                 "atk": 300,
                 "def": 200,

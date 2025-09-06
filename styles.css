@@ -332,7 +332,9 @@ body.yugioh .hero p {
   height: 210px;
   border-radius: 10px;
   background: url("yugioh/assets/back.jpg") center/cover no-repeat; /* default: card back */
-  box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 0 0 2px var(--border) inset;
+  box-shadow: 
+        0 8px 20px rgba(0,0,0,.35), 
+        0 0 0 2px var(--border) inset;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -355,6 +357,58 @@ body.yugioh .hero p {
   transform: translateY(-6px) scale(1.05);
 }
 
+.deckbox:hover .deck-label,
+.deckbox.is-active .deck-label {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* On hover OR if active, show the real art */
+/* .deckbox.vampire:hover, */
+.deckbox.vampire.is-active {
+  background-image: url("yugioh/assets/vampire-box.jpg");
+}
+
+/* .deckbox.magician:hover, */
+.deckbox.magician.is-active {
+  background-image: url("yugioh/assets/magician-box.jpg");
+}
+
+/* .deckbox.darkstorm:hover, */ 
+.deckbox.darkstorm.is-active {
+  background-image: url("yugioh/assets/darkstorm-box.jpg");
+}
+
+/* Lid layer that flips up */
+.deckbox::before {
+  content:"";
+  position:absolute; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35%; /* how tall the black bar should be */
+  height:100%;
+  background: linear-gradient(
+          to bottom,
+           rgba(0,0,0,.9) 0%,
+           rgba(0,0,0,.8) 40%,
+           rgba(0,0,0,.7) 60%,
+           rgba(0,0,0,.6) 80%,
+           rgba(0,0,0,.5) 100%,
+           transparent 100%
+           ); 
+  transform-origin: bottom center;
+  transform: perspective(500px) rotateX(0deg);
+  transition: transform .35s ease;
+  pointer-events:none;
+}
+
+/* During click/active, flip the lid */
+.deckbox.is-opening::before,
+.deckbox.is-active::before {
+  transform: perspective(500px) rotateX(-65deg);
+}
+
 /* =========================================
    DECKBOX LABEL (name + counts)
 ========================================= */
@@ -365,9 +419,8 @@ body.yugioh .hero p {
   bottom: 0;
   padding: .45rem .6rem;
   text-align: center;
-  background: rgba(0,0,0,.65);
   transform: translateY(100%);
-  opacity: 0;
+  opacity: 1;
   transition: transform .25s ease, opacity .25s ease;
   display: flex;
   flex-direction: column;
@@ -401,27 +454,6 @@ body.yugioh .hero p {
   color: #4ade80;           /* green */
 }
 
-.deckbox:hover .deck-label,
-.deckbox.is-active .deck-label {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* On hover OR if active, show the real art */
-.deckbox.vampire:hover,
-.deckbox.vampire.is-active {
-  background-image: url("yugioh/assets/vampire-box.jpg");
-}
-
-.deckbox.magician:hover,
-.deckbox.magician.is-active {
-  background-image: url("yugioh/assets/magician-box.jpg");
-}
-
-.deckbox.darkstorm:hover, 
-.deckbox.darkstorm.is-active {
-  background-image: url("yugioh/assets/darkstorm-box.jpg");
-}
 .deck-label .deck-name {
   margin-bottom: 0.3rem;
   font-family: 'Cinzel', serif;
@@ -442,7 +474,7 @@ body.yugioh .hero p {
 }
 
 .deck-name.darkstorm {
-  color: #363636;
+  color: #868383;
 }
 
 /* =========================================
@@ -833,4 +865,48 @@ body.yugioh .card-grid .card-tile:hover {
 .loading__text {
   color: var(--muted);
   font-size: 1.1rem;
+}
+
+/* ========================================
+   Deck Filter Bar 
+======================================== */
+.deck-controls{
+  display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;
+  margin: 0 0 1rem 0;
+}
+.deck-controls input[type="search"]{
+  flex:1 1 280px; max-width:520px;
+  padding:.55rem .75rem; border-radius:.55rem;
+  border:1px solid var(--border); background:var(--panel); color:var(--text);
+}
+.deck-controls .toggles{
+  display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;
+}
+.deck-controls label{
+  display:inline-flex; align-items:center; gap:.35rem;
+  background:var(--panel); border:1px solid var(--border);
+  padding:.35rem .6rem; border-radius:.5rem; cursor:pointer;
+}
+.deck-controls .btn-clear{
+  margin-left:auto;
+}
+
+.deck-controls .level-filter {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.deck-controls .level-filter label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+}
+.deck-controls .level-filter input {
+  width: 3.5rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
 }
