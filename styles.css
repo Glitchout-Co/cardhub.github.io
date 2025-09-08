@@ -769,6 +769,230 @@ body.yugioh .card-grid .card-tile:hover {
   color: var(--muted);
 }
 
+/* =========================
+   LIFE POINT COUNTER
+========================= */
+.lp-wrap { 
+  margin-top: 1.25rem; 
+}
+
+.lp-title { 
+  margin: .25rem 0  .75rem; 
+  text-align:center; 
+}
+
+.lp {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr minmax(220px, 340px) 1fr;
+  align-items: center;
+  margin: 1.5rem auto;
+}
+
+.lp-player {
+  display: grid;
+  place-items: center;
+  gap: .25rem;
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: .8rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  color: var(--text);
+}
+.lp-player:focus-visible { 
+  outline: 2px solid var(--accent); 
+  outline-offset: 3px; 
+}
+
+.lp-player:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 10px 24px rgba(0,0,0,.28); 
+  border-color: var(--accent); 
+}
+
+.lp-name { 
+  font-size: .95rem; 
+  opacity: .85; 
+}
+.lp-total { 
+  font-size: clamp(2rem, 6vw, 3rem); 
+  font-weight: 700; 
+  letter-spacing: .5px; 
+}
+
+.lp-controls {
+  display: grid;
+  gap: .6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: .8rem;
+  padding: .8rem;
+  box-shadow: var(--shadow);
+}
+
+.lp-row { 
+  display: flex; 
+  gap: .5rem; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+}
+
+.lp-main {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: .5rem;
+  align-items: center;
+}
+
+.lp-input {
+  width: 110px;
+  font-size: 1.25rem;
+  text-align: center;
+  padding: .4rem .5rem;
+  border-radius: .6rem;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+}
+
+.lp-btn {
+  min-width: 48px;
+  min-height: 44px;          /* touch target */
+  padding: .5rem .75rem;
+  border-radius: .6rem;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.lp-btn:focus-visible { 
+  outline: 2px solid var(--accent); 
+  outline-offset: 3px; 
+}
+
+.lp-btn.mode[aria-pressed="true"] { 
+  background: var(--accent); 
+  color: var(--accent-contrast); 
+  border-color: transparent; 
+}
+
+.lp-btn.reset { 
+  opacity: .9; 
+}
+
+.lp-hint { 
+  margin: 0; 
+  text-align: center; 
+  font-size: .9rem; 
+  color: var(--muted); 
+}
+
+.lp-instructions {
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  font-size: .95rem;
+  color: var(--muted);
+  text-align: center;
+}
+/* Mobile: stack players above/below controls */
+@media (max-width: 720px) {
+  .lp {
+    grid-template-columns: 1fr;
+  }
+  .lp-player { padding: 1rem .75rem; }
+  .lp-controls { order: 2; }
+}
+
+/* =========================================
+   Test Hand Styling
+========================================= */
+
+.hand-tester {
+  border: 1px solid var(--border);
+  border-radius: .7rem;
+  background: var(--surface);
+  padding: .8rem;
+  margin: 1rem 0 0;
+  box-shadow: var(--shadow);
+}
+.hand-tester header {
+  display:flex; gap:.6rem; 
+  align-items:center; 
+  justify-content:space-between;
+  margin-bottom:.6rem;
+  flex-wrap: wrap;
+}
+.hand-tester .controls {
+  display:flex; 
+  gap:.5rem; 
+  align-items:center; 
+  flex-wrap: wrap;
+}
+.hand-tester .controls .btn { 
+  padding:.45rem .7rem; 
+}
+
+.hand-tester .toggles { 
+  display:flex; 
+  gap:.8rem; 
+  align-items:center; 
+  flex-wrap:wrap; 
+  color:var(--muted); 
+}
+
+.hand-grid {
+  list-style:none; 
+  margin:.6rem 0 0; 
+  padding:0;
+  display:flex; 
+  gap:.6rem; 
+  overflow-x:auto;
+}
+
+.hand-grid li {
+  min-width:110px; 
+  max-width:140px; 
+  flex:0 0 auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius:.6rem; 
+  padding:.5rem; 
+  text-align:center;
+  background-image: url("../yugioh/assets/texture.png");
+  background-repeat: no-repeat;
+  background-size: cover;   /* or contain */
+  background-position: center; 
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform .2s ease, box-shadow .2s ease;
+  background-blend-mode: overlay;
+}
+
+.hand-grid .thumb { 
+  border-radius:.4rem; 
+  overflow:hidden;
+}
+
+.hand-grid .card-img { 
+  width:100%; height:auto; 
+  display:block;
+}
+
+.hand-grid .meta { 
+  margin-top:.35rem; 
+  font-size:.85rem; 
+}
+
+.hand-tester .stats { 
+  margin-top:.4rem; 
+  color:var(--muted); 
+  font-size:.9rem; 
+}
+
 /* =========================================
    LIGHTBOX
 ========================================= */

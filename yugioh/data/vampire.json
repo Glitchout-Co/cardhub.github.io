@@ -1,6 +1,7 @@
 {
   "name": "Vampire's Rise",
   "author": "Vulas Park",
+  "deckstyle": "Control (Field Presence)",
   "sections": {
     "main": [
       {
@@ -100,7 +101,7 @@
         "function": ["control", "floodgate", "protection", "utility"],
         "qty": 1,
         "attribute": "DARK",
-        "type": ["Monster", "Tuner", "Zombie"],
+        "type": ["Monster", "Zombie"],
         "level": 4,
         "atk": 1800,
         "def": 200,

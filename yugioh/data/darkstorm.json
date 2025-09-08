@@ -1,587 +1,678 @@
 {
-    "name": "Darkstorm Rising",
-    "author": "Vulas Park",
-    "sections": {
-        "main": [
-            {
-                "name": "Sublimation Knight",
-                "qty": 1,
-                "attribute": "FIRE",
-                "type": "Monster/Warrior",
-                "level": 3,
-                "atk": 1300,
-                "def": 200,
-                "id": 54485355,
-                "img": "https://images.ygoprodeck.com/images/cards/54485355.jpg"
-            },
-            {
-                "name": "Kidmodo Dragon",
-                "qty": 1,
-                "attribute": "EARTH",
-                "type": "Monster/Dragon",
-                "level": 3,
-                "atk": 100,
-                "def": 200,
-                "id": 35629124,
-                "img": "https://images.ygoprodeck.com/images/cards/35629124.jpg"
-            },
-            {
-                "name": "Knight Day Grepher",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Warrior/Gemini",
-                "level": 4,
-                "atk": 1700,
-                "def": 1600,
-                "id": 15767889,
-                "img": "https://images.ygoprodeck.com/images/cards/15767889.jpg"
-            },
-            {
-                "name": "Geminize Lord Golknight",
-                "qty": 1,
-                "attribute": "EARTH",
-                "type": "Monster/Warrior/Gemini",
-                "level": 4,
-                "atk": 1500,
-                "def": 500,
-                "id": 72305034,
-                "img": "https://images.ygoprodeck.com/images/cards/72305034.jpg"
-            },
-            {
-                "name": "Evocator Eveque",
-                "qty": 1,
-                "attribute": "FIRE",
-                "type": "Monster/Warrior/Gemini",
-                "level": 4,
-                "atk": 1500,
-                "def": 1000,
-                "id": 16146511,
-                "img": "https://images.ygoprodeck.com/images/cards/16146511.jpg"
-            },
-            {
-                "name": "Paladin Of Felgrand",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Warrior",
-                "level": 4,
-                "atk": 1700,
-                "def": 300,
-                "id": 6075801,
-                "img": "https://images.ygoprodeck.com/images/cards/6075801.jpg"
-            },
-            {
-                "name": "Keeper Of The Shrine",
-                "qty": 2,
-                "attribute": "DARK",
-                "type": "Monster/Dragon",
-                "level": 4,
-                "atk": 0,
-                "def": 2100,
-                "id": 66752837,
-                "img": "https://images.ygoprodeck.com/images/cards/66752837.jpg"
-            },
-            {
-                "name": "Chthonian Emperor Dragon",
-                "qty": 1,
-                "attribute": "FIRE",
-                "type": "Monster/Dragon/Gemini",
-                "level": 6,
-                "atk": 2400,
-                "def": 1500,
-                "id": 95888876,
-                "img": "https://images.ygoprodeck.com/images/cards/95888876.jpg"
-            },
-            {
-                "name": "Red-Eyes Archfiend of Lightning",
-                "qty": 2,
-                "attribute": "DARK",
-                "type": "Monster/Fiend/Gemini",
-                "level": 6,
-                "atk": 2500,
-                "def": 1200,
-                "id": 39357122,
-                "img": "https://images.ygoprodeck.com/images/cards/39357122.jpg"
-            },
-            {
-                "name": "Arkbrave Dragon",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Dragon",
-                "level": 7,
-                "atk": 2400,
-                "def": 2000,
-                "id": 33282498,
-                "img": "https://images.ygoprodeck.com/images/cards/33282498.jpg"
-            },
-            {
-                "name": "Red-Eyes Black Flare Dragon",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Dragon/Gemini",
-                "level": 7,
-                "atk": 2400,
-                "def": 2000,
-                "id": 30079770,
-                "img": "https://images.ygoprodeck.com/images/cards/30079770.jpg"
-            },
-            {
-                "name": "Galactic Spiral Dragon",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Dragon",
-                "level": 8,
-                "atk": 2500,
-                "def": 2500,
-                "id": 88774734,
-                "img": "https://images.ygoprodeck.com/images/cards/88774734.jpg"
-            },
-            {
-                "name": "Nebula Dragon",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Dragon",
-                "level": 8,
-                "atk": 2000,
-                "def": 0,
-                "id": 51786039,
-                "img": "https://images.ygoprodeck.com/images/cards/51786039.jpg"
-            },
-            {
-                "name": "Darkstorm Dragon",
-                "qty": 3,
-                "attribute": "DARK",
-                "type": "Monster/Dragon/Gemini",
-                "level": 8,
-                "atk": 2700,
-                "def": 2500,
-                "id": 57662975,
-                "img": "https://images.ygoprodeck.com/images/cards/57662975.jpg"
-            },
-            {
-                "name": "Catalyst Field",
-                "qty": 3,
-                "type": "Spell",
-                "subtype": "Field",
-                "id": 65959844,
-                "img": "https://images.ygoprodeck.com/images/cards/65959844.jpg"
-            },
-            {
-                "name": "Return Of The Dragon Lords",
-                "qty": 2,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 6853254,
-                "img": "https://images.ygoprodeck.com/images/cards/6853254.jpg"
-            },
-            {
-                "name": "Dimer Synthesis",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 90965652,
-                "img": "https://images.ygoprodeck.com/images/cards/90965652.jpg"
-            },
-            {
-                "name": "Trade-In",
-                "qty": 2,
-                "type": "Spell",
-                "subtype":"Normal",
-                "id": 38120068,
-                "img": "https://images.ygoprodeck.com/images/cards/38120068.jpg"
-            },
-            {
-                "name": "Ruins Of The Divine Dragon Lords",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Continuous",
-                "id": 69868555,
-                "img": "https://images.ygoprodeck.com/images/cards/69868555.jpg"
-            },
-            {
-                "name": "Silver's Cry",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Quick-Play",
-                "id": 87025064,
-                "img": "https://images.ygoprodeck.com/images/cards/87025064.jpg"
-            },
-            {
-                "name": "Piercing The Darkness",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Continuous",
-                "id": 21862633,
-                "img": "https://images.ygoprodeck.com/images/cards/21862633.jpg"
-            },
-            {
-                "name": "Foolish Burial",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 81439173,
-                "img": "https://images.ygoprodeck.com/images/cards/81439173.jpg"
-            },
-            {
-                "name": "Pot Of Prosperity",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 84211599,
-                "img": "https://images.ygoprodeck.com/images/cards/84211599.jpg"
-            },
-            {
-                "name": "Harpie's Feather Duster",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 18144506,
-                "img": "https://images.ygoprodeck.com/images/cards/18144506.jpg"
-            },
-            {
-                "name": "Dragon Shrine",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 41650959,
-                "img": "https://images.ygoprodeck.com/images/cards/41620959.jpg"
-            },
-            {
-                "name": "Gemini Ablation",
-                "qty": 3,
-                "type": "Trap",
-                "subtype": "Continuous",
-                "id": 80758812,
-                "img": "https://images.ygoprodeck.com/images/cards/80758812.jpg"
-            },
-            {
-                "name": "Magical Cylinders",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Normal",
-                "id": 15943341,
-                "img": "https://images.ygoprodeck.com/images/cards/15943341.jpg"
-            },
-            {
-                "name": "Magic Cylinder",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Normal",
-                "id": 62279055,
-                "img": "https://images.ygoprodeck.com/images/cards/62279055.jpg"
-            },
-            {
-                "name": "Infinite Impermanence",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Normal",
-                "id": 10045474,
-                "img": "https://images.ygoprodeck.com/images/cards/10045474.jpg"
-            },
-            {
-                "name": "Gemini Booster",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Normal",
-                "id": 18096222,
-                "img": "https://images.ygoprodeck.com/images/cards/18096222.jpg"
-            },
-            {
-                "name": "Gemini Trap Hole",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Normal",
-                "id": 67045174,
-                "img": "https://images.ygoprodeck.com/images/cards/67045174.jpg"
-            },
-            {
-                "name": "Solemn Strike",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Counter",
-                "id": 40605147,
-                "img": "https://images.ygoprodeck.com/images/cards/40605147.jpg"
-            }
-        ],
-        "extra": [
-            {
-                "name": "Alligator's Sword Dragon",
-                "qty": 1,
-                "attribute": "WIND",
-                "type": "Monster/Dragon/Fusion",
-                "level": 5,
-                "requirements": "Baby Dragon + Alligator's Sword",
-                "atk": 1700,
-                "def": 1500,
-                "id": 3366982,
-                "img": "https://images.ygoprodeck.com/images/cards/3366982.jpg"
-            },
-            {
-                "name": "Archfiend Black Skull Dragon",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Dragon/Fusion",
-                "level": 9,
-                "requirements": "1 Level 6 Archfiend Normal Monster + 1 Red-Eyes Normal Monster",
-                "atk": 3200,
-                "def": 2500,
-                "id": 45349196,
-                "img": "https://images.ygoprodeck.com/images/cards/45349196.jpg"
-            },
-            {
-                "name": "Blue-Eyes Ultimate Dragon",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Dragon/Fusion",
-                "level": 12,
-                "requirements": "3x Blue-Eyes White Dragon",
-                "atk": 4500,
-                "def": 3800,
-                "id": 23995346,
-                "img": "https://images.ygoprodeck.com/images/cards/23995346.jpg"
-            },
-            {
-                "name": "First Of The Dragons",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Dragon/Fusion",
-                "level": 9,
-                "requirements": "2 Normal Monsters",
-                "atk": 2700,
-                "def": 2000,
-                "id": 10817524,
-                "img": "https://images.ygoprodeck.com/images/cards/10817524.jpg"
-            },
-            {
-                "name": "Wollow, Founder Of The Drudge Dragons",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Zombie/XYZ",
-                "rank": 6,
-                "requirements": "2+ Level 6 Monsters",
-                "atk": 2400,
-                "def": 1300,
-                "id": 45935145,
-                "img": "https://images.ygoprodeck.com/images/cards/45935145.jpg"
-            },
-            {
-                "name": "Red-Eyes Flare Metal Dragon",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Dragon/XYZ",
-                "rank": 7,
-                "requirements": "2 Level 7 Monsters",
-                "atk": 2800,
-                "def": 2400,
-                "id": 44405066,
-                "img": "https://images.ygoprodeck.com/images/cards/44405066.jpg"
-            },
-            {
-                "name": "number 39: Utopia",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Warrior/XYZ",
-                "rank": 4,
-                "requirements": "2 Level 4 Monsters",
-                "atk": 2500,
-                "def": 2000,
-                "id": 84013237,
-                "img": "https://images.ygoprodeck.com/images/cards/84013237.jpg"
-            },
-            {
-                "name": "Number C39: Utopia Ray",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Warrior/XYZ",
-                "rank": 4,
-                "requirements": "3 Level 4 LIGHT Monsters (or Number 39: Utopia",
-                "atk": 2500,
-                "def": 2000,
-                "id": 56840427,
-                "img": "https://images.ygoprodeck.com/images/cards/56840427.jpg"
-            },
-            {
-                "name": "Time Thief Redoer",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Psychic/XYZ",
-                "rank": 4,
-                "requirements": "2 Level 4 Monsters",
-                "atk": 2400,
-                "def": 2000,
-                "id": 55285840,
-                "img": "https://images.ygoprodeck.com/images/cards/55285840.jpg"
-            },
-            {
-                "name": "Number 107: Galaxy-Eyes Tachyon Dragon",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Dragon/XYZ",
-                "rank": 4,
-                "requirements": "2 Level 8 Monsters",
-                "atk": 3000,
-                "def": 2500,
-                "id": 88177324,
-                "img": "https://images.ygoprodeck.com/images/cards/88177324.jpg"
-            },
-            {
-                "name": "Number 46: Dragluon",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type":"Monster/Dragon/XYZ",
-                "rank": 8,
-                "requirements": "2 Level 8 Dragon-Type Monsters",
-                "atk": 3000,
-                "def": 3000,
-                "id": 2978414,
-                "img": "https://images.ygoprodeck.com/images/cards/2978414.jpg"
-            },
-            {
-                "name": "Number 97: Draglubion",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Dragon/XYZ",
-                "rank": 8,
-                "requirements": "2 Level 8 Monsters",
-                "atk": 3000,
-                "def": 3000,
-                "id": 28400508,
-                "img": "https://images.ygoprodeck.com/images/cards/28400508.jpg"
-            },
-            {
-                "name": "Number 100: Numeron Dragon",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Dragon/XYZ",
-                "rank": 1,
-                "requirements": "2 Number XYZ Monsters with the same name and rank",
-                "atk": 0,
-                "def": 0,
-                "id": 57314798,
-                "img": "https://images.ygoprodeck.com/images/cards/57314798.jpg"
-            },
-            {
-                "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Dragon/XYZ",
-                "rank": 8,
-                "requirements": "2 Level 8 Monsters",
-                "atk": 3000,
-                "def": 2500,
-                "id": 63767246,
-                "img": "https://images.ygoprodeck.com/images/cards/63767246.jpg"
-            },
-            {
-                "name": "Vola-Chemicritter Methydraco",
-                "qty": 1,
-                "attribute": "FIRE",
-                "type": "Monster/Dragon/XYZ",
-                "rank": 8,
-                "requirements": "2 Level 8 Gemini Monsters",
-                "atk": 3000,
-                "def": 3000,
-                "id": 38026562,
-                "img": "https://images.ygoprodeck.com/images/cards/38026562.jpg"
-            }
-        ],
-        "side": [
-            {
-                "name": "Gemini Summoner",
-                "qty": 1,
-                "attribute": "WATER",
-                "type": "Monster/Spellcaster",
-                "level": 4,
-                "atk": 1500,
-                "def": 0,
-                "id": 19041767,
-                "img": "https://images.ygoprodeck.com/images/cards/19041767.jpg"
-            },
-            {
-                "name": "Mystical Elf White Lightning",
-                "qty": 1,
-                "attribute": "LIGHT",
-                "type": "Monster/Spellcaster",
-                "level": 4,
-                "atk": 800,
-                "def": 2000,
-                "id": 15613529,
-                "img": "https://images.ygoprodeck.com/images/cards/15613529.jpg"
-            },
-            {
-                "name": "Red-Eyes Darkness Metal Dragon",
-                "qty": 1,
-                "attribute": "DARK",
-                "type": "Monster/Dragon",
-                "level": 10,
-                "atk": 2800,
-                "def": 2400,
-                "id": 88264978,
-                "img": "https://images.ygoprodeck.com/images/cards/88264978.jpg"
-            },
-            {
-                "name": "Dark Hole",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 53129443,
-                "img": "https://images.ygoprodeck.com/images/cards/53129443.jpg"
-            },
-            {
-                "name": "Final Destiny",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Normal",
-                "id": 18591904,
-                "img": "https://images.ygoprodeck.com/images/cards/18591904.jpg"
-            },
-            {
-                "name": "Supervise",
-                "qty": 1,
-                "type": "Spell",
-                "subtype": "Equip",
-                "id": 95750695,
-                "img": "https://images.ygoprodeck.com/images/cards/95750695.jpg"
-            },
-            {
-                "name": "Draining Shield",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Normal",
-                "id": 43250041,
-                "img": "https://images.ygoprodeck.com/images/cards/43250041.jpg"
-            },
-            {
-                "name": "Destruction Jammer",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Counter",
-                "id": 98956134,
-                "img": "https://images.ygoprodeck.com/images/cards/98956134.jpg"
-            },
-            {
-                "name": "Gemini Counter",
-                "qty": 2,
-                "type": "Trap",
-                "subtype": "Counter",
-                "id": 81601517,
-                "img": "https://images.ygoprodeck.com/images/cards/81601517.jpg"
-            },
-            {
-                "name": "Mirror Force",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Normal",
-                "id": 44095762,
-                "img": "https://images.ygoprodeck.com/images/cards/44095762.jpg"
-            },
-            {
-                "name": "Cursed Seal Of The Forbidden Spell",
-                "qty": 1,
-                "type": "Trap",
-                "subtype": "Counter",
-                "id": 58851034,
-                "img": "https://images.ygoprodeck.com/images/cards/58851034.jpg"
-            }
-        ]
-    }
+  "name": "Darkstorm Rising",
+  "author": "Vulas Park",
+  "deckstyle": "Midrange (Gemini Swarm)",
+  "sections": {
+    "main": [
+      {
+        "name": "Sublimation Knight",
+        "archetype": "Gemini Support",
+        "function": ["starter", "utility", "warrior_synergy", "gemini_setup"],
+        "qty": 1,
+        "attribute": "FIRE",
+        "type": ["Monster", "Warrior", "Effect"],
+        "level": 3,
+        "atk": 1300,
+        "def": 200,
+        "id": 54485355,
+        "img": "https://images.ygoprodeck.com/images/cards/54485355.jpg"
+      },
+      {
+        "name": "Kidmodo Dragon",
+        "archetype": "Dragon Support",
+        "function": ["starter", "extender", "swarm", "utility", "revival"],
+        "qty": 1,
+        "attribute": "EARTH",
+        "type": ["Monster", "Dragon", "Effect"],
+        "level": 3,
+        "atk": 100,
+        "def": 200,
+        "id": 35629124,
+        "img": "https://images.ygoprodeck.com/images/cards/35629124.jpg"
+      },
+      {
+        "name": "Knight Day Grepher",
+        "archetype": "Gemini Support",
+        "function": ["gemini", "protection", "beatstick", "utility"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Warrior", "Gemini"],
+        "level": 4,
+        "atk": 1700,
+        "def": 1600,
+        "id": 15767889,
+        "img": "https://images.ygoprodeck.com/images/cards/15767889.jpg"
+      },
+      {
+        "name": "Geminize Lord Golknight",
+        "archetype": "Gemini Support",
+        "function": ["gemini", "extender", "utility"],
+        "qty": 1,
+        "attribute": "EARTH",
+        "type": ["Monster", "Warrior", "Gemini"],
+        "level": 4,
+        "atk": 1500,
+        "def": 500,
+        "id": 72305034,
+        "img": "https://images.ygoprodeck.com/images/cards/72305034.jpg"
+      },
+      {
+        "name": "Evocator Eveque",
+        "archetype": "Gemini Support",
+        "function": ["extender", "swarm", "revival", "gemini_support", "warrior_synergy"],
+        "qty": 1,
+        "attribute": "FIRE",
+        "type": ["Monster", "Warrior", "Gemini"],
+        "level": 4,
+        "atk": 1500,
+        "def": 1000,
+        "id": 16146511,
+        "img": "https://images.ygoprodeck.com/images/cards/16146511.jpg"
+      },
+      {
+        "name": "Paladin Of Felgrand",
+        "archetype": "Felgrand",
+        "function": ["starter", "search", "equip_synergy", "revival_setups"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Warrior", "Effect"],
+        "level": 4,
+        "atk": 1700,
+        "def": 300,
+        "id": 6075801,
+        "img": "https://images.ygoprodeck.com/images/cards/6075801.jpg"
+      },
+      {
+        "name": "Keeper Of The Shrine",
+        "archetype": "Dragon Support",
+        "function": ["extender", "defense", "recursion"],
+        "qty": 2,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Effect"],
+        "level": 4,
+        "atk": 0,
+        "def": 2100,
+        "id": 66752837,
+        "img": "https://images.ygoprodeck.com/images/cards/66752837.jpg"
+      },
+      {
+        "name": "Chthonian Emperor Dragon",
+        "archetype": "Chthonian",
+        "function": ["boss", "beatstick", "gemini"],
+        "qty": 1,
+        "attribute": "FIRE",
+        "type": ["Monster", "Dragon", "Gemini"],
+        "level": 6,
+        "atk": 2400,
+        "def": 1500,
+        "id": 95888876,
+        "img": "https://images.ygoprodeck.com/images/cards/95888876.jpg"
+      },
+      {
+        "name": "Red-Eyes Archfiend of Lightning",
+        "archetype": "Red-Eyes",
+        "function": ["boss", "gemini", "removal"],
+        "qty": 2,
+        "attribute": "DARK",
+        "type": ["Monster", "Fiend", "Gemini"],
+        "level": 6,
+        "atk": 2500,
+        "def": 1200,
+        "id": 39357122,
+        "img": "https://images.ygoprodeck.com/images/cards/39357122.jpg"
+      },
+      {
+        "name": "Arkbrave Dragon",
+        "archetype": "Felgrand",
+        "function": ["extender", "revival", "control"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Dragon", "Effect"],
+        "level": 7,
+        "atk": 2400,
+        "def": 2000,
+        "id": 33282498,
+        "img": "https://images.ygoprodeck.com/images/cards/33282498.jpg"
+      },
+      {
+        "name": "Red-Eyes Black Flare Dragon",
+        "archetype": "Red-Eyes",
+        "function": ["boss", "gemini", "burn"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Gemini"],
+        "level": 7,
+        "atk": 2400,
+        "def": 2000,
+        "id": 30079770,
+        "img": "https://images.ygoprodeck.com/images/cards/30079770.jpg"
+      },
+      {
+        "name": "Galactic Spiral Dragon",
+        "archetype": "Dragon Support",
+        "function": ["extender", "level_mod", "rank8_enabler"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Effect"],
+        "level": 8,
+        "atk": 2500,
+        "def": 2500,
+        "id": 88774734,
+        "img": "https://images.ygoprodeck.com/images/cards/88774734.jpg"
+      },
+      {
+        "name": "Nebula Dragon",
+        "archetype": "Dragon Support",
+        "function": ["starter", "extender", "rank8_enabler"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Dragon", "Effect"],
+        "level": 8,
+        "atk": 2000,
+        "def": 0,
+        "id": 51786039,
+        "img": "https://images.ygoprodeck.com/images/cards/51786039.jpg"
+      },
+      {
+        "name": "Darkstorm Dragon",
+        "archetype": "Dragon Support",
+        "function": ["boss", "gemini", "removal", "backrow_wipe"],
+        "qty": 3,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Gemini"],
+        "level": 8,
+        "atk": 2700,
+        "def": 2500,
+        "id": 57662975,
+        "img": "https://images.ygoprodeck.com/images/cards/57662975.jpg"
+      },
+      {
+        "name": "Catalyst Field",
+        "archetype": "Gemini Support",
+        "function": ["field_spell", "gemini_support", "extra_normal", "protection", "spot_removal"],
+        "qty": 3,
+        "type": ["Spell", "Field"],
+        "id": 65959844,
+        "img": "https://images.ygoprodeck.com/images/cards/65959844.jpg"
+      },
+      {
+        "name": "Return Of The Dragon Lords",
+        "archetype": "Dragon Support",
+        "function": ["extender", "revival", "protection"],
+        "qty": 2,
+        "type": ["Spell", "Normal"],
+        "id": 6853254,
+        "img": "https://images.ygoprodeck.com/images/cards/6853254.jpg"
+      },
+      {
+        "name": "Dimer Synthesis",
+        "archetype": "Chemicritter",
+        "function": ["starter", "fusion_enabler", "utility"],
+        "qty": 1,
+        "type": ["Spell", "Normal"],
+        "id": 90965652,
+        "img": "https://images.ygoprodeck.com/images/cards/90965652.jpg"
+      },
+      {
+        "name": "Trade-In",
+        "archetype": "Generic",
+        "function": ["starter", "draw", "gy_setup"],
+        "qty": 2,
+        "type": ["Spell", "Normal"],
+        "id": 38120068,
+        "img": "https://images.ygoprodeck.com/images/cards/38120068.jpg"
+      },
+      {
+        "name": "Ruins Of The Divine Dragon Lords",
+        "archetype": "Felgrand",
+        "function": ["control", "protection", "utility"],
+        "qty": 1,
+        "type": ["Spell", "Continuous"],
+        "id": 69868555,
+        "img": "https://images.ygoprodeck.com/images/cards/69868555.jpg"
+      },
+      {
+        "name": "Silver's Cry",
+        "archetype": "Dragon Support",
+        "function": ["extender", "revival"],
+        "qty": 1,
+        "type": ["Spell", "Quick-Play"],
+        "id": 87025064,
+        "img": "https://images.ygoprodeck.com/images/cards/87025064.jpg"
+      },
+      {
+        "name": "Piercing The Darkness",
+        "archetype": "Dark Magician",
+        "function": ["draw", "atk_boost", "utility"],
+        "qty": 1,
+        "type": ["Spell", "Continuous"],
+        "id": 21862633,
+        "img": "https://images.ygoprodeck.com/images/cards/21862633.jpg"
+      },
+      {
+        "name": "Foolish Burial",
+        "archetype": "Generic",
+        "function": ["starter", "gy_setup"],
+        "qty": 1,
+        "type": ["Spell", "Normal"],
+        "id": 81439173,
+        "img": "https://images.ygoprodeck.com/images/cards/81439173.jpg"
+      },
+      {
+        "name": "Pot Of Prosperity",
+        "archetype": "Greed",
+        "function": ["consistency", "dig"],
+        "qty": 1,
+        "type": ["Spell", "Normal"],
+        "id": 84211599,
+        "img": "https://images.ygoprodeck.com/images/cards/84211599.jpg"
+      },
+      {
+        "name": "Harpie's Feather Duster",
+        "archetype": "Harpie",
+        "function": ["removal", "backrow_hate"],
+        "qty": 1,
+        "type": ["Spell", "Normal"],
+        "id": 18144506,
+        "img": "https://images.ygoprodeck.com/images/cards/18144506.jpg"
+      },
+      {
+        "name": "Dragon Shrine",
+        "archetype": "Dragon Support",
+        "function": ["starter", "gy_setup", "utility"],
+        "qty": 1,
+        "type": ["Spell", "Normal"],
+        "id": 41650959,
+        "img": "https://images.ygoprodeck.com/images/cards/41620959.jpg"
+      },
+      {
+        "name": "Gemini Ablation",
+        "archetype": "Gemini Support",
+        "function": ["extender", "disruption", "gemini_support", "speed"],
+        "qty": 3,
+        "type": ["Trap", "Continuous"],
+        "id": 80758812,
+        "img": "https://images.ygoprodeck.com/images/cards/80758812.jpg"
+      },
+      {
+        "name": "Magical Cylinders",
+        "archetype": "Generic",
+        "function": ["disruption", "burn"],
+        "qty": 1,
+        "type": ["Trap", "Normal"],
+        "id": 15943341,
+        "img": "https://images.ygoprodeck.com/images/cards/15943341.jpg"
+      },
+      {
+        "name": "Magic Cylinder",
+        "archetype": "Generic",
+        "function": ["disruption", "burn"],
+        "qty": 1,
+        "type": ["Trap", "Normal"],
+        "id": 62279055,
+        "img": "https://images.ygoprodeck.com/images/cards/62279055.jpg"
+      },
+      {
+        "name": "Infinite Impermanence",
+        "archetype": "Generic",
+        "function": ["disruption", "control"],
+        "qty": 1,
+        "type": ["Trap", "Normal"],
+        "id": 10045474,
+        "img": "https://images.ygoprodeck.com/images/cards/10045474.jpg"
+      },
+      {
+        "name": "Gemini Booster",
+        "archetype": "Gemini Support",
+        "function": ["gemini_support", "buff", "utility"],
+        "qty": 1,
+        "type": ["Trap", "Normal"],
+        "id": 18096222,
+        "img": "https://images.ygoprodeck.com/images/cards/18096222.jpg"
+      },
+      {
+        "name": "Gemini Trap Hole",
+        "archetype": "Gemini Support",
+        "function": ["disruption", "removal"],
+        "qty": 1,
+        "type": ["Trap", "Normal"],
+        "id": 67045174,
+        "img": "https://images.ygoprodeck.com/images/cards/67045174.jpg"
+      },
+      {
+        "name": "Solemn Strike",
+        "archetype": "Generic",
+        "function": ["disruption", "control"],
+        "qty": 1,
+        "type": ["Trap", "Counter"],
+        "id": 40605147,
+        "img": "https://images.ygoprodeck.com/images/cards/40605147.jpg"
+      }
+    ],
+    "extra": [
+      {
+        "name": "Alligator's Sword Dragon",
+        "archetype": "Generic",
+        "function": ["fusion", "utility"],
+        "qty": 1,
+        "attribute": "WIND",
+        "type": ["Monster", "Dragon", "Fusion"],
+        "level": 5,
+        "requirements": "Baby Dragon + Alligator's Sword",
+        "atk": 1700,
+        "def": 1500,
+        "id": 3366982,
+        "img": "https://images.ygoprodeck.com/images/cards/3366982.jpg"
+      },
+      {
+        "name": "Archfiend Black Skull Dragon",
+        "archetype": "Red-Eyes",
+        "function": ["fusion", "boss", "burn"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Fusion"],
+        "level": 9,
+        "requirements": "1 Level 6 Archfiend Normal Monster + 1 Red-Eyes Normal Monster",
+        "atk": 3200,
+        "def": 2500,
+        "id": 45349196,
+        "img": "https://images.ygoprodeck.com/images/cards/45349196.jpg"
+      },
+      {
+        "name": "Blue-Eyes Ultimate Dragon",
+        "archetype": "Blue-Eyes",
+        "function": ["fusion", "boss"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Dragon", "Fusion"],
+        "level": 12,
+        "requirements": "3x Blue-Eyes White Dragon",
+        "atk": 4500,
+        "def": 3800,
+        "id": 23995346,
+        "img": "https://images.ygoprodeck.com/images/cards/23995346.jpg"
+      },
+      {
+        "name": "First Of The Dragons",
+        "archetype": "Generic",
+        "function": ["fusion", "control", "sticky_body"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Fusion"],
+        "level": 9,
+        "requirements": "2 Normal Monsters",
+        "atk": 2700,
+        "def": 2000,
+        "id": 10817524,
+        "img": "https://images.ygoprodeck.com/images/cards/10817524.jpg"
+      },
+      {
+        "name": "Wollow, Founder Of The Drudge Dragons",
+        "archetype": "Generic",
+        "function": ["utility", "grave_control", "disruption"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Zombie", "Xyz"],
+        "rank": 6,
+        "requirements": "2+ Level 6 Monsters",
+        "atk": 2400,
+        "def": 1300,
+        "id": 45935145,
+        "img": "https://images.ygoprodeck.com/images/cards/45935145.jpg"
+      },
+      {
+        "name": "Red-Eyes Flare Metal Dragon",
+        "archetype": "Red-Eyes",
+        "function": ["boss", "burn", "control"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Xyz"],
+        "rank": 7,
+        "requirements": "2 Level 7 Monsters",
+        "atk": 2800,
+        "def": 2400,
+        "id": 44405066,
+        "img": "https://images.ygoprodeck.com/images/cards/44405066.jpg"
+      },
+      {
+        "name": "number 39: Utopia",
+        "archetype": "Utopia",
+        "function": ["control", "utility"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Warrior", "Xyz"],
+        "rank": 4,
+        "requirements": "2 Level 4 Monsters",
+        "atk": 2500,
+        "def": 2000,
+        "id": 84013237,
+        "img": "https://images.ygoprodeck.com/images/cards/84013237.jpg"
+      },
+      {
+        "name": "Number C39: Utopia Ray",
+        "archetype": "Utopia",
+        "function": ["finisher", "otk_pressure"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Warrior", "Xyz"],
+        "rank": 4,
+        "requirements": "3 Level 4 LIGHT Monsters (or Number 39: Utopia",
+        "atk": 2500,
+        "def": 2000,
+        "id": 56840427,
+        "img": "https://images.ygoprodeck.com/images/cards/56840427.jpg"
+      },
+      {
+        "name": "Time Thief Redoer",
+        "archetype": "Time Thief",
+        "function": ["utility", "disruption"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Psychic", "Xyz"],
+        "rank": 4,
+        "requirements": "2 Level 4 Monsters",
+        "atk": 2400,
+        "def": 2000,
+        "id": 55285840,
+        "img": "https://images.ygoprodeck.com/images/cards/55285840.jpg"
+      },
+      {
+        "name": "Number 107: Galaxy-Eyes Tachyon Dragon",
+        "archetype": "Galaxy-Eyes",
+        "function": ["boss", "control"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Dragon", "Xyz"],
+        "rank": 8,
+        "requirements": "2 Level 8 Monsters",
+        "atk": 3000,
+        "def": 2500,
+        "id": 88177324,
+        "img": "https://images.ygoprodeck.com/images/cards/88177324.jpg"
+      },
+      {
+        "name": "Number 46: Dragluon",
+        "archetype": "Number",
+        "function": ["boss", "control", "dragon_synergy"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Dragon", "Xyz"],
+        "rank": 8,
+        "requirements": "2 Level 8 Dragon-Type Monsters",
+        "atk": 3000,
+        "def": 3000,
+        "id": 2978414,
+        "img": "https://images.ygoprodeck.com/images/cards/2978414.jpg"
+      },
+      {
+        "name": "Number 97: Draglubion",
+        "archetype": "Number",
+        "function": ["extender", "rank8_enabler"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Xyz"],
+        "rank": 8,
+        "requirements": "2 Level 8 Monsters",
+        "atk": 3000,
+        "def": 3000,
+        "id": 28400508,
+        "img": "https://images.ygoprodeck.com/images/cards/28400508.jpg"
+      },
+      {
+        "name": "Number 100: Numeron Dragon",
+        "archetype": "Numeron",
+        "function": ["finisher", "otk_pressure"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Dragon", "Xyz"],
+        "rank": 1,
+        "requirements": "2 Number XYZ Monsters with the same name and rank",
+        "atk": 0,
+        "def": 0,
+        "id": 57314798,
+        "img": "https://images.ygoprodeck.com/images/cards/57314798.jpg"
+      },
+      {
+        "name": "Number 38: Hope Harbinger Dragon Titanic Galaxy",
+        "archetype": "Galaxy-Eyes",
+        "function": ["boss", "control", "spell_negate"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Dragon", "Xyz"],
+        "rank": 8,
+        "requirements": "2 Level 8 Monsters",
+        "atk": 3000,
+        "def": 2500,
+        "id": 63767246,
+        "img": "https://images.ygoprodeck.com/images/cards/63767246.jpg"
+      },
+      {
+        "name": "Vola-Chemicritter Methydraco",
+        "archetype": "Chemicritter",
+        "function": ["rank8", "utility", "gemini_support"],
+        "qty": 1,
+        "attribute": "FIRE",
+        "type": ["Monster", "Dragon", "Xyz"],
+        "rank": 8,
+        "requirements": "2 Level 8 Gemini Monsters",
+        "atk": 3000,
+        "def": 3000,
+        "id": 38026562,
+        "img": "https://images.ygoprodeck.com/images/cards/38026562.jpg"
+      }
+    ],
+    "side": [
+      {
+        "name": "Gemini Summoner",
+        "archetype": "Gemini Support",
+        "function": ["extender", "gemini_support"],
+        "qty": 1,
+        "attribute": "WATER",
+        "type": ["Monster", "Spellcaster", "Effect"],
+        "level": 4,
+        "atk": 1500,
+        "def": 0,
+        "id": 19041767,
+        "img": "https://images.ygoprodeck.com/images/cards/19041767.jpg"
+      },
+      {
+        "name": "Mystical Elf White Lightning",
+        "archetype": "Generic",
+        "function": ["defense", "utility"],
+        "qty": 1,
+        "attribute": "LIGHT",
+        "type": ["Monster", "Spellcaster", "Effect"],
+        "level": 4,
+        "atk": 800,
+        "def": 2000,
+        "id": 15613529,
+        "img": "https://images.ygoprodeck.com/images/cards/15613529.jpg"
+      },
+      {
+        "name": "Red-Eyes Darkness Metal Dragon",
+        "archetype": "Red-Eyes",
+        "function": ["extender", "revival", "boss"],
+        "qty": 1,
+        "attribute": "DARK",
+        "type": ["Monster", "Dragon", "Effect"],
+        "level": 10,
+        "atk": 2800,
+        "def": 2400,
+        "id": 88264978,
+        "img": "https://images.ygoprodeck.com/images/cards/88264978.jpg"
+      },
+      {
+        "name": "Dark Hole",
+        "archetype": "Generic",
+        "function": ["removal", "boardwipe"],
+        "qty": 1,
+        "type": ["Spell", "Normal"],
+        "id": 53129443,
+        "img": "https://images.ygoprodeck.com/images/cards/53129443.jpg"
+      },
+      {
+        "name": "Final Destiny",
+        "archetype": "Generic",
+        "function": ["removal", "boardwipe"],
+        "qty": 1,
+        "type": ["Spell", "Normal"],
+        "id": 18591904,
+        "img": "https://images.ygoprodeck.com/images/cards/18591904.jpg"
+      },
+      {
+        "name": "Supervise",
+        "archetype": "Gemini Support",
+        "function": ["gemini_support", "revival", "equip_synergy"],
+        "qty": 1,
+        "type": ["Spell", "Equip"],
+        "id": 95750695,
+        "img": "https://images.ygoprodeck.com/images/cards/95750695.jpg"
+      },
+      {
+        "name": "Draining Shield",
+        "archetype": "Generic",
+        "function": ["disruption", "stall"],
+        "qty": 1,
+        "type": ["Trap", "Normal"],
+        "id": 43250041,
+        "img": "https://images.ygoprodeck.com/images/cards/43250041.jpg"
+      },
+      {
+        "name": "Destruction Jammer",
+        "archetype": "Generic",
+        "function": ["disruption", "negate"],
+        "qty": 1,
+        "type": ["Trap", "Counter"],
+        "id": 98956134,
+        "img": "https://images.ygoprodeck.com/images/cards/98956134.jpg"
+      },
+      {
+        "name": "Gemini Counter",
+        "archetype": "Gemini Support",
+        "function": ["disruption", "negate"],
+        "qty": 2,
+        "type": ["Trap", "Counter"],
+        "id": 81601517,
+        "img": "https://images.ygoprodeck.com/images/cards/81601517.jpg"
+      },
+      {
+        "name": "Mirror Force",
+        "archetype": "Generic",
+        "function": ["disruption", "boardwipe"],
+        "qty": 1,
+        "type": ["Trap", "Normal"],
+        "id": 44095762,
+        "img": "https://images.ygoprodeck.com/images/cards/44095762.jpg"
+      },
+      {
+        "name": "Cursed Seal Of The Forbidden Spell",
+        "archetype": "Generic",
+        "function": ["disruption", "spell_lock"],
+        "qty": 1,
+        "type": ["Trap", "Counter"],
+        "id": 58851034,
+        "img": "https://images.ygoprodeck.com/images/cards/58851034.jpg"
+      }
+    ]
+  }
 }

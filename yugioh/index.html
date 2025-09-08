@@ -45,6 +45,43 @@
       </div>
     </section>
 
+    <!-- Life Points counter-->
+    <section class="lp" id="lpRoot">
+      <!-- Player A -->
+      <button class="lp-player" data-player="A" aria-label="Apply to Player A">
+        <div class="lp-name">Player A</div>
+        <div class="lp-total" id="lpA" aria-live="polite">8000</div>
+      </button>
+
+      <!-- Controls (center) -->
+      <div class="lp-controls">
+        <div class="lp-row">
+          <button class="lp-btn preset" data-amt="100">100</button>
+          <button class="lp-btn preset" data-amt="500">500</button>
+          <button class="lp-btn preset" data-amt="1000">1000</button>
+        </div>
+
+        <div class="lp-main">
+          <button class="lp-btn step" data-step="-100">−100</button>
+          <input id="lpAmt" class="lp-input" type="number" inputmode="numeric" min="0" step="50" value="0" aria-label="Change amount">
+          <button class="lp-btn step" data-step="100">+100</button>
+        </div>
+
+        <div class="lp-row">
+          <button class="lp-btn mode" id="lpMode" aria-pressed="true" title="Damage / Heal toggle">Damage</button>
+          <button class="lp-btn reset" id="lpReset">Reset</button>
+        </div>
+
+        <p class="lp-hint">Tap a player's life points to apply the amount above.</p>
+      </div>
+
+      <!-- Player B -->
+      <button class="lp-player" data-player="B" aria-label="Apply to Player B">
+        <div class="lp-name">Player B</div>
+        <div class="lp-total" id="lpB" aria-live="polite">8000</div>
+      </button>
+    </section>
+    
     <!-- Deck Selector + Output -->
     <section class="deck-chooser">
       <h2>Choose Your Deck</h2>
@@ -63,6 +100,7 @@
           <span class="deck-label">Darkstorm Rising</span>
         </button>
       </div>
+
 
       <!-- Placeholder text when no deck is selected -->
       <p id="deck-placeholder" class="muted">Please choose a deck.</p>

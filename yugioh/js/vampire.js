@@ -16,6 +16,21 @@ window.addEventListener("load", () => hideLoader());
 
 // Keep the last loaded deck so we can re-filter without re-fetching.
 let CURRENT_DECK = null;
+let WORKING_DECK = null; // after filtering
+let CURRENT_HAND = []; // for hand tester
+const SAVED_KEY = "ygo.savedHands.v1"; // localStorage key
+
+// Deep-clone a deck so we can mutate qtys safely
+const cloneDeck = (deck) => JSON.parse(JSON.stringify(deck));
+
+// Use card.id as the identity (your JSON has it). Fallback to name if missing.
+const cardIdOf = (card) => card.id ?? card.name;
+
+// Get an "active" deck to render from (working deck if exists, otherwise current)
+const activeDeck = () => WORKING_DECK || CURRENT_DECK;
+
+// global-ish bag to track how many copies of each card we've drawn
+const DRAWN = { counts: new Map() };
 
 // Small wait helper for transitions / crossfades.
 const wait = (ms) => new Promise(r => setTimeout(r, ms));
@@ -27,7 +42,7 @@ const norm = (s) => String(s || "").toLowerCase();
 const asArray = (v) => {
   if (Array.isArray(v)) return v;
   if (v == null) return [];
-  return String(v).split(" / ").map(s => s.trim()).filter(Boolean);
+  return String(v).split(/\s*\/\s*/).map(s => s.trim()).filter(Boolean);
 };
 
 // Join tokens back to a single display string like "Monster/Vampire".
@@ -42,6 +57,13 @@ function getFunctionTags(card) {
   return asArray(raw).map(s => s.toLowerCase());
 }
 
+// Start/Reset the working deck (copies CURRENT_DECK; restores all qty)
+function startWorkingDeck() {
+  if (!CURRENT_DECK) return;
+  WORKING_DECK = cloneDeck(CURRENT_DECK);
+  CURRENT_HAND = [];
+}
+
 // Build a unique, sorted list of function tags from a deck
 function collectFunctionFacet(deck) {
   const set = new Set();
@@ -50,6 +72,179 @@ function collectFunctionFacet(deck) {
     getFunctionTags(card).forEach(tag => set.add(tag));
   });
   return Array.from(set).sort(); // e.g. ["boss","control","disruption",...]
+}
+
+// Fully reshuffle: reset working deck back to CURRENT_DECK
+function reshuffleWorkingDeck() {
+  startWorkingDeck();
+}
+
+// Draw N cards from WORKING_DECK.main, reduce quantities, update CURRENT_HAND
+function drawFromWorkingDeck(n = 5) {
+  if (!WORKING_DECK) startWorkingDeck();
+  const main = WORKING_DECK.sections?.main || [];
+  const pool = expandByQty(main);
+  if (pool.length === 0) return [];
+
+  const shuffled = shuffle(pool); // use your existing pure shuffle
+  const drawn = shuffled.slice(0, Math.max(0, Math.min(n, shuffled.length)));
+
+  // reduce qty in WORKING_DECK by drawn counts
+  const need = new Map();
+  for (const c of drawn) {
+    const key = cardIdOf(c);
+    need.set(key, (need.get(key) || 0) + 1);
+  }
+  for (const c of main) {
+    const k = cardIdOf(c);
+    const take = need.get(k) || 0;
+    if (take > 0) {
+      const q = Number(c.qty) || 1;
+      c.qty = Math.max(0, q - take);
+    }
+  }
+
+  CURRENT_HAND = drawn.slice();
+  return drawn;
+}
+
+
+// Persist CURRENT_HAND to localStorage (IDs + names)
+function saveCurrentHand() {
+  const prev = JSON.parse(localStorage.getItem(SAVED_KEY) || "[]");
+  const pack = {
+    at: Date.now(),
+    hand: CURRENT_HAND.map(c => ({
+      id: cardIdOf(c),
+      name: c.name,
+      img: c.img || null
+    }))
+  };
+  prev.unshift(pack);
+  // keep last 20 hands
+  localStorage.setItem(SAVED_KEY, JSON.stringify(prev.slice(0, 20)));
+}
+
+// stable key per card (prefer id, fall back to name)
+function cardKey(card) {
+  return (card.id != null) ? `id:${card.id}` : `name:${card.name}`;
+}
+
+function incDrawn(card, n = 1) {
+  const k = cardKey(card);
+  DRAWN.counts.set(k, (DRAWN.counts.get(k) || 0) + n);
+}
+function clearDrawn() {
+  DRAWN.counts.clear();
+}
+
+function remainingQtyFor(card) {
+  const have = Number(card.qty) || 1;
+  const used = DRAWN.counts.get(cardKey(card)) || 0;
+  return Math.max(0, have - used);
+}
+
+// project a section’s cards so .qty becomes “remaining”, and drop depleted
+function projectCardsForDisplay(list) {
+  return (list || [])
+    .map(c => ({ ...c, qty: remainingQtyFor(c) }))
+    .filter(c => c.qty > 0);
+}
+
+/* =========================
+   LIFE POINT COUNTER (JS)
+========================= */
+
+function wireLifePoints(root = document) {
+  const wrap   = root.querySelector("#lpRoot");
+  if (!wrap || wrap.dataset.wired) return; // avoid double-binding
+  wrap.dataset.wired = "1";
+
+  const elA    = wrap.querySelector("#lpA");
+  const elB    = wrap.querySelector("#lpB");
+  const presets= wrap.querySelectorAll(".lp-btn.preset");
+  const steppers= wrap.querySelectorAll(".lp-btn.step");
+  const mode   = wrap.querySelector("#lpMode");
+  const reset  = wrap.querySelector("#lpReset");
+  const input  = wrap.querySelector("#lpAmt");
+
+  // Local state
+  let lpA = 8000;
+  let lpB = 8000;
+  let isDamage = true; // Damage = subtract, Heal = add
+
+  const clampLP = (v) => Math.max(0, Math.min(999999, v|0));
+  const readAmt = () => Math.max(0, Math.abs(parseInt(input.value || "0", 10) || 0));
+  const render  = () => {
+    elA.textContent = lpA;
+    elB.textContent = lpB;
+  };
+  render();
+
+  // Tap/click a player panel to apply amount in the middle
+  wrap.querySelectorAll(".lp-player").forEach(panel => {
+    panel.addEventListener("click", () => {
+      const amt = readAmt();
+      if (!amt) return;
+      const target = panel.dataset.player === "A" ? "A" : "B";
+      if (target === "A") lpA = clampLP(isDamage ? lpA - amt : lpA + amt);
+      else                lpB = clampLP(isDamage ? lpB - amt : lpB + amt);
+      render();
+      // optional: clear the amount after apply
+      // input.value = "0";
+    });
+  });
+
+  // Preset buttons (100 / 500 / 1000)
+  presets.forEach(b => {
+    b.addEventListener("click", () => {
+      input.value = b.dataset.amt || "0";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  });
+
+  // Stepper buttons (±100 around current amount)
+  steppers.forEach(b => {
+    b.addEventListener("click", () => {
+      const step = parseInt(b.dataset.step || "0", 10) || 0;
+      const next = Math.max(0, (parseInt(input.value || "0", 10) || 0) + step);
+      input.value = next;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  });
+
+  // Damage/Heal toggle
+  mode.addEventListener("click", () => {
+    isDamage = !isDamage;
+    mode.setAttribute("aria-pressed", isDamage ? "true" : "false");
+    mode.textContent = isDamage ? "Damage" : "Heal";
+  });
+
+  // Reset
+  reset.addEventListener("click", () => {
+    lpA = 8000; lpB = 8000;
+    input.value = "0";
+    isDamage = true;
+    mode.setAttribute("aria-pressed", "true");
+    mode.textContent = "Damage";
+    render();
+  });
+
+  // Keyboard niceties: Enter applies to last-clicked player; default to A
+  let lastPlayer = "A";
+  wrap.querySelectorAll(".lp-player").forEach(p => {
+    p.addEventListener("focus", () => { lastPlayer = p.dataset.player === "B" ? "B" : "A"; });
+    p.addEventListener("mouseenter", () => { lastPlayer = p.dataset.player === "B" ? "B" : "A"; });
+  });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const amt = readAmt();
+      if (!amt) return;
+      if (lastPlayer === "A") lpA = clampLP(isDamage ? lpA - amt : lpA + amt);
+      else                    lpB = clampLP(isDamage ? lpB - amt : lpB + amt);
+      render();
+    }
+  });
 }
 
 /* ---------------------------- Data layer ------------------------------- */
@@ -126,8 +321,11 @@ function cardItem(card) {
 
 // One deck section (collapsible).
 function sectionBlock(label, cards, collapsed = false) {
-  if (!cards || !cards.length) return "";
-  const count = sumQty(cards);
+  // NEW: apply the “remaining quantity” projection based on DRAWN
+  const visible = projectCardsForDisplay(cards);
+  if (!visible || !visible.length) return "";
+
+  const count = sumQty(visible);
   const cls   = collapsed ? " is-collapsed" : "";
   const show  = collapsed ? 'style="display:none"' : "";
 
@@ -138,18 +336,252 @@ function sectionBlock(label, cards, collapsed = false) {
       </button>
       <div class="deck-content">
         <ul class="card-grid" ${show}>
-          ${cards.map(cardItem).join("")}
+          ${visible.map(cardItem).join("")}
         </ul>
       </div>
     </section>
   `;
 }
 
+
+//*------------------------- Hand Tester ---------------------------*/
+// Expand a section list by qty into a flat array of cards.
+function expandSection(list) {
+  const out = [];
+  (list || []).forEach(card => {
+    const n = Math.max(1, Number(card.qty) || 1);
+    for (let i=0; i<n; i++) out.push(card);
+  });
+  return out;
+}
+
+/** Fisher–Yates shuffle */
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Expand a section's cards into a flat array by quantity (for drawing)
+function expandByQty(cards = []) {
+  const out = [];
+  for (const c of cards) {
+    const qty = Number(c.qty) || 1;
+    for (let i = 0; i < qty; i++) out.push(c);
+  }
+  return out;
+}
+
+/** Build a new draw state from CURRENT_DECK and options */
+function makeDrawState(deck, { includeSide = false, includeExtra = false } = {}) {
+  const main = expandSection(deck.sections?.main);
+  const side = includeSide ? expandSection(deck.sections?.side) : [];
+  const extra = includeExtra ? expandSection(deck.sections?.extra) : [];
+  const pool = [...main, ...side, ...extra];          // draw pile source
+  return {
+    deck: shuffle(pool),  // top of deck is at the end or beginning? we’ll pop()
+    hand: [],
+  };
+}
+
+/** Render the current hand into the tester */
+function renderHandInto(root, state) {
+  const ul = root.querySelector("#handList");
+  const stats = root.querySelector(".stats");
+  if (!ul) return;
+
+  if (!state.hand.length) {
+    ul.innerHTML = `<li class="muted" style="list-style:none;margin:0.25rem 0;">No cards drawn.</li>`;
+  } else {
+    ul.innerHTML = state.hand.map(c => {
+      const full  = c.img || "../assets/back.jpg";
+      const thumb = (typeof full === "string" && full.includes("/images/cards/"))
+        ? full.replace("/images/cards/", "/images/cards_small/")
+        : full;
+      return `
+        <li class="card-tile" title="${c.name}">
+          <div class="thumb">
+            <img class="card-img" src="${thumb}" data-fullsrc="${full}" alt="${c.name}" loading="lazy">
+          </div>
+          <div class="meta">
+            <strong>${c.name}</strong>
+          </div>
+        </li>
+      `;
+    }).join("");
+  }
+
+  const total = state.deck.length + state.hand.length;
+  if (stats) stats.textContent = `Hand: ${state.hand.length} • Deck remaining: ${state.deck.length} • Total pool: ${total}`;
+}
+
+/** Draw N cards from state.deck into state.hand */
+function drawN(state, n) {
+  for (let i=0; i<n; i++) {
+    if (!state.deck.length) break;
+    state.hand.push(state.deck.pop());
+  }
+}
+
+/** Hand Tester HTML block */
+function handTesterBlock() {
+  return `
+        <section class="hand-tester" id="handTester">
+      <header>
+        <strong>Hand Tester</strong>
+        <div class="toggles">
+          <label><input type="checkbox" id="htIncludeSide"> Include Side</label>
+          <label><input type="checkbox" id="htIncludeExtra"> Include Extra</label>
+        </div>
+        <div class="controls">
+          <button type="button" class="btn btn-sm" id="htDraw5">Draw 5</button>
+          <button type="button" class="btn btn-sm" id="htDraw6">Draw 6</button>
+          <button type="button" class="btn btn-sm" id="htPlus1">+1</button>
+          <button type="button" class="btn btn-sm" id="htShuffle">Reshuffle</button>
+          <button type="button" class="btn btn-sm" id="htClear">Clear</button>
+          <button type="button" class="btn btn-sm" id="htSave">Save Hand (.txt)</button>
+        </div>
+      </header>
+      <ul class="card-grid hand-grid" id="handList"></ul>
+      <div class="stats">Hand: 0 • Deck remaining: 0 • Total pool: 0</div>
+    </section>
+  `;
+}
+
+function wireHandTester(root, deck) {
+  const panel = root.querySelector("#handTester");
+  if (!panel || panel.dataset.wired) return;
+  panel.dataset.wired = "1";
+
+  // Elements
+  const incSide  = panel.querySelector("#htIncludeSide");
+  const incExtra = panel.querySelector("#htIncludeExtra");
+  const btn5     = panel.querySelector("#htDraw5");
+  const btn6     = panel.querySelector("#htDraw6");
+  const btnPlus1 = panel.querySelector("#htPlus1");
+  const btnShuf  = panel.querySelector("#htShuffle");
+  const btnClear = panel.querySelector("#htClear");
+  const btnSave  = panel.querySelector("#htSave");
+
+  // State (hand + draw pile)
+  let state = makeDrawState(deck, {
+    includeSide:  incSide?.checked || false,
+    includeExtra: incExtra?.checked || false,
+  });
+  renderHandInto(panel, state);
+
+  // ——— UTIL: recompute draw state from toggles ———
+  const rebuild = () => {
+    state = makeDrawState(deck, {
+      includeSide:  incSide?.checked || false,
+      includeExtra: incExtra?.checked || false,
+    });
+    renderHandInto(panel, state);
+  };
+
+  // ——— DRAW that also marks DRAWN and updates the deck sections ———
+  function drawAndSync(n) {
+    for (let i = 0; i < n; i++) {
+      if (!state.deck.length) break;
+      const c = state.deck.pop();
+      state.hand.push(c);
+      incDrawn(c, 1);                // mark one copy “used”
+    }
+    renderHandInto(panel, state);
+    refreshSections(root, deck);     // refresh deck grid to hide/reduce
+  }
+
+  // Toggles
+  incSide ?.addEventListener("change", rebuild);
+  incExtra?.addEventListener("change", rebuild);
+
+  // Actions
+  btn5   ?.addEventListener("click", () => { clearDrawn(); rebuild(); drawAndSync(5); });
+  btn6   ?.addEventListener("click", () => { clearDrawn(); rebuild(); drawAndSync(6); });
+  btnPlus1?.addEventListener("click", () => { drawAndSync(1); });
+
+  // Reshuffle = reset hand, rebuild pool, clear DRAWN, refresh deck sections
+  btnShuf?.addEventListener("click", () => {
+    clearDrawn();
+    rebuild();
+    refreshSections(root, deck);
+  });
+
+  // Clear = keep current pool, just empty hand and unmark drawn
+  btnClear?.addEventListener("click", () => {
+    clearDrawn();
+    state.hand = [];
+    renderHandInto(panel, state);
+    refreshSections(root, deck);
+  });
+
+  // Save Hand → simple .txt of “Name xCount” lines
+  btnSave?.addEventListener("click", () => {
+    if (!state.hand.length) return;
+
+    // tally by cardKey (id or name); we’ll show by name in file
+    const counts = new Map();
+    const names  = new Map();
+    state.hand.forEach(c => {
+      const k = cardKey(c);
+      counts.set(k, (counts.get(k) || 0) + 1);
+      if (!names.has(k)) names.set(k, c.name);
+    });
+
+    const lines = [];
+    [...counts.entries()].forEach(([k, n]) => {
+      const display = names.get(k) || k;
+      lines.push(`${display} x${n}`);
+    });
+
+    const now = new Date();
+    const y = String(now.getFullYear());
+    const m = String(now.getMonth()+1).padStart(2,"0");
+    const d = String(now.getDate()).padStart(2,"0");
+    const hh = String(now.getHours()).padStart(2,"0");
+    const mm = String(now.getMinutes()).padStart(2,"0");
+
+    const blob = new Blob([lines.join("\n") + "\n"], { type: "text/plain;charset=utf-8" });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement("a");
+    a.href = url;
+    a.download = `hand-${y}${m}${d}-${hh}${mm}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+  });
+
+  // Mobile nicety: tap a card in hand to put it back on top (and unmark 1 copy)
+  panel.addEventListener("click", (e) => {
+    const li = e.target.closest("li");
+    if (!li) return;
+    const list = Array.from(panel.querySelectorAll("#handList li"));
+    const idx  = list.indexOf(li);
+    if (idx >= 0) {
+      const [card] = state.hand.splice(idx, 1);
+      if (card) {
+        state.deck.push(card);
+        // unmark one copy
+        const k = cardKey(card);
+        const cur = DRAWN.counts.get(k) || 0;
+        if (cur > 0) DRAWN.counts.set(k, cur - 1);
+      }
+      renderHandInto(panel, state);
+      refreshSections(root, deck);
+    }
+  });
+}
+
+
 // Full deck render (header + sections). Then we wire the UI for this DOM.
 function render(deck) {
   const root = document.getElementById("deck-root");
   if (!root) return;
 
+  const deckStyle = deck.deckstyle || "Unknown Style";
   const main  = deck.sections?.main  ?? [];
   const extra = deck.sections?.extra ?? [];
   const side  = deck.sections?.side  ?? [];
@@ -162,14 +594,17 @@ function render(deck) {
         <button id="expandAllBtn"   class="btn btn-sm" type="button">Expand All</button>
       </div>
       <h1>${deck.name || "Deck"}</h1>
-      <p class="muted">Author: ${deck.author || "Unknown"} • Total: ${total}</p>
+      <p class="muted">Author: ${deck.author || "Unknown"} • Total: ${total} • Style: ${deckStyle}</p>
+
       <div class="deck-controls" id="deckControls">
+        <!-- Filters -->
         <input id="filterText" type="search" placeholder="Filter cards… (name, type, attribute)" aria-label="Filter cards" />
         <div class="toggle" role="group" aria-label="Card kinds">
           <label><input type="checkbox" id="kindMonster" checked> Monster</label>
           <label><input type="checkbox" id="kindSpell"   checked> Spell</label>
           <label><input type="checkbox" id="kindTrap"    checked> Trap</label>
         </div>
+
         <div class="level-filter">
           <label>Lv ≥ <input type="number" id="levelMin" min="1" max="12" step="1" value=""></label>
           <label>Lv ≤ <input type="number" id="levelMax" min="1" max="12" step="1" value=""></label>
@@ -178,6 +613,8 @@ function render(deck) {
       </div>
     </header>
 
+    ${handTesterBlock()}
+
     ${sectionBlock("Main Deck",  main)}
     ${sectionBlock("Extra Deck", extra)}
     ${sectionBlock("Side Deck",  side)}
@@ -185,6 +622,7 @@ function render(deck) {
 
   // IMPORTANT: wire everything for this render, scoped to this root.
   wireUI(root, deck);
+  wireHandTester(root, deck);
 }
 
 /* ------------------------- Filtering logic ----------------------------- */
@@ -241,7 +679,6 @@ if (f.fnTag) {
       card.name,
       typesArrToString(card.type),
       card.attribute,
-      card.subtype || card.Subtype,
       card.desc,
     ].map(norm).join(" ");
     if (!hay.includes(f.text)) return false;
@@ -272,6 +709,30 @@ function debounce(fn, ms = 150) {
   };
 }
 
+// Read filters from root, filter the deck, re-render sections only.
+// Keep the header + hand tester intact.
+function refreshSections(root, deck) {
+  const base = activeDeck() || deck || CURRENT_DECK;
+  const filtered = makeFilteredDeck(base, readFilters(root));
+
+  // capture header + tester before clearing
+  const headerEl = root.querySelector(".deck-header");
+  const testerEl = root.querySelector("#handTester");
+
+  root.innerHTML = "";
+  if (headerEl) root.appendChild(headerEl);
+  if (testerEl) root.appendChild(testerEl);  // keep the Hand Tester in place
+
+  root.insertAdjacentHTML("beforeend", `
+    ${sectionBlock("Main Deck",  filtered.sections.main)}
+    ${sectionBlock("Extra Deck", filtered.sections.extra)}
+    ${sectionBlock("Side Deck",  filtered.sections.side)}
+  `);
+
+  wireUI(root, base);
+  wireHandTester(root, base); // (re)ensure tester events exist after moves
+}
+
 /* -------------- Wire *all* interactive UI inside root ------------------ */
 
 function wireUI(root, deck) {
@@ -297,6 +758,54 @@ function wireUI(root, deck) {
       btn.dataset.wired = "1";
     }
   });
+  
+  /* -------- Hand controls (wire once per root) -------- */
+  const hc = root.querySelector("#handControls");
+  if (hc && !hc.dataset.wired) {
+    const sizeEl  = root.querySelector("#handSize");
+    const drawBtn = root.querySelector("#btnDraw");
+    const reshBtn = root.querySelector("#btnReshuffle");
+    const saveBtn = root.querySelector("#btnSaveHand");
+    const handList= root.querySelector("#handList");
+
+    function renderHandList() {
+      if (!handList) return;
+      if (!CURRENT_HAND.length) {
+        handList.innerHTML = `<em>No hand drawn.</em>`;
+        return;
+      }
+      handList.innerHTML = `
+        <strong>Hand (${CURRENT_HAND.length}):</strong>
+        <ul style="margin:.4rem 0 0; padding-left:1rem">
+          ${CURRENT_HAND.map(c => `<li>${c.name}</li>`).join("")}
+        </ul>
+      `;
+    }
+
+    drawBtn?.addEventListener("click", () => {
+      const n = Math.max(1, Math.min(10, parseInt(sizeEl?.value || "5", 10) || 5));
+      const drawn = drawFromWorkingDeck(n);
+      refreshSections(root, deck);
+      renderHandList();
+    });
+
+    reshBtn?.addEventListener("click", () => {
+      reshuffleWorkingDeck();
+      refreshSections(root, deck);
+      renderHandList();
+    });
+
+    saveBtn?.addEventListener("click", () => {
+      if (!CURRENT_HAND.length) return;
+      saveCurrentHand();
+      saveBtn.classList.add("saved");
+      setTimeout(() => saveBtn.classList.remove("saved"), 600);
+    });
+
+    renderHandList();
+    hc.dataset.wired = "1";
+  }
+
 
   /* -------- Header actions (collapse/expand all) -------- */
   const header = root.querySelector(".deck-header");
@@ -369,6 +878,7 @@ if (controls) {
   }
 }
 
+
   /* -------- Filter bar (scoped to root) -------- */
   const elText  = root.querySelector("#filterText");
   const elMons  = root.querySelector("#kindMonster");
@@ -379,24 +889,10 @@ if (controls) {
   const elFn    = root.querySelector("#functionFilter");
   const elClear = root.querySelector("#filterClear");
 
-  // Re-render only sections (keep header) using current controls in this root.
-  const applyFilters = () => {
-    const filtered = makeFilteredDeck(CURRENT_DECK || deck, readFilters(root));
-    const sectionsHTML = `
-      ${sectionBlock("Main Deck",  filtered.sections.main)}
-      ${sectionBlock("Extra Deck", filtered.sections.extra)}
-      ${sectionBlock("Side Deck",  filtered.sections.side)}
-    `;
-
-    const headerEl = root.querySelector(".deck-header");
-    root.innerHTML = "";
-    if (headerEl) root.appendChild(headerEl);
-    root.insertAdjacentHTML("beforeend", sectionsHTML);
-
-    // Re-wire for the new sections. Header won’t double-bind due to data flag.
-    wireUI(root, CURRENT_DECK || deck);
-  };
-
+const applyFilters = () => {
+  refreshSections(root, deck);
+};
+  // debounce text + number inputs, but not the rest
   const applyDebounced = debounce(applyFilters, 120);
 
   elText ?.addEventListener("input",  applyDebounced);
@@ -442,6 +938,9 @@ async function crossfadeLoad(path) {
     const deck = await loadDeck(path);
     CURRENT_DECK = deck;
     render(deck);                            // render + wire UI
+    WORKING_DECK = null;
+    CURRENT_HAND = [];
+    clearDrawn();                            // clear any DRAWN marks    
   } catch (e) {
     console.error(e);
     mount.innerHTML = `<p style="color:tomato">Couldn't load the deck (${e.message}).</p>`;
@@ -510,6 +1009,8 @@ function hideLoader() {
 document.addEventListener("DOMContentLoaded", () => {
   // Preload counts for the deckbox labels (optional but nice UX).
   preloadDeckCounts();
+  // Initial render of the Life Points counter (persists per deck).
+  wireLifePoints(document);
 
   const root    = document.getElementById("deck-root");
   const buttons = Array.from(document.querySelectorAll(".deckbox, .deck-btn"));
