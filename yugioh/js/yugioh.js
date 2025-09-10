@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => showLoader());
 window.addEventListener("load", () => hideLoader());
 
 // Loader helpers
-function showLoader() { document.getElementById("loading")?.removeAttribute("hidden"); }
-function hideLoader() { document.getElementById("loading")?.setAttribute("hidden", ""); }
+function showLoader() { console.log('showLoader'); document.getElementById("loading")?.removeAttribute("hidden"); }
+function hideLoader() { console.log('hideLoader'); document.getElementById("loading")?.setAttribute("hidden", ""); }
 
 /* ===== END: LOADER ===== */
 
@@ -45,59 +45,57 @@ const SAVED_KEY = "ygo.savedHands.v1";
 // Track how many copies of each card have been drawn (affects list projection)
 const DRAWN = { counts: new Map() };
 
+// Helper for neat function logging
+function logFn(name, ...args) {
+  if (args.length) {
+    console.log(`[${name}]`, ...args);
+  } else {
+    console.log(`[${name}]`);
+  }
+}
+
 // Deep-clone simple objects
-const cloneDeck = (deck) => JSON.parse(JSON.stringify(deck));
+const cloneDeck = (deck) => { logFn('cloneDeck', deck); return JSON.parse(JSON.stringify(deck)); };
 
 // Unique identity for a card
-const cardIdOf = (card) => card.id ?? card.name;
+const cardIdOf = (card) => { logFn('cardIdOf', card); return card.id ?? card.name; };
 
 // If a working deck exists, use it; otherwise the current deck
-const activeDeck = () => WORKING_DECK || CURRENT_DECK;
+const activeDeck = () => { logFn('activeDeck'); return WORKING_DECK || CURRENT_DECK; };
 
 // Small wait helper (crossfades, etc.)
-const wait = (ms) => new Promise(r => setTimeout(r, ms));
+const wait = (ms) => { logFn('wait', ms); return new Promise(r => setTimeout(r, ms)); };
 
 // Lowercase normalize (for case-insensitive matching)
-const norm = (s) => String(s || "").toLowerCase();
+const norm = (s) => { logFn('norm', s); return String(s || "").toLowerCase(); };
 
 // Accepts "Monster / Zombie" OR ["Monster","Zombie"] → array
-const asArray = (v) => {
-  if (Array.isArray(v)) return v;
-  if (v == null) return [];
-  return String(v).split(/\s*\/\s*/).map(s => s.trim()).filter(Boolean);
-};
+const asArray = (v) => { logFn('asArray', v); if (Array.isArray(v)) return v; if (v == null) return []; return String(v).split(/\s*\/\s*/).map(s => s.trim()).filter(Boolean); };
 
 // Join tokens back for display: ["Monster","Zombie"] → "Monster / Zombie"
-const joinSlash = (arr) => arr.join(" / ");
+const joinSlash = (arr) => { logFn('joinSlash', arr); return arr.join(" / "); };
 
 // For text search: stringify card.type no matter its shape.
-const typesArrToString = (v) => joinSlash(asArray(v));
+const typesArrToString = (v) => { logFn('typesArrToString', v); return joinSlash(asArray(v)); };
 
 // Normalized “function” tags per card (if any)
-function getFunctionTags(card) {
-  const raw = card.function ?? card.functions ?? [];
-  return asArray(raw).map(s => s.toLowerCase());
-}
+function getFunctionTags(card) { logFn('getFunctionTags', card); const raw = card.function ?? card.functions ?? []; return asArray(raw).map(s => s.toLowerCase()); }
 
 // Update drawn counters
-function cardKey(card) { return (card.id != null) ? `id:${card.id}` : `name:${card.name}`; }
-function incDrawn(card, n = 1) { const k = cardKey(card); DRAWN.counts.set(k, (DRAWN.counts.get(k) || 0) + n); }
-function clearDrawn() { DRAWN.counts.clear(); }
+function cardKey(card) { logFn('cardKey', card); return (card.id != null) ? `id:${card.id}` : `name:${card.name}`; }
+function incDrawn(card, n = 1) { logFn('incDrawn', card, n); const k = cardKey(card); DRAWN.counts.set(k, (DRAWN.counts.get(k) || 0) + n); }
+function clearDrawn() { logFn('clearDrawn'); DRAWN.counts.clear(); }
 
 // Remaining qty after subtracting drawn count
-function remainingQtyFor(card) {
-  const have = Number(card.qty) || 1;
-  const used = DRAWN.counts.get(cardKey(card)) || 0;
-  return Math.max(0, have - used);
-}
+function remainingQtyFor(card) { logFn('remainingQtyFor', card); const have = Number(card.qty) || 1; const used = DRAWN.counts.get(cardKey(card)) || 0; return Math.max(0, have - used); }
 
 // Project a section so .qty becomes “remaining”, drop depleted
-function projectCardsForDisplay(list) {
-  return (list || [])
+function projectCardsForDisplay(list) { logFn('projectCardsForDisplay', list); return (list || [])
     .map(c => ({ ...c, qty: remainingQtyFor(c) }))
-    .filter(c => c.qty > 0);
-}
+    .filter(c => c.qty > 0); }
 
+// Collect all unique function tags in a deck (for filter UI)
+function collectFunctionFacet(deck) { logFn('collectFunctionFacet', deck); const tags = new Set(); if (!deck || !deck.sections) return []; for (const section of Object.values(deck.sections)) { for (const card of section || []) { getFunctionTags(card).forEach(tag => { if (tag) tags.add(tag); }); } } return Array.from(tags).sort(); }
 /* ===== END: GLOBAL STATE + UTILS ===== */
 
 
@@ -107,17 +105,10 @@ function projectCardsForDisplay(list) {
 ========================= */
 
 // Load a local JSON deck (your decks)
-async function loadDeck(path) {
-  const res = await fetch(path, { cache: "no-store" });
-  if (!res.ok) throw new Error(`failed to load: ${path} (${res.status})`);
-  return await res.json();
-}
+async function loadDeck(path) { console.log('loadDeck', path); const res = await fetch(path, { cache: "no-store" }); if (!res.ok) throw new Error(`failed to load: ${path} (${res.status})`); return await res.json(); }
 
 // YGOPRODeck: fetch cards by ids (in chunks)
-async function fetchCardsByIds(ids = []) {
-  const unique = [...new Set(ids)];
-  const chunks = [];
-  const CHUNK = 50; // API supports multiple IDs; chunk conservatively
+async function fetchCardsByIds(ids = []) { console.log('fetchCardsByIds', ids); const unique = [...new Set(ids)]; const chunks = []; const CHUNK = 50; // API supports multiple IDs; chunk conservatively
 
   for (let i = 0; i < unique.length; i += CHUNK) {
     chunks.push(unique.slice(i, i + CHUNK));
@@ -138,7 +129,6 @@ async function fetchCardsByIds(ids = []) {
 /* ===== END: DATA ACCESS ===== */
 
 
-
 /* =========================
    4) NORMALIZERS (API -> your card shape)
 ========================= */
@@ -147,8 +137,7 @@ async function fetchCardsByIds(ids = []) {
  * Convert a YGOPRO apiCard into your card format,
  * and inject qty (passed in), image, and type array.
  */
-function toOurCardFromYGOPRO(apiCard, qty = 1) {
-  // image
+function toOurCardFromYGOPRO(apiCard, qty = 1) { console.log('toOurCardFromYGOPRO', apiCard, qty); // image
   const images = apiCard.card_images || [];
   const img = images[0]?.image_url || "../assets/back.jpg";
 
@@ -198,7 +187,6 @@ function toOurCardFromYGOPRO(apiCard, qty = 1) {
 }
 
 /* ===== END: NORMALIZERS ===== */
-
 
 
 /* =========================
@@ -261,62 +249,73 @@ function downloadFile(filename, text) {
 /* ===== END: EXPORTERS ===== */
 
 
-
 /* =========================
-   6) .YDK IMPORT ➜ Your JSON template
+   6) .YDK IMPORT HELPERS (pure, no DOM)
+   - use from wireUI’s import handler
 ========================= */
 
-// IMPORT .YDK → JSON (download + load immediately)
-const btnImport = root.querySelector("#btnImportYdk");
-const inputYdk  = root.querySelector("#importYdkInput");
-if (btnImport && inputYdk && !btnImport.dataset.wired) {
-  btnImport.addEventListener("click", () => inputYdk.click());
+// Parse .ydk text into { name, main: number[], extra: number[], side: number[] }
+function parseYdk(text) {
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  const main = [], extra = [], side = [];
+  let where = "main";
+  let deckName = null;
 
-  inputYdk.addEventListener("change", async () => {
-    const file = inputYdk.files?.[0];
-    if (!file) return;
-    try {
-      const text = await file.text();
-      showLoader();
-
-      // Build your deck object from the .ydk
-      const deckJson = await importYdkToJson(text);
-
-      // 1) Offer the JSON as a download (keeps things portable/versionable)
-      const pretty = JSON.stringify(deckJson, null, 2);
-      const safeName = (deckJson.name || "imported-deck").replace(/[^\w\-]+/g, "_");
-      downloadFile(`${safeName}.json`, pretty);
-
-      // 2) Load it into the app immediately
-      CURRENT_DECK = deckJson;
-      WORKING_DECK = null;
-      CURRENT_HAND = [];
-      clearDrawn();
-      render(deckJson);
-
-      // Optional: ensure the page is in the right theme (generic import tag)
-      document.body.classList.forEach(cls => { if (cls.endsWith("-deck")) document.body.classList.remove(cls); });
-      document.body.classList.add("imported-deck");
-
-      // Optional UX: scroll to top so the user sees the header + filters
-      window.scrollTo({ top: 0, behavior: "smooth" });
-
-    } catch (err) {
-      console.error(err);
-      alert("Import failed. Check the .YDK file and try again.");
-    } finally {
-      hideLoader();
-      inputYdk.value = ""; // allow re-selecting the same file
+  for (const line of lines) {
+    if (line.startsWith("#")) {
+      const low = line.toLowerCase();
+      if (low.startsWith("#main")) where = "main";
+      else if (low.startsWith("#extra")) where = "extra";
+      else if (low.startsWith("#name")) deckName = line.slice(5).trim() || null;
+      continue; // ignore other comment lines
     }
-  });
+    if (line === "!side") { where = "side"; continue; }
 
-  btnImport.dataset.wired = "1";
+    const id = Number(line);
+    if (!Number.isFinite(id)) continue;
+    if (where === "main") main.push(id);
+    else if (where === "extra") extra.push(id);
+    else side.push(id);
+  }
+  return { name: deckName, main, extra, side };
 }
 
+// Compress repeated ids into [{id, qty}, ...]
+function compressIdsToQty(ids = []) {
+  const m = new Map();
+  ids.forEach(id => m.set(id, (m.get(id) || 0) + 1));
+  return [...m.entries()].map(([id, qty]) => ({ id, qty }));
+}
 
-/* ===== END: .YDK IMPORT ===== */
+// End-to-end: .YDK text -> your full deck JSON (using YGOPRO API)
+async function importYdkToJson(ydkText) {
+  const parsed = parseYdk(ydkText);                       // ids only
+  const allIds = [...parsed.main, ...parsed.extra, ...parsed.side];
+  const apiMap = await fetchCardsByIds(allIds);           // Map id -> apiCard
 
+  const packSection = (ids) => {
+    const comp = compressIdsToQty(ids);                   // [{id, qty}]
+    const out  = [];
+    for (const { id, qty } of comp) {
+      const apiCard = apiMap.get(id);
+      if (!apiCard) continue;                             // unknown id; skip
+      out.push(toOurCardFromYGOPRO(apiCard, qty));        // <-- your normalizer
+    }
+    return out;
+  };
 
+  return {
+    name: parsed.name || "Imported Deck",
+    author: "Imported",
+    deckstyle: "Imported",
+    sections: {
+      main:  packSection(parsed.main),
+      extra: packSection(parsed.extra),
+      side:  packSection(parsed.side),
+    }
+  };
+}
+/* ===== END: .YDK IMPORT HELPERS ===== */
 
 /* =========================
    7) LIFE POINT COUNTER (tap player panel to apply amount)
@@ -409,7 +408,6 @@ function wireLifePoints(root = document) {
 }
 
 /* ===== END: LIFE POINT COUNTER ===== */
-
 
 
 /* =========================
@@ -567,7 +565,6 @@ function render(deck) {
 /* ===== END: RENDERING ===== */
 
 
-
 /* =========================
    9) FILTERING
 ========================= */
@@ -671,7 +668,6 @@ function refreshSections(root, deck) {
 }
 
 /* ===== END: FILTERING ===== */
-
 
 
 /* =========================
@@ -829,7 +825,6 @@ function wireHandTester(root, deck) {
 }
 
 /* ===== END: HAND TESTER ===== */
-
 
 
 /* =========================
@@ -1009,7 +1004,6 @@ function wireUI(root, deck) {
 /* ===== END: UI WIRING ===== */
 
 
-
 /* =========================
    12) DECKBOX COUNTS (labels)
 ========================= */
@@ -1048,7 +1042,6 @@ async function preloadDeckCounts() {
 }
 
 /* ===== END: DECKBOX COUNTS ===== */
-
 
 
 /* =========================

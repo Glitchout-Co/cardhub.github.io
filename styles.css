@@ -39,8 +39,6 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   line-height: 1.6;
   color: var(--text);
-
-  /* subtle page texture */
   background:
     radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.06), transparent 60%),
     radial-gradient(1000px 700px at -20% 110%, rgba(255,255,255,.04), transparent 60%),
@@ -64,20 +62,19 @@ h2 {
 }
 
 .hide-link {
-  color: inherit;           /* Use the surrounding text color */
-  text-decoration: none;    /* Remove underline */
-  cursor: pointer;          /* Optional: show pointer on hover */
-  font-weight: inherit;     /* Inherit font weight */
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: inherit;
 }
 
 .disable {
-    opacity: 0.6;
-	  cursor: not-allowed;
-  }
-  
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 .disable:hover {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* =========================================
@@ -1094,18 +1091,23 @@ body.yugioh .card-grid .card-tile:hover {
 /* ========================================
    Deck Filter Bar 
 ======================================== */
-.deck-controls{
+.deck-controls {
   display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;
   margin: 0 0 1rem 0;
 }
+
 .deck-controls input[type="search"]{
   flex:1 1 280px; max-width:520px;
   padding:.55rem .75rem; border-radius:.55rem;
   border:1px solid var(--border); background:var(--panel); color:var(--text);
 }
+
 .deck-controls .toggles{
-  display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;
+  display:flex; gap:.5rem; 
+  align-items:center; 
+  flex-wrap:wrap;
 }
+
 .deck-controls label{
   display:inline-flex; align-items:center; gap:.35rem;
   background:var(--panel); border:1px solid var(--border);
